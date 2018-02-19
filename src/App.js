@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Routingbasics from './components/try.js';
-import ParamsExample from './components/params.js';
-import AuthExample from './components/redirects.js';
+import Landing from './components/index.js';
+import Login from './components/login.js';
 class App extends Component {
   render() {
     return (
@@ -12,13 +11,10 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        
-        {/* <Routingbasics/>
         <hr/>
-        <h1>Using links to change url end slashes</h1>
-        <ParamsExample/> */}
+        <Landing/>
         <hr/>
-        <AuthExample/>
+        <Login/>
 
       </div>
     );
