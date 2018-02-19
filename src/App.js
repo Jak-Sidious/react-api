@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Routingbasics from './components/try.js';
 import ParamsExample from './components/params.js';
+import AuthExample from './components/redirects.js';
 class App extends Component {
   render() {
     return (
@@ -12,11 +13,12 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         
-        <Routingbasics/>
+        {/* <Routingbasics/>
         <hr/>
         <h1>Using links to change url end slashes</h1>
-        <ParamsExample/>
-        <hr/>>
+        <ParamsExample/> */}
+        <hr/>
+        <AuthExample/>
 
       </div>
     );
