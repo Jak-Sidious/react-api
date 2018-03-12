@@ -1,6 +1,9 @@
 import React, {Component} from "react";
 import {Button, FormGroup, FormControl, ControlLabel,Label} from "react-bootstrap";
-import "./login/login.css";
+// import "../..public/styles/base.css";
+// public/styles/base.css
+// /Users/jakanakiwanuka/work/react-api/src/components/Login/login.js
+// /Users/jakanakiwanuka/work/react-api/public/styles/base.css
 
 class Login extends React.Component{
   constructor(props){

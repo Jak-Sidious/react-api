@@ -17,7 +17,7 @@
   text-align: center;
 }
 
-.nameField, .passwordField  {
+.nameField, .passwordField, .emailField  {
   position: relative;
   width:95;
 	font-size: 16px;
