@@ -1,4 +1,5 @@
 import React from "react";
+import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from "react-bootstrap";
 
 class Landing extends React.Component{
   constructor(props){
@@ -11,7 +12,9 @@ class Landing extends React.Component{
 
   render() {
     return(
-      <h1>This is the landing page</h1>
+      <div className="landing">
+        
+      </div>
     );
   }
 }

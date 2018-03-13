@@ -34,51 +34,50 @@ class Register extends React.Component{
 
   render(){
     return(
-      <div className="wrapper">
-        <form
-          className="form-signin"
-          onSubmit={this.handleRegister}>
-          <h2 className="form-signin-heading">Registration form</h2>
-          <FormGroup
-            controlid="formBasicText"
-          >
-            <FormControl className="nameField"
-              autoFocus
-              name="username"
-              type="username"
-              onChange={this.handleChange}
+      <div className="regBackground">
+        <div className="wrapper">
+          <form
+            className="form-signin"
+            onSubmit={this.handleRegister}>
+            <h2 className="form-signin-heading">Registration form</h2>
+            <FormGroup
+              controlid="formBasicText"
+            >
+              <FormControl className="nameField"
+                autoFocus
+                name="username"
+                type="username"
+                onChange={this.handleChange}
 
-              placeholder="Enter Username"
-            />
-            <FormControl className="emailField"
-              autoFocus
-              name="email"
-              type="email"
-              onChange={this.handleChange}
-              placeholder="Enter email"
-            />
-            <FormControl className="passwordField"
-              autoFocus
-              name="password"
-              type="password"
-              onChange={this.handleChange}
-              placeholder="Enter password"
-            />
-            <br/>
-            <Button
-              type="submit"
-              bsStyle="primary"
-              bsSize="large"
-              block>
-              Register
-            </Button>
+                placeholder="Enter Username"
+              />
+              <FormControl className="emailField"
+                autoFocus
+                name="email"
+                type="email"
+                onChange={this.handleChange}
+                placeholder="Enter email"
+              />
+              <FormControl className="passwordField"
+                autoFocus
+                name="password"
+                type="password"
+                onChange={this.handleChange}
+                placeholder="Enter password"
+              />
+              <br/>
+              <Button
+                type="submit"
+                bsStyle="primary"
+                bsSize="large"
+                block>
+                Register
+              </Button>
 
-            <FormControl.Feedback />
-          </FormGroup>
-        </form>
-
-
-
+              <FormControl.Feedback />
+            </FormGroup>
+          </form>
+        </div>
       </div>
     );
   }

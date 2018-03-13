@@ -16,6 +16,7 @@ class Login extends React.Component{
   handleChange = (event) =>{
     const {name, value} = event.target;
     this.setState({[name]: value});
+    console.log(this.state)
   }
 
 
@@ -32,43 +33,42 @@ class Login extends React.Component{
 
   render() {
     return(
-      <div className="wrapper">
-        <form
-          className="form-signin"
-          onSubmit={this.handleLogin}>
-          <h2 className="form-signin-heading">Please login</h2>
-          <FormGroup
-            controlid="formBasicText"
-          >
-            <FormControl className="nameField"
-              autoFocus
-              name="username"
-              type="username"
-              onChange={this.handleChange}
-              placeholder="Enter Username"
-            />
-            <FormControl className="passwordField"
-              autoFocus
-              name="password"
-              type="password"
-              onChange={this.handleChange}
-              placeholder="Enter Username"
-            />
-          <br/>
-            <Button
-              type="submit"
-              bsStyle="success"
-              bsSize="large"
-              block>
-              Login
-            </Button>
+      <div className="logBackground">
+        <div className="wrapper">
+          <form
+            className="form-signin"
+            onSubmit={this.handleLogin}>
+            <h2 className="form-signin-heading">Please login</h2>
+            <FormGroup
+              controlid="formBasicText"
+            >
+              <FormControl className="nameField"
+                autoFocus
+                name="username"
+                type="username"
+                onChange={this.handleChange}
+                placeholder="Enter Username"
+              />
+              <FormControl className="passwordField"
+                autoFocus
+                name="password"
+                type="password"
+                onChange={this.handleChange}
+                placeholder="Enter Username"
+              />
+            <br/>
+              <Button
+                type="submit"
+                bsStyle="success"
+                bsSize="large"
+                block>
+                Login
+              </Button>
 
-            <FormControl.Feedback />
-          </FormGroup>
-        </form>
-
-
-
+              <FormControl.Feedback />
+            </FormGroup>
+          </form>
+        </div>
       </div>
     );
   }
