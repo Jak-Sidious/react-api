@@ -2,6 +2,8 @@ import React from "react";
 import {Button, FormGroup, FormControl} from "react-bootstrap";
 import axios from 'axios';
 
+const ROOT_URL = 'http://127.0.0.1:5000/apiv1/';
+const REGISTRATION_URL = 'users/register';
 class Register extends React.Component{
   constructor(props){
     super(props);
@@ -22,18 +24,22 @@ class Register extends React.Component{
 
   handleRegister = (event) =>{
     const {username: username, email: email, password: password} = this.state;
-
-    axios.post('https')
+    console.log(this.state);
+    axios.post(`${ROOT_URL}${REGISTRATION_URL}`, this.state)
+    .then((response) => {
+      console.log(response);
+      console.log(response.data);
+    });
   }
 
   render() {
-    // console.log(this.state);
+
 
     return(
       <div className="wrapper">
         <form className="form-signin">
           <h2 className="form-signin-heading">Registration form</h2>
-          <FormGroup onSubmit={this.handleRegister}
+          <FormGroup
             controlid="formBasicText"
           >
             <FormControl className="nameField"
@@ -59,7 +65,12 @@ class Register extends React.Component{
               placeholder="Enter password"
             />
             <br/>
-            <Button bsStyle="primary" bsSize="large" block>
+            <Button
+              type="submit"
+              onClick={(event) => this.handleRegister(event)}
+              bsStyle="primary"
+              bsSize="large"
+              block>
               Register
             </Button>
 
