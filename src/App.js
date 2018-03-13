@@ -7,8 +7,8 @@ import Login from './components/Login/login';
 import Register from './components/Register/register';
 
 //instruction components
-import AuthExample from './components/redirects';
-import ParamsExample from './components/params';
+// import AuthExample from './components/redirects';
+// import ParamsExample from './components/params';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -19,8 +19,8 @@ class App extends Component {
       <div className="App">
           <BrowserRouter>
             <div>
+                <Route exact path="/" component={Register} />
                 <Route exact path="/login" component={Login} />
-                <Route exact path="/register" component={Register} />
             </div>
           </BrowserRouter>
       </div>

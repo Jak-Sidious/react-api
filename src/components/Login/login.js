@@ -1,9 +1,6 @@
-import React, {Component} from "react";
-import {Button, FormGroup, FormControl, ControlLabel,Label} from "react-bootstrap";
-// import "../..public/styles/base.css";
-// public/styles/base.css
-// /Users/jakanakiwanuka/work/react-api/src/components/Login/login.js
-// /Users/jakanakiwanuka/work/react-api/public/styles/base.css
+import React from "react";
+import {Button, FormGroup, FormControl} from "react-bootstrap";
+
 
 class Login extends React.Component{
   constructor(props){
@@ -37,6 +34,7 @@ class Login extends React.Component{
               // onchange
               placeholder="Enter Username"
             />
+          <br/>
             <Button bsStyle="primary" bsSize="large" block>
               Login
             </Button>
