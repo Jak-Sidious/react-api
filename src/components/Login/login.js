@@ -18,7 +18,7 @@ class Login extends React.Component{
         <form className="form-signin">
           <h2 className="form-signin-heading">Please login</h2>
           <FormGroup
-            controlID="formBasicText"
+            controlid="formBasicText"
           >
             <FormControl className="nameField"
               autoFocus
@@ -28,7 +28,7 @@ class Login extends React.Component{
               placeholder="Enter Username"
             />
             <FormControl className="passwordField"
-              autofocus
+              autoFocus
               type="password"
               value={this.state.password}
               // onchange
