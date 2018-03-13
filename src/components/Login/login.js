@@ -1,7 +1,9 @@
 import React from "react";
 import {Button, FormGroup, FormControl} from "react-bootstrap";
+import axios from 'axios';
 
-
+const ROOT_URL = 'http://127.0.0.1:5000/apiv1/';
+const LOGIN_URL = 'users/login';
 class Login extends React.Component{
   constructor(props){
     super(props);
@@ -14,25 +16,26 @@ class Login extends React.Component{
   handleChange = (event) =>{
     const {name, value} = event.target;
     this.setState({[name]: value});
-    console.log(this.state);
   }
 
 
-  // handleRegister = (event) =>{
-  //   event.preventDefault();
-  //   const {username: username, email: email, password: password} = this.state;
-  //   console.log(this.state);
-  //   axios.post(`${ROOT_URL}${REGISTRATION_URL}`, this.state)
-  //   .then((response) => {
-  //     this.props.history.push('/login');
-  //     console.log(response);
-  //   });
-  // }
+  handleLogin = (event) =>{
+    event.preventDefault();
+    const {username: username, password: password} = this.state;
+    console.log(this.state);
+    axios.post(`${ROOT_URL}${LOGIN_URL}`, this.state)
+    .then((response) => {
+      this.props.history.push('/landing');
+      console.log(response);
+    });
+  }
 
   render() {
     return(
       <div className="wrapper">
-        <form className="form-signin">
+        <form
+          className="form-signin"
+          onSubmit={this.handleLogin}>
           <h2 className="form-signin-heading">Please login</h2>
           <FormGroup
             controlid="formBasicText"
@@ -52,7 +55,11 @@ class Login extends React.Component{
               placeholder="Enter Username"
             />
           <br/>
-            <Button bsStyle="primary" bsSize="large" block>
+            <Button
+              type="submit"
+              bsStyle="success"
+              bsSize="large"
+              block>
               Login
             </Button>
 
