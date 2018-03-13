@@ -7,26 +7,34 @@ class Register extends React.Component{
     super(props);
 
     this.state={
-      auth: {}
+      username: '',
+      email: '',
+      password: ''
     }
   }
 
 
   handleChange = (event) =>{
-    const field = event.target.name
-    let auth = this.state.auth
-    auth[field] = event.target.value
-    this.setState({auth: auth})
+    const {name, value} = event.target;
+    this.setState({[name]: value});
+  }
+
+
+  handleRegister = (event) =>{
+    const {username: username, email: email, password: password} = this.state;
+
+    axios.post('https')
   }
 
   render() {
-    console.log(this.state)
+    // console.log(this.state);
+
     return(
       <div className="wrapper">
         <form className="form-signin">
           <h2 className="form-signin-heading">Registration form</h2>
-          <FormGroup
-            controlID="formBasicText"
+          <FormGroup onSubmit={this.handleRegister}
+            controlid="formBasicText"
           >
             <FormControl className="nameField"
               autoFocus
@@ -44,7 +52,7 @@ class Register extends React.Component{
               placeholder="Enter email"
             />
             <FormControl className="passwordField"
-              autofocus
+              autoFocus
               name="password"
               type="password"
               onChange={this.handleChange}
