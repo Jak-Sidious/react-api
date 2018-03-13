@@ -7,10 +7,27 @@ class Login extends React.Component{
     super(props);
 
     this.state={
-      username:"",
-      password:""
+      username: '',
+      password: ''
     };
   }
+  handleChange = (event) =>{
+    const {name, value} = event.target;
+    this.setState({[name]: value});
+    console.log(this.state);
+  }
+
+
+  // handleRegister = (event) =>{
+  //   event.preventDefault();
+  //   const {username: username, email: email, password: password} = this.state;
+  //   console.log(this.state);
+  //   axios.post(`${ROOT_URL}${REGISTRATION_URL}`, this.state)
+  //   .then((response) => {
+  //     this.props.history.push('/login');
+  //     console.log(response);
+  //   });
+  // }
 
   render() {
     return(
@@ -22,16 +39,16 @@ class Login extends React.Component{
           >
             <FormControl className="nameField"
               autoFocus
+              name="username"
               type="username"
-              value={this.state.username}
-              // onChange
+              onChange={this.handleChange}
               placeholder="Enter Username"
             />
             <FormControl className="passwordField"
               autoFocus
+              name="password"
               type="password"
-              value={this.state.password}
-              // onchange
+              onChange={this.handleChange}
               placeholder="Enter Username"
             />
           <br/>
