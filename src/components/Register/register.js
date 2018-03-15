@@ -76,7 +76,16 @@ class Register extends React.Component{
 
               <FormControl.Feedback />
             </FormGroup>
+            <Button
+              className="proceed"
+              bsStyle="success"
+              bsSize="xs"
+              href="/login"
+              block>
+              Proceed to login
+            </Button>
           </form>
+
         </div>
       </div>
     );

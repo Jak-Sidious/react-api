@@ -1,14 +1,8 @@
 import React from "react";
 import {Navbar} from "react-bootstrap";
 
-class Navbar extends React.Component{
-  constructor(props){
-    super(props);
+const Navigation = () => {
+  <h1>Lets see</h1>
+};
 
-    this.state={
-      username: '',
-      email: '',
-      password: ''
-    }
-  }
-}
+export default Navigation;

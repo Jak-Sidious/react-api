@@ -1,6 +1,7 @@
 import React from "react";
 import FlipPage from "react-flip-page";
 
+
 class Landing extends React.Component{
   // constructor(props){
   //   super(props);
