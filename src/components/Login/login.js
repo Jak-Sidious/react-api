@@ -8,23 +8,28 @@ class Login extends React.Component{
   constructor(props){
     super(props);
 
-    this.state={
-      username: '',
-      password: ''
+    this.state = {
+      signIn : {
+        username: '',
+        password: ''
+      }
+
     };
   }
   handleChange = (event) =>{
     const {name, value} = event.target;
     this.setState({[name]: value});
-    console.log(this.state)
   }
 
 
   handleLogin = (event) =>{
     event.preventDefault();
-    const {username: username, password: password} = this.state;
+    const user = {
+      username: this.state.signIn.username,
+      password: this.state.signIn.password
+    }
     console.log(this.state);
-    axios.post(`${ROOT_URL}${LOGIN_URL}`, this.state)
+    axios.post(`${ROOT_URL}${LOGIN_URL}`, user)
     .then((response) => {
       this.props.history.push('/landing');
       console.log(response);

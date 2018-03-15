@@ -9,10 +9,12 @@ class Register extends React.Component{
     super(props);
 
     this.state={
-      username: '',
-      email: '',
-      password: ''
-    }
+      register :{
+        username: '',
+        email: '',
+        password: ''
+      }
+    };
   }
 
   handleChange = (event) =>{
@@ -23,9 +25,14 @@ class Register extends React.Component{
 
   handleRegister = (event) =>{
     event.preventDefault();
-    const {username: username, email: email, password: password} = this.state;
+
+    const newUser = {
+      username : this.state.register.username,
+      email : this.state.register.email,
+      password : this.state.register.password
+    }
     console.log(this.state);
-    axios.post(`${ROOT_URL}${REGISTRATION_URL}`, this.state)
+    axios.post(`${ROOT_URL}${REGISTRATION_URL}`, newUser)
     .then((response) => {
       this.props.history.push('/login');
       console.log(response);

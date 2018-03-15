@@ -1,5 +1,7 @@
 import React from "react";
 import FlipPage from "react-flip-page";
+import Navigation from "../Navbar/navbar";
+
 
 
 class Landing extends React.Component{
@@ -11,12 +13,14 @@ class Landing extends React.Component{
   //   };
   // }
 
+
+
   render() {
+
     return(
-        <FlipPage
-          width="100%"
-          orientation="horizontal"
-          disableSwipe="false">
+      <div>
+      <Navigation/>
+        <FlipPage className="flipStyle">
           <article>
             <h1>My awesome first article that spans beyond the confines of its page and goes all the way to the next page</h1>
             <p>My awesome first content</p>
@@ -30,6 +34,7 @@ class Landing extends React.Component{
             <p>My excellent third content</p>
           </article>
         </FlipPage>
+        </div>
     );
   }
 }

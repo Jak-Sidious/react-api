@@ -48,7 +48,15 @@
 
 .proceed {
 	position: center;
+	width: 50px;
 }
+
+/* .flipStyle {
+	width: "100%";
+  height: "900";
+  orientation :"horizontal";
+  disableSwipe: "FALSE";
+} */
 
 input[type="username"] {
 	  margin-bottom: -1px;
