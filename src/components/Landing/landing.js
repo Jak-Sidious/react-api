@@ -1,22 +1,23 @@
 import React from "react";
 import FlipPage from "react-flip-page";
-import PropTypes from "prop-types";
 
 class Landing extends React.Component{
-  constructor(props){
-    super(props);
-
-    this.state={
-      
-    };
-  }
+  // constructor(props){
+  //   super(props);
+  //
+  //   this.state={
+  //
+  //   };
+  // }
 
   render() {
     return(
-      <div>
-        <FlipPage >
+        <FlipPage
+          width="100%"
+          orientation="horizontal"
+          disableSwipe="false">
           <article>
-            <h1>My awesome first article</h1>
+            <h1>My awesome first article that spans beyond the confines of its page and goes all the way to the next page</h1>
             <p>My awesome first content</p>
           </article>
           <article>
@@ -28,7 +29,6 @@ class Landing extends React.Component{
             <p>My excellent third content</p>
           </article>
         </FlipPage>
-      </div>
     );
   }
 }
