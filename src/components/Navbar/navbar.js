@@ -12,7 +12,7 @@ const Navigation = () => {
           </Navbar.Brand>
           <Navbar.Toggle/>
         </Navbar.Header>
-        {/* <Navbar.Collapse>
+        <Navbar.Collapse>
           <Nav>
             <NavItem eventKey={1} href="#">
               Link
@@ -36,7 +36,7 @@ const Navigation = () => {
               Link Right
             </NavItem>
           </Nav>
-        </Navbar.Collapse> */}
+        </Navbar.Collapse>
       </Navbar>
     </div>
   )

@@ -51,12 +51,12 @@
 	width: 50px;
 }
 
-/* .flipStyle {
+.flipStyle {
 	width: "100%";
   height: "900";
   orientation :"horizontal";
   disableSwipe: "FALSE";
-} */
+}
 
 input[type="username"] {
 	  margin-bottom: -1px;
