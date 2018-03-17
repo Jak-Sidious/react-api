@@ -1,19 +1,15 @@
 import React from "react";
 import {Button, FormGroup, FormControl} from "react-bootstrap";
-import axios from 'axios';
+import axiosInstance from '../commonComponents/AxiosInstance';
 
-const ROOT_URL = 'http://127.0.0.1:5000/apiv1/';
 const LOGIN_URL = 'users/login';
 class Login extends React.Component{
   constructor(props){
     super(props);
 
     this.state = {
-      signIn : {
         username: '',
         password: ''
-      }
-
     };
   }
   handleChange = (event) =>{
@@ -25,12 +21,16 @@ class Login extends React.Component{
   handleLogin = (event) =>{
     event.preventDefault();
     const user = {
-      username: this.state.signIn.username,
-      password: this.state.signIn.password
+      username: this.state.username,
+      password: this.state.password
     }
     console.log(this.state);
-    axios.post(`${ROOT_URL}${LOGIN_URL}`, user)
+
+    axiosInstance
+    .post(`${LOGIN_URL}`, user)
     .then((response) => {
+      window.localStorage.setItem('token', response.data.token)
+      console.log(response.data);
       this.props.history.push('/landing');
       console.log(response);
     });

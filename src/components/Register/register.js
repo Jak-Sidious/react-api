@@ -1,24 +1,22 @@
 import React from "react";
 import {Button, FormGroup, FormControl} from "react-bootstrap";
-import axios from 'axios';
+import axiosInstance from '../commonComponents/AxiosInstance';
 
-const ROOT_URL = 'http://127.0.0.1:5000/apiv1/';
+
 const REGISTRATION_URL = 'users/register';
 class Register extends React.Component{
   constructor(props){
     super(props);
 
     this.state={
-      register :{
         username: '',
         email: '',
         password: ''
-      }
     };
   }
 
   handleChange = (event) =>{
-    const {name, value} = event.target;
+    const { name, value } = event.target;
     this.setState({[name]: value});
   }
 
@@ -27,15 +25,21 @@ class Register extends React.Component{
     event.preventDefault();
 
     const newUser = {
-      username : this.state.register.username,
-      email : this.state.register.email,
-      password : this.state.register.password
+      username : this.state.username,
+      email : this.state.email,
+      password : this.state.password
     }
-    console.log(this.state);
-    axios.post(`${ROOT_URL}${REGISTRATION_URL}`, newUser)
+    console.log(newUser);
+    axiosInstance
+    .post(`${REGISTRATION_URL}`, newUser)
     .then((response) => {
       this.props.history.push('/login');
       console.log(response);
+    })
+    .catch((error) => {
+      if(error.response) {
+        console.log(error.response.data.message);
+      }
     });
   }
 

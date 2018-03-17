@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
 import FlipPage from "react-flip-page";
 import Navigation from "../Navbar/navbar";
 
 
 
-class Landing extends React.Component{
+class Landing extends Component{
   // constructor(props){
   //   super(props);
   //
