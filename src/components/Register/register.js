@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, FormGroup, FormControl} from "react-bootstrap";
+import { Button, Form } from 'semantic-ui-react'
 import axiosInstance from '../commonComponents/AxiosInstance';
 
 
@@ -18,6 +18,7 @@ class Register extends React.Component{
   handleChange = (event) =>{
     const { name, value } = event.target;
     this.setState({[name]: value});
+    console.log(this.state);
   }
 
 
@@ -47,55 +48,35 @@ class Register extends React.Component{
     return(
       <div className="regBackground">
         <div className="wrapper">
-          <form
-            className="form-signin"
-            onSubmit={this.handleRegister}>
+          <Form className="form-signin">
             <h2 className="form-signin-heading">Registration form</h2>
-            <FormGroup
-              controlid="formBasicText"
-            >
-              <FormControl className="nameField"
-                autoFocus
-                name="username"
-                type="username"
-                onChange={this.handleChange}
 
-                placeholder="Enter Username"
-              />
-              <FormControl className="emailField"
+              <Form.Input className='nameField'
                 autoFocus
-                name="email"
-                type="email"
-                onChange={this.handleChange}
-                placeholder="Enter email"
-              />
-              <FormControl className="passwordField"
+                name='username'
+                type='username'
+                placeholder='Enter your username'
+                onChange={this.handleChange}/>
+              <Form.Input className='emailField'
                 autoFocus
-                name="password"
-                type="password"
+                name='email'
+                type='email'
+                placeholder='Enter email'
+                onChange={this.handleChange}/>
+              <Form.Input className='passwordField'
+                autoFocus
+                name='password'
+                type='password'
+                placeholder='Enter password'
                 onChange={this.handleChange}
-                placeholder="Enter password"
               />
-              <br/>
-              <Button
-                type="submit"
-                bsStyle="primary"
-                bsSize="large"
-                block>
+              <Button className='registerBtn'
+                color='blue'
+                type='submit'
+                size='large'>
                 Register
               </Button>
-
-              <FormControl.Feedback />
-            </FormGroup>
-            <Button
-              className="proceed"
-              bsStyle="success"
-              bsSize="xs"
-              href="/login"
-              block>
-              Proceed to login
-            </Button>
-          </form>
+          </Form>
 
         </div>
       </div>

@@ -1,5 +1,4 @@
 import React from "react";
-import {Button, FormGroup, FormControl} from "react-bootstrap";
 import axiosInstance from '../commonComponents/AxiosInstance';
 
 const LOGIN_URL = 'users/login';
@@ -40,39 +39,7 @@ class Login extends React.Component{
     return(
       <div className="logBackground">
         <div className="wrapper">
-          <form
-            className="form-signin"
-            onSubmit={this.handleLogin}>
-            <h2 className="form-signin-heading">Please login</h2>
-            <FormGroup
-              controlid="formBasicText"
-            >
-              <FormControl className="nameField"
-                autoFocus
-                name="username"
-                type="username"
-                onChange={this.handleChange}
-                placeholder="Enter Username"
-              />
-              <FormControl className="passwordField"
-                autoFocus
-                name="password"
-                type="password"
-                onChange={this.handleChange}
-                placeholder="Enter Username"
-              />
-            <br/>
-              <Button
-                type="submit"
-                bsStyle="success"
-                bsSize="large"
-                block>
-                Login
-              </Button>
-
-              <FormControl.Feedback />
-            </FormGroup>
-          </form>
+          
         </div>
       </div>
     );
