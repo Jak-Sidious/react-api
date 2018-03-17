@@ -1,45 +1,35 @@
-import React from "react";
-import {Nav, Navbar, NavItem, NavDropdown, MenuItem} from "react-bootstrap";
+import React, { Component } from "react";
+import { Input, Menu } from 'semantic-ui-react'
 
-const Navigation = () => {
-  return(
-    <div>
-      <Navbar className="LandingNav"
-        inverse collapseOnSelect>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <a href="/landing">Yummy Recipies</a>
-          </Navbar.Brand>
-          <Navbar.Toggle/>
-        </Navbar.Header>
-        <Navbar.Collapse>
-          <Nav>
-            <NavItem eventKey={1} href="#">
-              Link
-            </NavItem>
-            <NavItem eventKey={2} href="#">
-              Link
-            </NavItem>
-            <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-              <MenuItem eventKey={3.1}>Action</MenuItem>
-              <MenuItem eventKey={3.2}>Another action</MenuItem>
-              <MenuItem eventKey={3.3}>Something else here</MenuItem>
-              <MenuItem divider />
-              <MenuItem eventKey={3.3}>Separated link</MenuItem>
-            </NavDropdown>
-          </Nav>
-          <Nav pullRight>
-            <NavItem eventKey={1} href="#">
-              Link Right
-            </NavItem>
-            <NavItem eventKey={2} href="#">
-              Link Right
-            </NavItem>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
-    </div>
-  )
-};
 
-export default Navigation;
+class Navigation extends Component {
+  state = {
+    activeItem: 'home'
+  }
+
+  handleItemClick = (event, { name }) => {
+    this.setState({ activeItem: name })
+  }
+
+  render() {
+    const { activeItem } = this.state
+
+    return (
+      <div>
+        <Menu inverted>
+        <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
+        <Menu.Item name='messages' active={activeItem === 'messages'} onClick={this.handleItemClick} />
+        <Menu.Item name='friends' active={activeItem === 'friends'} onClick={this.handleItemClick} />
+        <Menu.Menu position='right'>
+          <Menu.Item>
+            <Input icon='search' placeholder='Search...' />
+          </Menu.Item>
+          <Menu.Item name='logout' active={activeItem === 'logout'} onClick={this.handleItemClick} />
+        </Menu.Menu>
+      </Menu>
+      </div>
+    )
+  }
+}
+
+export default Navigation

@@ -1,19 +1,15 @@
 import React from "react";
-import {Button, FormGroup, FormControl} from "react-bootstrap";
-import axios from 'axios';
+import { Form, Button } from 'semantic-ui-react'
+import axiosInstance from '../commonComponents/AxiosInstance';
 
-const ROOT_URL = 'http://127.0.0.1:5000/apiv1/';
 const LOGIN_URL = 'users/login';
 class Login extends React.Component{
   constructor(props){
     super(props);
 
     this.state = {
-      signIn : {
         username: '',
         password: ''
-      }
-
     };
   }
   handleChange = (event) =>{
@@ -25,12 +21,16 @@ class Login extends React.Component{
   handleLogin = (event) =>{
     event.preventDefault();
     const user = {
-      username: this.state.signIn.username,
-      password: this.state.signIn.password
+      username: this.state.username,
+      password: this.state.password
     }
     console.log(this.state);
-    axios.post(`${ROOT_URL}${LOGIN_URL}`, user)
+
+    axiosInstance
+    .post(`${LOGIN_URL}`, user)
     .then((response) => {
+      window.localStorage.setItem('token', response.data.token)
+      console.log(response.data);
       this.props.history.push('/landing');
       console.log(response);
     });
@@ -40,39 +40,34 @@ class Login extends React.Component{
     return(
       <div className="logBackground">
         <div className="wrapper">
-          <form
+          <Form
             className="form-signin"
             onSubmit={this.handleLogin}>
-            <h2 className="form-signin-heading">Please login</h2>
-            <FormGroup
-              controlid="formBasicText"
-            >
-              <FormControl className="nameField"
+            <h2 className="form-signin-heading">Login Form</h2>
+
+              <Form.Input className='nameField'
                 autoFocus
-                name="username"
-                type="username"
-                onChange={this.handleChange}
-                placeholder="Enter Username"
-              />
-              <FormControl className="passwordField"
+                name='username'
+                type='username'
+                placeholder='Enter username'
+                onChange={this.handleChange}/>
+              <Form.Input className='passwordField'
                 autoFocus
-                name="password"
-                type="password"
+                name='password'
+                type='password'
+                placeholder='Enter password'
                 onChange={this.handleChange}
-                placeholder="Enter Username"
               />
-            <br/>
-              <Button
-                type="submit"
-                bsStyle="success"
-                bsSize="large"
-                block>
+              <Button className='left floated'
+                fluid
+                color='blue'
+                value='submit'
+                type='submit'
+                size='large'>
                 Login
               </Button>
-
-              <FormControl.Feedback />
-            </FormGroup>
-          </form>
+              <br/>
+          </Form>
         </div>
       </div>
     );
