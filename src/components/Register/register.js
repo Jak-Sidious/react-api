@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form } from 'semantic-ui-react'
+import { Button, Form, Grid, Segment } from 'semantic-ui-react'
 import axiosInstance from '../commonComponents/AxiosInstance';
 
 
@@ -70,12 +70,20 @@ class Register extends React.Component{
                 placeholder='Enter password'
                 onChange={this.handleChange}
               />
-              <Button className='registerBtn'
+              <Button className='left floated'
                 color='blue'
                 type='submit'
                 size='large'>
                 Register
               </Button>
+
+              <Button className='right floated'
+                color='green'
+                href='/login'
+                size='large'>
+                Login
+              </Button>
+
           </Form>
 
         </div>

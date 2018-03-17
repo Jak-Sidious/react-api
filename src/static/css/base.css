@@ -45,15 +45,6 @@
 		}
 }
 
-.proceed {
-	position: center;
-	width: 50px;
-}
-
-.registerBtn {
-	position: relative;
-	width: 100px;
-}
 
 .navbar navbar-nav{
     -webkit-flex-direction: row;
