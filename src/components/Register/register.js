@@ -1,6 +1,5 @@
 import React from "react";
-import { Form, Button } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import { Form, Button } from 'semantic-ui-react';
 import axiosInstance from '../commonComponents/AxiosInstance';
 
 
