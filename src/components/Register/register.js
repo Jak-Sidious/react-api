@@ -1,5 +1,6 @@
 import React from "react";
-import { Button, Form, Grid, Segment } from 'semantic-ui-react'
+import { Form, Button } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 import axiosInstance from '../commonComponents/AxiosInstance';
 
 
@@ -48,7 +49,9 @@ class Register extends React.Component{
     return(
       <div className="regBackground">
         <div className="wrapper">
-          <Form className="form-signin">
+          <Form
+            className="form-signin"
+            onSubmit={this.handleRegister}>
             <h2 className="form-signin-heading">Registration form</h2>
 
               <Form.Input className='nameField'
@@ -72,18 +75,19 @@ class Register extends React.Component{
               />
               <Button className='left floated'
                 color='blue'
+                value='submit'
                 type='submit'
                 size='large'>
                 Register
               </Button>
 
               <Button className='right floated'
+                action='/login'
                 color='green'
-                href='/login'
                 size='large'>
-                Login
+                Proceed to Login
               </Button>
-
+              <br/>
           </Form>
 
         </div>
