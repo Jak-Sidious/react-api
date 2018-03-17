@@ -1,4 +1,5 @@
 import React from "react";
+import { Form, Button } from 'semantic-ui-react'
 import axiosInstance from '../commonComponents/AxiosInstance';
 
 const LOGIN_URL = 'users/login';
@@ -39,7 +40,34 @@ class Login extends React.Component{
     return(
       <div className="logBackground">
         <div className="wrapper">
-          
+          <Form
+            className="form-signin"
+            onSubmit={this.handleLogin}>
+            <h2 className="form-signin-heading">Login Form</h2>
+
+              <Form.Input className='nameField'
+                autoFocus
+                name='username'
+                type='username'
+                placeholder='Enter username'
+                onChange={this.handleChange}/>
+              <Form.Input className='passwordField'
+                autoFocus
+                name='password'
+                type='password'
+                placeholder='Enter password'
+                onChange={this.handleChange}
+              />
+              <Button className='left floated'
+                fluid
+                color='blue'
+                value='submit'
+                type='submit'
+                size='large'>
+                Login
+              </Button>
+              <br/>
+          </Form>
         </div>
       </div>
     );
