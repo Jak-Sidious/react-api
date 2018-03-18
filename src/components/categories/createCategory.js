@@ -4,7 +4,7 @@ import { Form, Button } from 'semantic-ui-react';
 import axiosInstance from '../commonComponents/AxiosInstance';
 
 const CREATE_CAT_URL='/category/create';
-
+let LIST_CATEGORY_URL = '/category/list?per_page=10';
 class createCategory extends Component{
   constructor(props){
     super(props);
@@ -13,6 +13,19 @@ class createCategory extends Component{
         category_name: '',
         category_description: ''
     };
+  }
+
+  getCategories(){
+
+    axiosInstance
+    .get(`${LIST_CATEGORY_URL}`)
+    .then(response => {
+      this.setState({categories:response.data.Categories})
+    })
+    .catch(error => {
+      console.log(error.response.data.Message);
+    })
+
   }
 
   handleChange = (event) =>{
@@ -29,10 +42,12 @@ class createCategory extends Component{
     }
     console.log(newCategory);
     axiosInstance
-    .post(`${CREATE_CAT_URL}`, newCategory)
+    .post(`${CREATE_CAT_URL}`,
+      newCategory,
+      {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
     .then((response) => {
-      window.localStorage.setItem('token', response.data.token)
-      console.log(response.data);
+      window.localStorage.setItem('token', response.data.token);
+      console.log(response.status);
       this.props.history.push('/landing');
       console.log(response);
     });
