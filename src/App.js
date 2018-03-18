@@ -7,10 +7,9 @@ import Login from './components/Login/login';
 import Register from './components/Register/register';
 import Landing from './components/Landing/landing';
 import viewCategories from './components/categories/viewCategories';
-// import EnsureLoggedIn from './components/auth/loggedIn';
+import createCategory from './components/Landing/categoryCreate';
 
 // External import
-import 'bootstrap/dist/css/bootstrap.min.css';
 class App extends Component {
 
   render() {
@@ -18,6 +17,7 @@ class App extends Component {
       <div className="App">
           <BrowserRouter>
             <div>
+              <Route exact path="/catcreate" components={createCategory} />
               <Route exact path="/viewcategories" component={viewCategories} />
               <Route exact path="/landing" component={Landing} />
               <Route exact path="/login" component={Login} />

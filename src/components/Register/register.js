@@ -44,8 +44,8 @@ class Register extends React.Component{
     });
   }
 
-  render(){
-    return(
+    render(){
+      return(
       <div className="regBackground">
         <div className="wrapper">
           <Form
