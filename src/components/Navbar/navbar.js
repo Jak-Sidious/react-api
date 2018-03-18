@@ -30,7 +30,8 @@ class Navigation extends Component {
             active={activeItem === 'Categories'}
             onClick={this.handleItemClick} >
             <Dropdown.Menu>
-              <Dropdown.Item>CreateCategory</Dropdown.Item>
+              <Dropdown.Item
+                as={ Link } to='/catCreate'>CreateCategory</Dropdown.Item>
               <Dropdown.Item>View Categories</Dropdown.Item>
               <Dropdown.Item>Edit Categories</Dropdown.Item>
               <Dropdown.Item>Delete Categories</Dropdown.Item>
