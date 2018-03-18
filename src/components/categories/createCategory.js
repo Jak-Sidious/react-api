@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Navigation from "../Navbar/navbar";
 import { Form, Button } from 'semantic-ui-react';
 import axiosInstance from '../commonComponents/AxiosInstance';
+import  Notifications, { notify } from 'react-notify-toast';
 
 const CREATE_CAT_URL='/category/create';
 let LIST_CATEGORY_URL = '/category/list?per_page=10';
@@ -46,17 +47,23 @@ class createCategory extends Component{
       newCategory,
       {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
     .then((response) => {
-      window.localStorage.setItem('token', response.data.token);
-      console.log(response.status);
-      this.props.history.push('/landing');
-      console.log(response);
-    });
-  }
+      if(response.status === 201){
+          notify.show('Category successfully created');
+      }
+    }).catch(error=> {
+      if(error.response.data.message === 'Category already exists'){
+        notify.show('Category already exists', 'error');
+      }
+      console.log(error.response.data.message);
+    }
+
+  )}
 
   render() {
     return(
       <div>
         <Navigation/>
+        <Notifications />
         <div className="categoryBackground">
           <div className="wrapper">
             <Form

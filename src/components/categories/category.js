@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Image } from 'semantic-ui-react';
+// edit and delete 
 
 const CategoryCard = props => (
   <Card>
