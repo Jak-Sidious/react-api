@@ -1,6 +1,8 @@
 import React from "react";
 import { Form, Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import axiosInstance from '../commonComponents/AxiosInstance';
+
 
 
 const REGISTRATION_URL = 'users/register';
@@ -83,7 +85,8 @@ class Register extends React.Component{
               <Button className='right floated'
                 action='/login'
                 color='green'
-                size='large'>
+                size='large'
+                as={ Link } to='/login'>
                 Proceed to Login
               </Button>
               <br/>
