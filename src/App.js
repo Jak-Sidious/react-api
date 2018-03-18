@@ -8,6 +8,7 @@ import Register from './components/Register/register';
 import Landing from './components/Landing/landing';
 import createCategory from './components/categories/createCategories';
 import ModalBasicExample  from './components/categories/createModal';
+import CardExampleCard from './components/categories/category';
 
 
 // External import
@@ -18,6 +19,7 @@ class App extends Component {
       <div className="App">
           <BrowserRouter>
             <div>
+              <Route exact path="/Sample" component={CardExampleCard} />
               <Route exact path="/Modal" component={ModalBasicExample} />
               <Route exact path="/catCreate" component={createCategory} />
               <Route exact path="/landing" component={Landing} />

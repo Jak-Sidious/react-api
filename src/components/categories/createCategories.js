@@ -18,7 +18,6 @@ class createCategory extends Component{
   handleChange = (event) =>{
     const { name, value } = event.target;
     this.setState({[name]: value});
-    console.log(this.state);
   }
 
   handleCreate = (event) =>{
@@ -54,7 +53,7 @@ class createCategory extends Component{
                 type='category_name'
                 placeholder='Enter your category Name'
                 onChange={this.handleChange}/>
-              <Form.TextArea className='catDescField'
+              <Form.Input className='catDescField'
                 autoFocus
                 name='category_description'
                 type='category_description'
