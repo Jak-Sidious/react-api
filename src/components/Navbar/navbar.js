@@ -3,6 +3,7 @@ import { Input, Menu, Dropdown } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 
+
 class Navigation extends Component {
   state = {
     activeItem: 'home'

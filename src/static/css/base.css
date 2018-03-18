@@ -1,3 +1,4 @@
+/* backgrounds */
 .logBackground {
 	background-image: url(../img/cine-5.gif);
   background-size: 100% 100%;
@@ -9,6 +10,15 @@
 
 .regBackground {
 	background-image: url(../img/cine-6.gif);
+  background-size: 100% 100%;
+	z-index: 0;
+  background-repeat: no-repeat;
+  padding-top: 2em;
+  padding-bottom: 28em;
+}
+
+.categoryBackground {
+	background-image: url(../img/cine-7.gif);
   background-size: 100% 100%;
 	z-index: 0;
   background-repeat: no-repeat;
