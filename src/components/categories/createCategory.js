@@ -5,7 +5,6 @@ import axiosInstance from '../commonComponents/AxiosInstance';
 import  Notifications, { notify } from 'react-notify-toast';
 
 const CREATE_CAT_URL='/category/create';
-let LIST_CATEGORY_URL = '/category/list?per_page=10';
 class createCategory extends Component{
   constructor(props){
     super(props);
@@ -16,18 +15,6 @@ class createCategory extends Component{
     };
   }
 
-  getCategories(){
-
-    axiosInstance
-    .get(`${LIST_CATEGORY_URL}`)
-    .then(response => {
-      this.setState({categories:response.data.Categories})
-    })
-    .catch(error => {
-      console.log(error.response.data.Message);
-    })
-
-  }
 
   handleChange = (event) =>{
     const { name, value } = event.target;

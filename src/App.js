@@ -7,7 +7,7 @@ import Login from './components/Login/login';
 import Register from './components/Register/register';
 import Landing from './components/Landing/landing';
 import createCategory from './components/categories/createCategory';
-// import ModalBasicExample  from './components/categories/createModal';
+import viewCategories from './components/categories/viewCategories';
 
 
 class App extends Component {
@@ -17,6 +17,7 @@ class App extends Component {
       <div className="App">
           <BrowserRouter>
             <div>
+              <Route exact path="/viewCat" component={viewCategories} />
               <Route exact path="/catCreate" component={createCategory} />
               <Route exact path="/landing" component={Landing} />
               <Route exact path="/login" component={Login} />

@@ -2,6 +2,7 @@ import React from "react";
 import { Form, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import axiosInstance from '../commonComponents/AxiosInstance';
+import  Notifications, { notify } from 'react-notify-toast';
 
 
 
@@ -20,7 +21,6 @@ class Register extends React.Component{
   handleChange = (event) =>{
     const { name, value } = event.target;
     this.setState({[name]: value});
-    console.log(this.state);
   }
 
 
@@ -36,19 +36,50 @@ class Register extends React.Component{
     axiosInstance
     .post(`${REGISTRATION_URL}`, newUser)
     .then((response) => {
-      this.props.history.push('/login');
-      console.log(response);
-    })
-    .catch((error) => {
-      if(error.response) {
-        console.log(error.response.data.message);
+      if(response.status === 201){
+        notify.show('User succesfully Registered');
+      }
+    }).catch((error) => {
+      console.log(error.response);
+      if(error.response.data.message === 'Username ' + this.state.username +' already exists') {
+        notify.show('Username '+ this.state.username + ' already exists');
+      } else if (error.response.data.message === "Password must be between 6 and 25 alphanumeric characters") {
+        notify.show("Password must be between 6 and 25 alphanumeric characters");
+      } else if (error.response.data.message === "Username is invalid it should contain alphanumeric charcaters followed by an underscore of not more than 25 characters"){
+        notify.show("Username cannot start with a number");
       }
     });
   }
 
+  // handleCreate = (event) =>{
+  //   event.preventDefault();
+  //
+  //   const newCategory={
+  //     category_name: this.state.category_name,
+  //     category_description: this.state.category_description
+  //   }
+  //   console.log(newCategory);
+  //   axiosInstance
+  //   .post(`${CREATE_CAT_URL}`,
+  //     newCategory,
+  //     {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
+    // .then((response) => {
+    //   if(response.status === 201){
+    //       notify.show('Category successfully created');
+    //   }
+    // }).catch(error=> {
+  //     if(error.response.data.message === 'Category already exists'){
+  //       notify.show('Category already exists', 'error');
+  //     }
+  //     console.log(error.response.data.message);
+  //   }
+  //
+  // )}
+
     render(){
       return(
       <div className="regBackground">
+        <Notifications />
         <div className="wrapper">
           <Form
             className="form-signin"
