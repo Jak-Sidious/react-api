@@ -51,31 +51,6 @@ class Register extends React.Component{
     });
   }
 
-  // handleCreate = (event) =>{
-  //   event.preventDefault();
-  //
-  //   const newCategory={
-  //     category_name: this.state.category_name,
-  //     category_description: this.state.category_description
-  //   }
-  //   console.log(newCategory);
-  //   axiosInstance
-  //   .post(`${CREATE_CAT_URL}`,
-  //     newCategory,
-  //     {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
-    // .then((response) => {
-    //   if(response.status === 201){
-    //       notify.show('Category successfully created');
-    //   }
-    // }).catch(error=> {
-  //     if(error.response.data.message === 'Category already exists'){
-  //       notify.show('Category already exists', 'error');
-  //     }
-  //     console.log(error.response.data.message);
-  //   }
-  //
-  // )}
-
     render(){
       return(
       <div className="regBackground">

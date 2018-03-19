@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Navigation from "../Navbar/navbar";
+import Notifications, { notify } from 'react-notify-toast';
 
 
 class Landing extends Component{
@@ -16,7 +17,7 @@ class Landing extends Component{
     return(
       <div>
       <Navigation/>
-      <h1>Tickle</h1>
+      <Notifications />
 
 
       </div>
