@@ -20,7 +20,7 @@ class Login extends React.Component{
   }
 
 
-  handleLogin = (event) =>{
+  handleLogin = (event) => {
     event.preventDefault();
     const user = {
       username: this.state.username,
@@ -32,46 +32,19 @@ class Login extends React.Component{
     .post(`${LOGIN_URL}`, user)
     .then((response) => {
       if(response.status === 200){
-        notify.show('User succesfully logged in');
         this.props.history.push('/landing');
+        notify.show('User succesfully logged in');
       }
-      }).catch((error) =>{
-        console.log(error.response.data.message);
-        if(error.response.data.message === 'User not registered'){
-          notify.show('User not registered, please proceed to registration page.')
+      }).catch((error) => {
+        console.log(error.response.data);
+        if(error.response.data.message === 'User not registered') {
+          notify.show('User not registered, please proceed to registration page.');
+        } else if (error.response.data.message === 'Invalid credentials, please try again') {
+          notify.show('Incorrect username and/or password entered, please try again');
         }
       })
-      // window.localStorage.setItem('token', response.data.token)
-      // console.log(response.data);
     }
 
-
-  // handleRegister = (event) =>{
-  //   event.preventDefault();
-  //
-  //   const newUser = {
-  //     username : this.state.username,
-  //     email : this.state.email,
-  //     password : this.state.password
-  //   }
-  //   console.log(newUser);
-  //   axiosInstance
-  //   .post(`${REGISTRATION_URL}`, newUser)
-  //   .then((response) => {
-  //     if(response.status === 201){
-  //       notify.show('User succesfully Registered');
-  //     }
-  //   }).catch((error) => {
-  //     console.log(error.response);
-  //     if(error.response.data.message === 'Username ' + this.state.username +' already exists') {
-  //       notify.show('Username '+ this.state.username + ' already exists');
-  //     } else if (error.response.data.message === "Password must be between 6 and 25 alphanumeric characters") {
-  //       notify.show("Password must be between 6 and 25 alphanumeric characters");
-  //     } else if (error.response.data.message === "Username is invalid it should contain alphanumeric charcaters followed by an underscore of not more than 25 characters"){
-  //       notify.show("Username cannot start with a number");
-  //     }
-  //   });
-  // }
 
   render() {
     return(
