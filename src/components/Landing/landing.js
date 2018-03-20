@@ -15,7 +15,7 @@ class Landing extends Component{
   render() {
 
     return(
-      <div>
+      <div className="categoryBackground">
       <Navigation/>
       <Notifications />
 
