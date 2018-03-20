@@ -32,6 +32,7 @@ class Login extends React.Component{
     .post(`${LOGIN_URL}`, user)
     .then((response) => {
       if(response.status === 200){
+        window.localStorage.setItem('token', response.data.token)
         this.props.history.push('/landing');
         notify.show('User succesfully logged in');
       }
