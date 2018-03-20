@@ -17,7 +17,7 @@
   padding-bottom: 28em;
 }
 
-.categoryBackground {
+.createCat {
 	background-image: url(../img/cine-7.gif);
   background-size: 100% 100%;
 	z-index: 0;
@@ -26,6 +26,27 @@
   padding-bottom: 28em;
 }
 
+.categoryBackground {
+  width: 100%;
+  height: 100vh;
+  display: block;
+	position: relative;
+}
+
+.categoryBackground::after {
+	content: "";
+	background: url(../img/categories-bg.jpg);
+	background-size: cover;
+	opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+/* forms */
 .wrapper {
 	margin: 100px 200px 200px 500px;
 	width: 400px;

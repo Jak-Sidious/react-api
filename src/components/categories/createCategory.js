@@ -51,7 +51,7 @@ class createCategory extends Component{
       <div>
         <Navigation/>
         <Notifications />
-        <div className="categoryBackground">
+        <div className="createCat">
           <div className="wrapper">
             <Form
               className="form-signin"

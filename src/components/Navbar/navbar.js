@@ -32,7 +32,8 @@ class Navigation extends Component {
             <Dropdown.Menu>
               <Dropdown.Item
                 as={ Link } to='/catCreate'>CreateCategory</Dropdown.Item>
-              <Dropdown.Item>View Categories</Dropdown.Item>
+              <Dropdown.Item
+                as={ Link } to='/viewCat'>View Categories</Dropdown.Item>
               <Dropdown.Item>Edit Categories</Dropdown.Item>
               <Dropdown.Item>Delete Categories</Dropdown.Item>
             </Dropdown.Menu>
