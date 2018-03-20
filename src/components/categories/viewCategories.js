@@ -1,7 +1,6 @@
 import React , { Component } from 'react';
 import axiosInstance from '../commonComponents/AxiosInstance';
 import Notifications, { notify } from 'react-notify-toast';
-// import CategoryCard from './category';
 import Navigation from "../Navbar/navbar";
 import { Grid, Card, Icon, Button } from 'semantic-ui-react';
 
@@ -68,16 +67,20 @@ class viewCategories extends Component {
                     </Card.Content>
                     <Card.Content extra>
                       <Button icon
-                        onClick={(event) => this.editCategory(categories.category_id)}>
+                        color='green'
+                        onClick={(event) => this.editCategory(categories.category_id)}
+                        className="Basic Modal">
                         <Icon name='edit' />
                         Edit
                       </Button>
                       <Button icon
+                        color='red'
                         onClick={(event) => this.editCategory(categories.category_id)}>
                         <Icon name='delete' />
                         Delete
                       </Button>
                       <Button icon
+                        color='blue'
                         onClick={(event) => this.editCategory(categories.category_id)}>
                         <Icon name='compose' />
                         Create Recipe
