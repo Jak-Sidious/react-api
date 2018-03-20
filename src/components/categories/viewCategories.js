@@ -1,9 +1,9 @@
 import React , { Component } from 'react';
 import axiosInstance from '../commonComponents/AxiosInstance';
 import Notifications, { notify } from 'react-notify-toast';
-import CategoryCard from './category';
+// import CategoryCard from './category';
 import Navigation from "../Navbar/navbar";
-import { Grid } from 'semantic-ui-react';
+import { Grid, Card, Icon } from 'semantic-ui-react';
 
 const CATEGORY_LIST_URL = '/category/list?per_page=10';
 
@@ -25,29 +25,59 @@ class viewCategories extends Component {
 
   componentDidMount(){
     axiosInstance
-    .get(`${CATEGORY_LIST_URL}`,
-      {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}}
-    ).then(response=>{
-      const categories = response.data;
-      this.setState({categories})
-      console.log(this.state);
-    })
+      .get(`${CATEGORY_LIST_URL}`,
+        {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}}
+      ).then(response=>{
+        const categories = response.data;
+        // console.log(categories);
+        this.setState({ categories: categories });
+        console.log(this.state);
+      })
+      .catch((error) => {
+        if (error.response){
+          console.log(error.response);
+        }
+      });
     //Check your shit aint empty if categories aint emoty then for each categiry in categories
   }
 
 
   render() {
     return (
-      <div className="categoryBackground">
+      <div className="mainBackground">
         <Navigation/>
+        <br/>
         <div >
-            <ul>
-              {this.state.categories.map(categories => <li>{" Category id:  " +categories.category_id}
-                {"Category name: " +categories.category_name} {"Category description: "+categories.category_description}</li>)}
-            </ul>
+            <Grid columns={3} divided>
+              <Grid.Row>
+                {this.state.categories.map(categories =>
+                <Grid.Column>
+                  <Card
+                    fluid>
+                    <Card.Content>
+                      <Card.Header>
+                        {categories.category_name}
+                      </Card.Header>
+                      <Card.Description>
+                        {categories.category_description}
+                      </Card.Description>
+                    </Card.Content>
+                    <Card.Content extra>
+                      <a>
+                        <Icon name='user' />
+                        22 Friends
+                      </a>
+                  </Card.Content>
+                  </Card>
+                </Grid.Column>
+              )}
+              </Grid.Row>
+            </Grid>
+
             {
               <h1> { this.checkCategories() } </h1>
             }
+
         </div>
       </div>
     )
