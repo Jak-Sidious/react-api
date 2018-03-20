@@ -3,6 +3,7 @@ import axiosInstance from '../commonComponents/AxiosInstance';
 import Notifications, { notify } from 'react-notify-toast';
 import Navigation from "../Navbar/navbar";
 import { Grid, Card, Icon, Button } from 'semantic-ui-react';
+import ModalEditCat from '../commonComponents/editCategoryModal';
 
 const CATEGORY_LIST_URL = '/category/list?per_page=10';
 
@@ -12,6 +13,8 @@ class viewCategories extends Component {
 
     this.state = {
       categories: [],
+      category_id: '',
+      showModal: false,
     };
     this.editCategory = this.editCategory.bind(this);
   }
@@ -44,11 +47,18 @@ class viewCategories extends Component {
       });
   }
 
-
   render() {
+    console.log("VIEW CATEGORIES!!!: ", this.props.location);
+    const { location: { pathname } } = this.props;
     return (
       <div className="mainBackground">
-        <Navigation/>
+        <Navigation pathname={pathname}/>
+        <ModalEditCat
+          showModal={this.state.showModal}
+          closeModal={() => this.setState({ showModal: false })}
+          handleChange={() => this.handleChange}
+          category_id={this.state.category_id}
+        />
         <br/>
         <div >
             <Grid columns={3} divided>
@@ -68,7 +78,8 @@ class viewCategories extends Component {
                     <Card.Content extra>
                       <Button icon
                         color='green'
-                        onClick={(event) => this.editCategory(categories.category_id)}
+                        // onClick={(event) => this.editCategory(categories.category_id)}
+                        onClick={() => this.setState({ showModal: true, category_id: categories.category_id })}
                         className="Basic Modal">
                         <Icon name='edit' />
                         Edit

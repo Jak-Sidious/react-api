@@ -47,10 +47,11 @@ class createCategory extends Component{
   )}
 
   render() {
+    const { location: { pathname } } = this.props;
     return(
       <div>
         <Navigation/>
-        <Notifications />
+        <Notifications pathname={pathname}/>
         <div className="createCat">
           <div className="wrapper">
             <Form

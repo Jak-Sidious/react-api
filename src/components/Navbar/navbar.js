@@ -11,67 +11,73 @@ class Navigation extends Component {
 
   handleItemClick = (event, { name }) => {
     this.setState({ activeItem: name })
+    console.log(name);
   }
 
   render() {
     const { activeItem } = this.state
 
+    const { pathname } = this.props;
+
+    // console.log("NAVBAR!!!!: ", this.props.location);
+
     return (
       <div>
         <Menu inverted>
-        <Menu.Item
-          name='home'
-          active={activeItem === 'home'}
-          onClick={this.handleItemClick}
-          as={ Link } to='/landing'/>
-        <Menu inverted>
-          <Dropdown
-            item text='Categories'
-            active={activeItem === 'Categories'}
-            onClick={this.handleItemClick} >
-            <Dropdown.Menu>
-              <Dropdown.Item
-                as={ Link } to='/catCreate'>CreateCategory</Dropdown.Item>
-              <Dropdown.Item
-                as={ Link } to='/viewCat'>View Categories</Dropdown.Item>
-              <Dropdown.Item>Edit Categories</Dropdown.Item>
-              <Dropdown.Item>Delete Categories</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </Menu>
-        <Menu inverted>
-          <Dropdown
-            item text='Recipes'
-            active={activeItem === 'Recipes'}
-            onClick={this.handleItemClick} >
-            <Dropdown.Menu>
-              <Dropdown.Item>Create Recipe</Dropdown.Item>
-              <Dropdown.Item>View Recipes</Dropdown.Item>
-              <Dropdown.Item>Edit Recipe</Dropdown.Item>
-              <Dropdown.Item>Delete Recipe</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </Menu>
+          <Menu.Item
+            name='home'
+            active={pathname === '/landing'}
+            onClick={this.handleItemClick}
+            as={ Link } to='/landing'/>
 
-        <Menu.Menu position='right'>
-          <Menu.Item>
-            <Input icon='search' placeholder='Search...' />
-          </Menu.Item>
-          <Menu inverted>
+          <Menu.Item
+            name='Categories'
+            active={pathname === '/viewCat' || '/catCreate'}>
             <Dropdown
-              item text='User'
-              active={activeItem === 'User'}
-              onClick={this.handleItemClick} >
+              item text='Categories'>
               <Dropdown.Menu>
-                <Dropdown.Item>View Details</Dropdown.Item>
-                <Dropdown.Item>Change Password</Dropdown.Item>
-                <Dropdown.Item>Logout</Dropdown.Item>
-
+                <Dropdown.Item
+                  name="Categories"
+                  onClick={this.handleItemClick}
+                  as={ Link } to='/catCreate'>CreateCategory</Dropdown.Item>
+                <Dropdown.Item
+                  name="Categories"
+                  as={ Link } to='/viewCat'>View Categories</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
+          </Menu.Item>
+
+          <Menu.Item>
+            <Dropdown
+              item text='Recipes'
+              onClick={this.handleItemClick} >
+              <Dropdown.Menu>
+                <Dropdown.Item>Create Recipe</Dropdown.Item>
+                <Dropdown.Item>View Recipes</Dropdown.Item>
+                <Dropdown.Item>Edit Recipe</Dropdown.Item>
+                <Dropdown.Item>Delete Recipe</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Menu.Item>
+
+            <Menu.Menu position='right'>
+              <Menu.Item>
+                <Input icon='search' placeholder='Search...' />
+              </Menu.Item>
+              <Menu inverted>
+                <Dropdown
+                  item text='User'
+                  onClick={this.handleItemClick} >
+                  <Dropdown.Menu>
+                    <Dropdown.Item>View Details</Dropdown.Item>
+                    <Dropdown.Item>Change Password</Dropdown.Item>
+                    <Dropdown.Item>Logout</Dropdown.Item>
+
+                  </Dropdown.Menu>
+                </Dropdown>
+              </Menu>
+            </Menu.Menu>
           </Menu>
-        </Menu.Menu>
-      </Menu>
       </div>
     )
   }

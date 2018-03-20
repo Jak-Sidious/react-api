@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Navigation from "../Navbar/navbar";
-import Notifications, { notify } from 'react-notify-toast';
+import Notifications from 'react-notify-toast';
 
 
 class Landing extends Component{
@@ -13,10 +13,10 @@ class Landing extends Component{
   // }
 
   render() {
-
+    const { location: { pathname } } = this.props;
     return(
       <div className="mainBackground">
-      <Navigation/>
+      <Navigation pathname={pathname}/>
       <Notifications />
 
 
