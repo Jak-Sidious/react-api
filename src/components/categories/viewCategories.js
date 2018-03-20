@@ -64,9 +64,18 @@ class viewCategories extends Component {
                     </Card.Content>
                     <Card.Content extra>
                       <a>
-                        <Icon name='user' />
-                        22 Friends
+                        <Icon name='edit'/>
+                        Edit
                       </a>
+                      <a>
+                        <Icon name='delete'/>
+                        Delete
+                      </a>
+                      <a>
+                        <Icon name='compose'/>
+                        Create Recipe
+                      </a>
+
                   </Card.Content>
                   </Card>
                 </Grid.Column>
