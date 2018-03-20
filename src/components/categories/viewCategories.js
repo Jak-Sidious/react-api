@@ -3,7 +3,7 @@ import axiosInstance from '../commonComponents/AxiosInstance';
 import Notifications, { notify } from 'react-notify-toast';
 // import CategoryCard from './category';
 import Navigation from "../Navbar/navbar";
-import { Grid, Card, Icon } from 'semantic-ui-react';
+import { Grid, Card, Icon, Button } from 'semantic-ui-react';
 
 const CATEGORY_LIST_URL = '/category/list?per_page=10';
 
@@ -14,6 +14,7 @@ class viewCategories extends Component {
     this.state = {
       categories: [],
     };
+    this.editCategory = this.editCategory.bind(this);
   }
 
   checkCategories() {
@@ -23,7 +24,11 @@ class viewCategories extends Component {
     }
   }
 
-  componentDidMount(){
+  editCategory(id) {
+    console.log(id);
+  }
+
+  componentDidMount() {
     axiosInstance
       .get(`${CATEGORY_LIST_URL}`,
         {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}}
@@ -38,7 +43,6 @@ class viewCategories extends Component {
           console.log(error.response);
         }
       });
-    //Check your shit aint empty if categories aint emoty then for each categiry in categories
   }
 
 
@@ -63,19 +67,21 @@ class viewCategories extends Component {
                       </Card.Description>
                     </Card.Content>
                     <Card.Content extra>
-                      <a>
-                        <Icon name='edit'/>
+                      <Button icon
+                        onClick={(event) => this.editCategory(categories.category_id)}>
+                        <Icon name='edit' />
                         Edit
-                      </a>
-                      <a>
-                        <Icon name='delete'/>
+                      </Button>
+                      <Button icon
+                        onClick={(event) => this.editCategory(categories.category_id)}>
+                        <Icon name='delete' />
                         Delete
-                      </a>
-                      <a>
-                        <Icon name='compose'/>
+                      </Button>
+                      <Button icon
+                        onClick={(event) => this.editCategory(categories.category_id)}>
+                        <Icon name='compose' />
                         Create Recipe
-                      </a>
-
+                      </Button>
                   </Card.Content>
                   </Card>
                 </Grid.Column>
