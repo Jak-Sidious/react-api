@@ -4,6 +4,7 @@ import Notifications, { notify } from 'react-notify-toast';
 import Navigation from "../Navbar/navbar";
 import { Grid, Card, Icon, Button } from 'semantic-ui-react';
 import ModalEditCat from '../commonComponents/editCategoryModal';
+import ModalCreateRecipe from '../commonComponents/createRecipeModal';
 
 const CATEGORY_LIST_URL = '/category/list?per_page=10';
 
@@ -14,9 +15,19 @@ class viewCategories extends Component {
     this.state = {
       categories: [],
       category_id: '',
+      category_name: '',
+      category_description: '',
       showModal: false,
+      showModal1: false
     };
-    this.editCategory = this.editCategory.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+  }
+
+  handleChange = (event) =>{
+    const { name, value } = event.target;
+    this.setState({[name]: value});
+    console.log(this.state);
   }
 
   checkCategories() {
@@ -26,9 +37,6 @@ class viewCategories extends Component {
     }
   }
 
-  editCategory(id) {
-    console.log(id);
-  }
 
   deleteCategory(id){
     console.log(id);
@@ -39,13 +47,39 @@ class viewCategories extends Component {
         if (response.status === 200) {
           console.log(response.data.message);
           window.location.reload();
+          // call to react to reload the state
         }
       })
       .catch((error) => {
-        console.log(error.response.data.message);
+        console.log(error.response);
       });
   }
 
+  handleEdit(e) {
+    e.preventDefault();
+
+    const cat_id = this.state.category_id;
+
+    const editedCategory ={
+      category_name: this.state.category_name,
+      category_description: this.state.category_description,
+    }
+    console.log(editedCategory);
+    console.log(cat_id);
+    axiosInstance
+    .put(`/category/${this.state.category_id}`,
+      editedCategory,
+      {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
+    .then((response) => {
+      if (response.status === 200) {
+        console.log(response.data.message);
+        window.location.reload();
+      }
+    })
+    .catch((error) => {
+      console.log(error.response);
+    });
+  }
 
   componentDidMount() {
     axiosInstance
@@ -73,8 +107,17 @@ class viewCategories extends Component {
         <ModalEditCat
           showModal={this.state.showModal}
           closeModal={() => this.setState({ showModal: false })}
+          handleChange={this.handleChange}
+          handleEdit={this.handleEdit}
+          category_id={this.state.category_id}
+          name={this.state.category_name}
+          desc={this.state.category_description}
+        />
+        <ModalCreateRecipe
+          showModal1={this.state.showModal1}
+          closeModal1={() => this.setState({ showModal1: false })}
           handleChange={() => this.handleChange}
-          handleDelete={() => this.handleDelete}
+          handleCreate={() => this.handleCreate}
           category_id={this.state.category_id}
         />
         <br/>
@@ -96,7 +139,12 @@ class viewCategories extends Component {
                     <Card.Content extra>
                       <Button icon
                         color='green'
-                        onClick={() => this.setState({ showModal: true, category_id: categories.category_id })}
+                        onClick={() => this.setState({
+                           showModal: true,
+                           category_id: categories.category_id,
+                           category_name: categories.category_name,
+                           category_description: categories.category_description
+                        })}
                         className="Basic Modal">
                         <Icon name='edit' />
                         Edit
@@ -109,7 +157,8 @@ class viewCategories extends Component {
                       </Button>
                       <Button icon
                         color='blue'
-                        onClick={(event) => this.editCategory(categories.category_id)}>
+                        onClick={(event) => this.setState({ showModal1: true, category_id: categories.category_id })}
+                        className="Create Modal">
                         <Icon name='compose' />
                         Create Recipe
                       </Button>

@@ -38,6 +38,7 @@ class Register extends React.Component{
     .then((response) => {
       if(response.status === 201){
         notify.show('User succesfully Registered');
+        this.props.history.push('/login');
       }
     }).catch((error) => {
       console.log(error.response);
