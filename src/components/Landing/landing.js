@@ -14,6 +14,7 @@ class Landing extends Component{
 
   render() {
     const { location: { pathname } } = this.props;
+    console.log(pathname);
     return(
       <div className="mainBackground">
       <Navigation pathname={pathname}/>

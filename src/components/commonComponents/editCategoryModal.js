@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Modal, Form, Button } from 'semantic-ui-react';
+import axiosInstance from '../commonComponents/AxiosInstance';
+import  notify  from 'react-notify-toast';
+
 
 class ModalEditCat extends Component{
   constructor(props) {
@@ -24,45 +27,72 @@ class ModalEditCat extends Component{
 
   handleEdit(e) {
     e.preventDefault();
-    console.log(this.state.category_name);
-    console.log(this.state.category_description);
-    console.log(this.props.category_id);
-  }
+
+    const cat_id = this.props.category_id;
+
+    const editedCategory ={
+      category_name: this.state.category_name,
+      category_description: this.state.category_description,
+    }
+    console.log(editedCategory);
+    console.log(cat_id);
+    axiosInstance
+    .put(`/category/${this.props.category_id}`,
+      editedCategory,
+      {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
+    .then((response) => {
+      if (response.status === 200) {
+        console.log(response.data.message);
+        window.location.reload();
+      }
+    })
+    .catch((error) => {
+      console.log(error.response.data.message);
+    });
+}
+
+//   .then((response) => {
+//     if(response.status === 201){
+//       this.props.history.push('/viewCat');
+//         notify.show('Category successfully created');
+//     }
+//   }).catch(error=> {
+//     if(error.response.data.message === 'Category already exists'){
+//       notify.show('Category already exists', 'error');
+//     }
+//     console.log(error.response.data.message);
+//   }
+//
+// )}
 
   closeModal = () => {
     this.setState({ showModal: false })
   }
 
   render(){
-    // const {
-    //   category_name,
-    //   category_description
-    // } = this.state
-
-    return (
-      <Modal closeIcon
-        onClose={this.props.closeModal}
-        open={this.props.showModal}
-        size={'small'}>
-        <Modal.Header>My Modal</Modal.Header>
-        <Modal.Content>
-          <Form>
-            <Form.Input
-              label='Category name'
-              name='category_name'
-              onChange={this.handleChange}
-            />
-            <Form.Input
-              label='Category description'
-              name='category_description'
-              onChange={this.handleChange}
-            />
-            <Button onClick={this.handleEdit}>Save</Button>
-          </Form>
-        </Modal.Content>
-      </Modal>
-    )
-  }
+      return (
+        <Modal closeIcon
+          onClose={this.props.closeModal}
+          open={this.props.showModal}>
+          <Modal.Header>My Modal</Modal.Header>
+          <Modal.Content>
+            <Form>
+              <Form.Input
+                label='Category name'
+                name='category_name'
+                onChange={this.handleChange}
+              />
+              <Form.TextArea
+                label='Category description'
+                name='category_description'
+                onChange={this.handleChange}
+              />
+              <Button onClick={this.handleEdit}>Save</Button>
+            </Form>
+          </Modal.Content>
+        </Modal>
+      )
+    }
 }
 
 export default ModalEditCat;

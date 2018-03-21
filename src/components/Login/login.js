@@ -33,6 +33,7 @@ class Login extends React.Component{
     .then((response) => {
       if(response.status === 200){
         window.localStorage.setItem('token', response.data.token)
+        window.localStorage.setItem('user', response.data.user)
         this.props.history.push('/landing');
         notify.show('User succesfully logged in');
       }

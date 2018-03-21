@@ -15,33 +15,33 @@ class Navigation extends Component {
   }
 
   render() {
-    const { activeItem } = this.state
+    // const { activeItem } = this.state
 
     const { pathname } = this.props;
-
-    // console.log("NAVBAR!!!!: ", this.props.location);
-
+    const user = window.localStorage.getItem('user');
     return (
       <div>
         <Menu inverted>
           <Menu.Item
             name='home'
-            active={pathname === '/landing'}
+            active={ pathname === '/landing' }
             onClick={this.handleItemClick}
             as={ Link } to='/landing'/>
 
           <Menu.Item
-            name='Categories'
-            active={pathname === '/viewCat' || '/catCreate'}>
+            name='Categories'>
+            {/* active={ pathname === '/viewCat' || '/catCreate' }> */}
             <Dropdown
               item text='Categories'>
               <Dropdown.Menu>
                 <Dropdown.Item
                   name="Categories"
                   onClick={this.handleItemClick}
+                  active={ pathname === '/catCreate' }
                   as={ Link } to='/catCreate'>CreateCategory</Dropdown.Item>
                 <Dropdown.Item
                   name="Categories"
+                  active={ pathname === '/viewCat' }
                   as={ Link } to='/viewCat'>View Categories</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
@@ -66,7 +66,7 @@ class Navigation extends Component {
               </Menu.Item>
               <Menu inverted>
                 <Dropdown
-                  item text='User'
+                  item text={user}
                   onClick={this.handleItemClick} >
                   <Dropdown.Menu>
                     <Dropdown.Item>View Details</Dropdown.Item>

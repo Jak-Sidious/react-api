@@ -35,6 +35,7 @@ class createCategory extends Component{
       {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
     .then((response) => {
       if(response.status === 201){
+        this.props.history.push('/viewCat');
           notify.show('Category successfully created');
       }
     }).catch(error=> {
@@ -48,6 +49,7 @@ class createCategory extends Component{
 
   render() {
     const { location: { pathname } } = this.props;
+    console.log(pathname);
     return(
       <div>
         <Navigation/>

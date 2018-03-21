@@ -48,11 +48,11 @@ class viewCategories extends Component {
   }
 
   render() {
-    console.log("VIEW CATEGORIES!!!: ", this.props.location);
     const { location: { pathname } } = this.props;
     return (
       <div className="mainBackground">
         <Navigation pathname={pathname}/>
+        <Notifications />
         <ModalEditCat
           showModal={this.state.showModal}
           closeModal={() => this.setState({ showModal: false })}
@@ -78,7 +78,6 @@ class viewCategories extends Component {
                     <Card.Content extra>
                       <Button icon
                         color='green'
-                        // onClick={(event) => this.editCategory(categories.category_id)}
                         onClick={() => this.setState({ showModal: true, category_id: categories.category_id })}
                         className="Basic Modal">
                         <Icon name='edit' />
