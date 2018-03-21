@@ -30,6 +30,23 @@ class viewCategories extends Component {
     console.log(id);
   }
 
+  deleteCategory(id){
+    console.log(id);
+    axiosInstance
+      .delete(`/category/${id}`,
+      {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.data.message);
+          window.location.reload();
+        }
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+      });
+  }
+
+
   componentDidMount() {
     axiosInstance
       .get(`${CATEGORY_LIST_URL}`,
@@ -57,6 +74,7 @@ class viewCategories extends Component {
           showModal={this.state.showModal}
           closeModal={() => this.setState({ showModal: false })}
           handleChange={() => this.handleChange}
+          handleDelete={() => this.handleDelete}
           category_id={this.state.category_id}
         />
         <br/>
@@ -85,7 +103,7 @@ class viewCategories extends Component {
                       </Button>
                       <Button icon
                         color='red'
-                        onClick={(event) => this.editCategory(categories.category_id)}>
+                        onClick={(event) => this.deleteCategory(categories.category_id)}>
                         <Icon name='delete' />
                         Delete
                       </Button>

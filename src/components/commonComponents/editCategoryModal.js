@@ -51,19 +51,6 @@ class ModalEditCat extends Component{
     });
 }
 
-//   .then((response) => {
-//     if(response.status === 201){
-//       this.props.history.push('/viewCat');
-//         notify.show('Category successfully created');
-//     }
-//   }).catch(error=> {
-//     if(error.response.data.message === 'Category already exists'){
-//       notify.show('Category already exists', 'error');
-//     }
-//     console.log(error.response.data.message);
-//   }
-//
-// )}
 
   closeModal = () => {
     this.setState({ showModal: false })
