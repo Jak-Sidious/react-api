@@ -9,6 +9,8 @@ class ModalEditCat extends Component{
     super(props);
     this.state = {
       category_id: '',
+      recipeName: '',
+      recipieDesc: '',
       showModal: false
     }
   }

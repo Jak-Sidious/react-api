@@ -157,7 +157,10 @@ class viewCategories extends Component {
                       </Button>
                       <Button icon
                         color='blue'
-                        onClick={(event) => this.setState({ showModal1: true, category_id: categories.category_id })}
+                        onClick={(event) => this.setState({
+                          showModal1: true,
+                          category_id: categories.category_id,
+                         })}
                         className="Create Modal">
                         <Icon name='compose' />
                         Create Recipe

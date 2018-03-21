@@ -22,7 +22,6 @@ class ModalCreateRecipe extends Component{
   handleChange = (event) =>{
     const { name, value } = event.target;
     this.setState({[name]: value});
-    console.log(this.state);
   }
 
   handleCreate(e) {
@@ -30,26 +29,25 @@ class ModalCreateRecipe extends Component{
 
     const cat_id = this.props.category_id;
 
-    const editedCategory ={
-      recipie_name: this.state.category_name,
-      ingredients: this.state.category_description,
+    const newRecipe ={
+      recipie_name: this.state.recipie_name,
+      ingredients: this.state.ingredients
     }
-    console.log(editedCategory);
+    console.log(newRecipe);
     console.log(cat_id);
-    // axiosInstance
-    // .put(`/category/${this.props.category_id}`,
-    //   editedCategory,
-    //   {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
-    // .then((response) => {
-    //   if (response.status === 200) {
-    //     console.log(response.data.message);
-    //     window.location.reload();
-    //   }
-    // })
-    // .catch((error) => {
-    //   console.log(error.response.data.message);
-    // });
-}
+    axiosInstance
+      .post(`/category/${this.props.category_id}/recipes/create`,
+        newRecipe,
+        {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
+      .then((response) => {
+        if (response.status === 201) {
+          console.log(response.data.message);
+          notify.show('Recipe successfully created');
+        }
+      }).catch((error) => {
+        console.log(error.response.data.message);
+      })
+    }
 
 
   closeModal1 = () => {
