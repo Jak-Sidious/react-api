@@ -5,7 +5,7 @@ import axiosInstance from '../commonComponents/AxiosInstance';
 import Navigation from '../Navbar/navbar';
 import ModalEditCat from '../commonComponents/editCategoryModal';
 import ModalCreateRecipe from '../commonComponents/createRecipeModal';
-// import viewRecipes from './components/recipes/viewRecipes';
+
 
 const CATEGORY_LIST_URL = '/category/list';
 
@@ -148,8 +148,7 @@ class viewCategories extends Component {
                             showModal: true,
                             category_id: categories.category_id,
                             category_name: categories.category_name,
-                            category_description:
-                              categories.category_description
+                            category_description: categories.category_description
                           })
                         }
                         className="Basic Modal"

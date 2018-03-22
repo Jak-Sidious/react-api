@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Modal, Form, Button } from 'semantic-ui-react';
 
-class ModalEditCat extends Component {
+class ModalEditRec extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      category_id: '',
+      categoryId: '',
+      recipeId: '',
       recipeName: '',
       recipieDesc: '',
       showModal: false
@@ -23,19 +24,19 @@ class ModalEditCat extends Component {
         onClose={this.props.closeModal}
         open={this.props.showModal}
       >
-        <Modal.Header>Edit Category</Modal.Header>
+        <Modal.Header>Edit Recipe</Modal.Header>
         <Modal.Content>
           <Form>
             <Form.Input
-              label="Category name"
-              name="category_name"
+              label="Recipe name"
+              name="recipeName"
               value={this.props.name}
               onChange={this.props.handleChange}
             />
             <Form.TextArea
-              label="Category description"
-              name="category_description"
-              value={this.props.desc}
+              label="Recipe Description"
+              name="ingrain"
+              value={this.props.contentz}
               onChange={this.props.handleChange}
             />
             <Button onClick={this.props.handleEdit} color="blue">
@@ -48,4 +49,4 @@ class ModalEditCat extends Component {
   }
 }
 
-export default ModalEditCat;
+export default ModalEditRec;

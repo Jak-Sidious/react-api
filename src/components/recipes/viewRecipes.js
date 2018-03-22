@@ -4,6 +4,7 @@ import { Grid, Card, Icon, Button } from 'semantic-ui-react';
 import axiosInstance from '../commonComponents/AxiosInstance';
 
 import Navigation from '../Navbar/navbar';
+import ModalEditRec from '../commonComponents/editRecipeModal';
 
 class viewRecipes extends Component {
   constructor(props) {
@@ -11,10 +12,16 @@ class viewRecipes extends Component {
 
     this.state = {
       recipes: [],
-      categoryId: ''
+      categoryId: '',
+      recipeId: '',
+      recipeName: '',
+      ingrain: '',
+      showModal: false
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
   }
+
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
@@ -43,6 +50,31 @@ class viewRecipes extends Component {
       .catch(error => {
         console.log(error.response);
       });
+  }
+
+  handleEdit(e){
+    e.preventDefault();
+    const editedRecipe = {
+      recipie_name: this.state.recipeName,
+      ingredients: this.state.ingrain
+    }
+    console.log(editedRecipe);
+    console.log(this.state.categoryId);
+    console.log(this.state.recipeId);
+    axiosInstance
+      .put(`/category/${this.state.categoryId}/recipes/${this.state.recipeId}`,
+      editedRecipe,
+      { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+    })
+    .then(response => {
+      if (response.status === 200) {
+        console.log(response.data.message);
+        window.location.reload();
+      }
+    })
+    .catch(error => {
+      console.log(error.response);
+    });
   }
 
   getRecipes() {
@@ -78,6 +110,16 @@ class viewRecipes extends Component {
       <div className="mainBackground">
         <Navigation pathname={pathname} />
         <Notifications />
+        <ModalEditRec
+          showModal={this.state.showModal}
+          closeModal={() => this.setState({ showModal: false })}
+          handleChange={this.handleChange}
+          handleEdit={this.handleEdit}
+          Id={this.state.categoryID}
+          recId={this.state.recipeId}
+          name={this.state.recipeName}
+          contentz={this.state.ingrain}
+        />
         <br />
         <div>
           <h1 className="RecHeader">
@@ -100,9 +142,15 @@ class viewRecipes extends Component {
                       <Button
                         icon
                         color="green"
-                        // onClick={event =>
-                        //   this.deleteRecipe(recipes.recipie_id)
-                        // }
+                        onClick={() =>
+                          this.setState({
+                            showModal: true,
+                            categoryId: this.state.categoryId,
+                            recipeId: recipes.recipie_id,
+                            recipeName: recipes.recipie_name,
+                            ingrid: recipes.ingredients
+                          })
+                        }
                         className="Basic Modal"
                       >
                         <Icon name="edit" />
