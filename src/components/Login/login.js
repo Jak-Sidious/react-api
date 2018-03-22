@@ -43,11 +43,6 @@ class Login extends React.Component {
       })
       .catch(error => {
         console.log(error.response);
-        // if(error.response.data.message === 'User not registered') {
-        //   notify.show('User not registered, please proceed to registration page.');
-        // } else if (error.response.data.message === 'Invalid credentials, please try again') {
-        //   notify.show('Incorrect username and/or password entered, please try again');
-        // }
       });
   }
 
