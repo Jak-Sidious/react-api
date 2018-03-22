@@ -20,26 +20,27 @@ class ModalCreateRecipe extends Component {
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
+    console.log(this.props.location.state.category_name);
   }
 
   handleCreate(e) {
     e.preventDefault();
 
-    const cat_id = this.props.category_id;
+    const catId = this.props.category_id;
 
     const newRecipe = {
       recipie_name: this.state.recipie_name,
       ingredients: this.state.ingredients
     };
     console.log(newRecipe);
-    console.log(cat_id);
+    console.log(catId);
     axiosInstance
-      .post(`/category/${cat_id}/recipes/create`, newRecipe, {
+      .post(`/category/${catId}/recipes/create`, newRecipe, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
         if (response.status === 201) {
-          window.location.assign(`/category/${cat_id}/recipes/list`);
+          window.location.assign(`/category/${catId}/recipes/list`);
           notify.show('Recipe successfully created');
         }
       })
@@ -74,12 +75,7 @@ class ModalCreateRecipe extends Component {
               name="ingredients"
               onChange={this.handleChange}
             />
-            <Button
-              onClick={this.handleCreate}
-              // onSubmit={this.props.closeModal1}
-
-              color="blue"
-            >
+            <Button onClick={this.handleCreate} color="blue">
               Create
             </Button>
           </Form>

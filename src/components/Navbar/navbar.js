@@ -24,7 +24,7 @@ class Navigation extends Component {
     const user = window.localStorage.getItem('user');
     return (
       <div>
-        <Menu inverted>
+        <Menu inverted size="large">
           <Menu.Item
             name="home"
             active={pathname === '/landing'}
@@ -34,7 +34,7 @@ class Navigation extends Component {
           />
 
           <Menu.Item name="Categories">
-            {/* active={ pathname === '/viewCat' || '/catCreate' }> */}
+            {/* // active={ pathname === '/viewCat' || '/catCreate' }> */}
             <Dropdown item text="Categories">
               <Dropdown.Menu>
                 <Dropdown.Item

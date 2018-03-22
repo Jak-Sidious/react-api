@@ -15,7 +15,7 @@ class viewCategories extends Component {
 
     this.state = {
       categories: [],
-      category_id: '',
+      categoryId: '',
       category_name: '',
       category_description: '',
       showModal: false,
@@ -26,9 +26,9 @@ class viewCategories extends Component {
     this.redirectRecipes = this.redirectRecipes.bind(this);
   }
 
-  redirectRecipes(category_id) {
-    this.props.history.push(`/category/${category_id}/recipes/create`);
-    console.log(category_id);
+  redirectRecipes(categoryId) {
+    this.props.history.push(`/category/${categoryId}/recipes/create`);
+    console.log(categoryId);
   }
 
   handleChange(event) {
@@ -172,6 +172,7 @@ class viewCategories extends Component {
                         color="blue"
                         onClick={event =>
                           this.setState({
+                            category_name: categories.category_name,
                             showModal1: true,
                             category_id: categories.category_id
                           })
