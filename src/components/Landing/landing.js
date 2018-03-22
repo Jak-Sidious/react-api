@@ -1,24 +1,17 @@
-import React, { Component } from "react";
-import Navigation from "../Navbar/navbar";
+import React, { Component } from 'react';
+import Notifications from 'react-notify-toast';
+import Navigation from '../Navbar/navbar';
 
-
-class Landing extends Component{
-  // constructor(props){
-  //   super(props);
-  //
-  //   this.state={
-  //
-  //   };
-  // }
-
-
-
+class Landing extends Component {
   render() {
+    const { location: { pathname } } = this.props;
+    console.log(pathname);
+    return (
+      <div className="mainBackground">
+        <Navigation pathname={pathname} />
+        <Notifications />
 
-    return(
-      <div>
-      <Navigation/>
-
+        <h1 className="Welcome">Welcome to yummy recipes</h1>
       </div>
     );
   }

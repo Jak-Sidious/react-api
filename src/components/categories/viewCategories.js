@@ -1,49 +1,197 @@
-import React from "react";
-import Navigation from "../Navbar/navbar";
-import axios from 'axios';
-import Categories from '../commonComponents/categoryCard';
+import React, { Component } from 'react';
+import Notifications from 'react-notify-toast';
+import { Grid, Card, Icon, Button } from 'semantic-ui-react';
+import axiosInstance from '../commonComponents/AxiosInstance';
+import Navigation from '../Navbar/navbar';
+import ModalEditCat from '../commonComponents/editCategoryModal';
+import ModalCreateRecipe from '../commonComponents/createRecipeModal';
 
 
-const CATEGORY_LIST_URL = 'category/list';
-const baseURL= 'http://localhost:5000/apiv1';
-// const token = localStorage.getItem('token');
-const headers = { Authorization:` Bearer ${localStorage.getItem('token')}` };
+const CATEGORY_LIST_URL = '/category/list';
 
-class viewCategories extends React.Component{
-  constructor(props){
+class viewCategories extends Component {
+  constructor(props) {
     super(props);
 
     this.state = {
       categories: [],
+      categoryId: '',
+      category_name: '',
+      category_description: '',
+      showModal: false,
+      showModal1: false
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.redirectRecipes = this.redirectRecipes.bind(this);
   }
-  componentDidMount(){
-    axios.get(`${baseURL}/${CATEGORY_LIST_URL}`, {headers}).then(
-      response => {
+
+  redirectRecipes(categoryId) {
+    this.props.history.push(`/category/${categoryId}/recipes/create`);
+    console.log(categoryId);
+  }
+
+  handleChange(event) {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+    console.log(this.state);
+  }
+
+  checkCategories() {
+    const categories = this.state.categories;
+    if (categories < 1) {
+      return 'You currently do not have any categories please create a few';
+    }
+    return '';
+  }
+
+  deleteCategory(id) {
+    console.log(id);
+    axiosInstance
+      .delete(`/category/${id}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      })
+      .then(response => {
+        if (response.status === 200) {
+          console.log(response.data.message);
+          window.location.reload();
+          // call to react to reload the state
+        }
+      })
+      .catch(error => {
+        console.log(error.response);
+      });
+  }
+
+  handleEdit(e) {
+    e.preventDefault();
+    const editedCategory = {
+      category_name: this.state.category_name,
+      category_description: this.state.category_description
+    };
+    console.log(editedCategory);
+    axiosInstance
+      .put(`/category/${this.state.category_id}`, editedCategory, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      })
+      .then(response => {
+        if (response.status === 200) {
+          console.log(response.data.message);
+          window.location.reload();
+        }
+      })
+      .catch(error => {
+        console.log(error.response);
+      });
+  }
+
+  componentDidMount() {
+    axiosInstance
+      .get(`${CATEGORY_LIST_URL}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      })
+      .then(response => {
         const categories = response.data;
-        this.setState({ categories });
-
-    })
+        // console.log(categories);
+        this.setState({ categories: categories });
+        console.log(this.state);
+      })
+      .catch(error => {
+        if (error.response) {
+          console.log(error.response);
+        }
+      });
   }
 
-  render(){
+  render() {
+    const { location: { pathname } } = this.props;
+    return (
+      <div className="mainBackground">
+        <Navigation pathname={pathname} />
+        <Notifications />
+        <ModalEditCat
+          showModal={this.state.showModal}
+          closeModal={() => this.setState({ showModal: false })}
+          handleChange={this.handleChange}
+          handleEdit={this.handleEdit}
+          category_id={this.state.category_id}
+          name={this.state.category_name}
+          desc={this.state.category_description}
+        />
+        <ModalCreateRecipe
+          redirectRecipes={this.redirectRecipes}
+          showModal1={this.state.showModal1}
+          closeModal1={() => this.setState({ showModal1: false })}
+          handleChange={() => this.handleChange}
+          handleCreate={() => this.handleCreate}
+          category_id={this.state.category_id}
+        />
+        <br />
+        <div>
+          <Grid columns={3} divided>
+            <Grid.Row>
+              {this.state.categories.map(categories => (
+                <Grid.Column>
+                  <Card fluid>
+                    <Card.Content>
+                      <Card.Header>{categories.category_name}</Card.Header>
+                      <Card.Description>
+                        {categories.category_description}
+                      </Card.Description>
+                    </Card.Content>
+                    <Card.Content extra>
+                      <Button
+                        icon
+                        color="green"
+                        onClick={() =>
+                          this.setState({
+                            showModal: true,
+                            category_id: categories.category_id,
+                            category_name: categories.category_name,
+                            category_description: categories.category_description
+                          })
+                        }
+                        className="Basic Modal"
+                      >
+                        <Icon name="edit" />
+                        Edit
+                      </Button>
+                      <Button
+                        icon
+                        color="red"
+                        onClick={() =>
+                          this.deleteCategory(categories.category_id)
+                        }
+                      >
+                        <Icon name="delete" />
+                        Delete
+                      </Button>
+                      <Button
+                        icon
+                        color="blue"
+                        onClick={() =>
+                          this.setState({
+                            category_name: categories.category_name,
+                            showModal1: true,
+                            category_id: categories.category_id
+                          })
+                        }
+                        className="Create Modal"
+                      >
+                        <Icon name="compose" />
+                        Create Recipe
+                      </Button>
+                    </Card.Content>
+                  </Card>
+                </Grid.Column>
+              ))}
+            </Grid.Row>
+          </Grid>
 
-    // const {categories} = this.state
-    //
-    //     let renderCategories = categories.map(category => {
-    //         return (
-    //         <Categories id={category.id} {...category}/>
-    //     )
-    // })
-
-    return(
-
-      <div>
-        <Navigation/>
-        {/* {renderCategories} */}
-        <Categories/>
+          {<h1> {this.checkCategories()} </h1>}
+        </div>
       </div>
-    )
+    );
   }
 }
 
