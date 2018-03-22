@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Navigation from '../Navbar/navbar';
+import Notifications, { notify } from 'react-notify-toast';
 import { Form, Button } from 'semantic-ui-react';
 import axiosInstance from '../commonComponents/AxiosInstance';
-import Notifications, { notify } from 'react-notify-toast';
+import Navigation from '../Navbar/navbar';
 
 const CREATE_CAT_URL = '/category/create';
 class createCategory extends Component {
@@ -13,14 +13,16 @@ class createCategory extends Component {
       category_name: '',
       category_description: ''
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleCreate = this.handleCreate.bind(this);
   }
 
-  handleChange = event => {
+  handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-  };
+  }
 
-  handleCreate = event => {
+  handleCreate(event) {
     event.preventDefault();
 
     const newCategory = {
@@ -44,7 +46,7 @@ class createCategory extends Component {
         }
         console.log(error.response.data.message);
       });
-  };
+  }
 
   render() {
     const { location: { pathname } } = this.props;

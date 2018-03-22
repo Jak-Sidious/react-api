@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import notify from 'react-notify-toast';
 import { Modal, Form, Button } from 'semantic-ui-react';
 import axiosInstance from '../commonComponents/AxiosInstance';
-import notify from 'react-notify-toast';
 
 class ModalCreateRecipe extends Component {
   constructor(props) {
@@ -17,10 +17,10 @@ class ModalCreateRecipe extends Component {
     this.handleCreate = this.handleCreate.bind(this);
   }
 
-  handleChange = event => {
+  handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-  };
+  }
 
   handleCreate(e) {
     e.preventDefault();
@@ -50,9 +50,9 @@ class ModalCreateRecipe extends Component {
       });
   }
 
-  closeModal1 = () => {
+  closeModal1() {
     this.setState({ showModal1: false });
-  };
+  }
 
   render() {
     return (

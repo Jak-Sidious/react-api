@@ -33,6 +33,10 @@
 	position: relative;
 }
 
+.Welcome {
+	text-align: center;
+}
+
 .mainBackground::after {
 	content: "";
 	background: url(../img/categories-bg.jpg);

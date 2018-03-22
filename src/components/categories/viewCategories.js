@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import axiosInstance from '../commonComponents/AxiosInstance';
-import Notifications, { notify } from 'react-notify-toast';
-import Navigation from '../Navbar/navbar';
+import Notifications from 'react-notify-toast';
 import { Grid, Card, Icon, Button } from 'semantic-ui-react';
+import axiosInstance from '../commonComponents/AxiosInstance';
+import Navigation from '../Navbar/navbar';
 import ModalEditCat from '../commonComponents/editCategoryModal';
 import ModalCreateRecipe from '../commonComponents/createRecipeModal';
 // import viewRecipes from './components/recipes/viewRecipes';
@@ -26,22 +26,23 @@ class viewCategories extends Component {
     this.redirectRecipes = this.redirectRecipes.bind(this);
   }
 
-  redirectRecipes = category_id => {
-    this.props.history.push('/category/' + { category_id } + '/recipes/create');
+  redirectRecipes(category_id) {
+    this.props.history.push(`/category/${category_id}/recipes/create`);
     console.log(category_id);
-  };
+  }
 
-  handleChange = event => {
+  handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
     console.log(this.state);
-  };
+  }
 
   checkCategories() {
     const categories = this.state.categories;
     if (categories < 1) {
       return 'You currently do not have any categories please create a few';
     }
+    return '';
   }
 
   deleteCategory(id) {
@@ -64,15 +65,11 @@ class viewCategories extends Component {
 
   handleEdit(e) {
     e.preventDefault();
-
-    const cat_id = this.state.category_id;
-
     const editedCategory = {
       category_name: this.state.category_name,
       category_description: this.state.category_description
     };
     console.log(editedCategory);
-    console.log(cat_id);
     axiosInstance
       .put(`/category/${this.state.category_id}`, editedCategory, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }

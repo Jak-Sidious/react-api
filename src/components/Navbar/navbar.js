@@ -9,12 +9,13 @@ class Navigation extends Component {
     this.state = {
       activeItem: 'home'
     };
+    this.handleItemClick = this.handleItemClick.bind(this);
   }
 
-  handleItemClick = (event, { name }) => {
+  handleItemClick(event, { name }) {
     this.setState({ activeItem: name });
     console.log(name);
-  };
+  }
 
   render() {
     // const { activeItem } = this.state

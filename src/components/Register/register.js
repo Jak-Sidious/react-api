@@ -49,10 +49,10 @@ class Register extends React.Component {
           notify.show(`Username ${this.state.username} already exists`);
         } else if (
           error.response.data.message ===
-          'Password must be between 6 and 25 alphanumeric characters'
+          'Password must be between 6 and 25 alphanumeric characters.'
         ) {
           notify.show(
-            'Password must be between 6 and 25 alphanumeric characters'
+            'Password must be between 6 and 25 alphanumeric characters.'
           );
         } else if (
           error.response.data.message ===
