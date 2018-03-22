@@ -1,8 +1,8 @@
-//necesaary
+// necesaary
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 
-//components
+// components
 import Login from './components/Login/login';
 import Register from './components/Register/register';
 import Landing from './components/Landing/landing';

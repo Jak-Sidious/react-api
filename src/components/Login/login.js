@@ -1,8 +1,8 @@
 import React from 'react';
+import Notifications, { notify } from 'react-notify-toast';
 import { Form, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import axiosInstance from '../commonComponents/AxiosInstance';
-import Notifications, { notify } from 'react-notify-toast';
 
 const LOGIN_URL = 'users/login';
 class Login extends React.Component {
@@ -13,14 +13,17 @@ class Login extends React.Component {
       username: '',
       password: ''
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
-  handleChange = event => {
+  handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-  };
+    console.log(this.state);
+  }
 
-  handleLogin = event => {
+  handleLogin(event) {
     event.preventDefault();
     const user = {
       username: this.state.username,
@@ -46,7 +49,7 @@ class Login extends React.Component {
         //   notify.show('Incorrect username and/or password entered, please try again');
         // }
       });
-  };
+  }
 
   render() {
     return (
