@@ -5,8 +5,12 @@ import { Link } from 'react-router-dom';
 
 
 class Navigation extends Component {
-  state = {
-    activeItem: 'home'
+  constructor(props){
+    super(props);
+
+    this.state = {
+      activeItem: 'home'
+    }
   }
 
   handleItemClick = (event, { name }) => {
