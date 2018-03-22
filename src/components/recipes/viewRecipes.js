@@ -10,7 +10,8 @@ class viewRecipes extends Component {
     super(props);
 
     this.state = {
-      recipes: []
+      recipes: [],
+      categoryId: ''
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -20,19 +21,32 @@ class viewRecipes extends Component {
     console.log(this.state);
   }
 
-  checkCategories() {
+  checkRecipes() {
     const recipes = this.state.recipes;
     if (recipes < 1) {
-      return 'You currently do not have any categories please create a few';
+      return 'You currently do not have any Recipes please create a few';
     }
     return '';
   }
 
+  deleteRecipe(id, id2) {
+    axiosInstance
+      .delete(`/category/${id}/recipes/${id2}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      })
+      .then(response => {
+        if (response.status === 200) {
+          console.log(response.data.message);
+          window.location.reload();
+        }
+      })
+      .catch(error => {
+        console.log(error.response);
+      });
+  }
+
   getRecipes() {
     const cats = this.props.match.params.category_id;
-    const name = this.props;
-    console.log(cats);
-    console.log(name);
     axiosInstance
 
       .get(`/category/${cats}/recipes/list`, {
@@ -42,7 +56,9 @@ class viewRecipes extends Component {
       .then(response => {
         const recipes = response.data;
         this.setState({ recipes: recipes });
+        this.setState({ categoryId: cats });
         console.log(response);
+        console.log(this.state);
       })
       .catch(error => {
         if (error.response) {
@@ -62,63 +78,59 @@ class viewRecipes extends Component {
       <div className="mainBackground">
         <Navigation pathname={pathname} />
         <Notifications />
-
         <br />
-        <Grid columns={4} divided>
-          <Grid.Row>
-            {this.state.recipes.map(recipes => (
-              <Grid.Column>
-                <Card fluid>
-                  <Card.Content>
-                    <Card.Header>
-                      This is where the Category Name goes
-                    </Card.Header>
-                    <Card.Description>
-                      <b>Recipe Name:</b> {recipes.recipie_name}
-                    </Card.Description>
-                  </Card.Content>
-                  <Card.Content extra>
-                    <b> Recipe Ingeredients: </b> {recipes.ingredients}
-                  </Card.Content>
+        <div>
+          <h1 className="RecHeader">
+            When Passed properly, the category name shall appear here
+          </h1>
+          <Grid columns={3} divided>
+            <Grid.Row>
+              {this.state.recipes.map(recipes => (
+                <Grid.Column>
+                  <Card fluid>
+                    <Card.Content>
+                      <Card.Header>
+                        <b>Recipe Name:</b> {recipes.recipie_name}
+                      </Card.Header>
+                      <Card.Description>
+                        <b> Recipe Ingeredients: </b> {recipes.ingredients}
+                      </Card.Description>
+                    </Card.Content>
+                    <Card.Content extra>
+                      <Button
+                        icon
+                        color="green"
+                        // onClick={event =>
+                        //   this.deleteRecipe(recipes.recipie_id)
+                        // }
+                        className="Basic Modal"
+                      >
+                        <Icon name="edit" />
+                        Edit
+                      </Button>
+                      <Button
+                        icon
+                        color="red"
+                        floated="right"
+                        onClick={() =>
+                          this.deleteRecipe(
+                            this.state.categoryId,
+                            recipes.recipie_id
+                          )
+                        }
+                      >
+                        <Icon name="delete" />
+                        Delete
+                      </Button>
+                    </Card.Content>
+                  </Card>
+                </Grid.Column>
+              ))}
+            </Grid.Row>
+          </Grid>
 
-                  <Card.Content extra>
-                    <Button
-                      icon
-                      color="green"
-                      // onClick={() =>
-                      //   this.setState({
-                      //     showModal: true,
-                      //     category_id: categories.category_id,
-                      //     category_name: categories.category_name,
-                      //     category_description:
-                      //       categories.category_description
-                      //   })
-                      // }
-                      className="Basic Modal"
-                    >
-                      <Icon name="edit" />
-                      Edit
-                    </Button>
-                    <Button
-                      icon
-                      color="red"
-                      floated="right"
-                      // onClick={event =>
-                      //   this.deleteCategory(categories.category_id)
-                      // }
-                    >
-                      <Icon name="delete" />
-                      Delete
-                    </Button>
-                  </Card.Content>
-                </Card>
-              </Grid.Column>
-            ))}
-          </Grid.Row>
-        </Grid>
-        <ul>
-          {this.state.recipes.map(recipes => <li>{recipes.recipie_name}</li>)}
-        </ul>
+          {<h1> {this.checkRecipes()} </h1>}
+        </div>
       </div>
     );
   }

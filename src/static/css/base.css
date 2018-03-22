@@ -33,9 +33,13 @@
 	position: relative;
 }
 
-.Welcome {
+h1 {
 	text-align: center;
 }
+
+/* .Welcome {
+	text-align: center;
+} */
 
 .mainBackground::after {
 	content: "";

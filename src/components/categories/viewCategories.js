@@ -160,7 +160,7 @@ class viewCategories extends Component {
                       <Button
                         icon
                         color="red"
-                        onClick={event =>
+                        onClick={() =>
                           this.deleteCategory(categories.category_id)
                         }
                       >
@@ -170,7 +170,7 @@ class viewCategories extends Component {
                       <Button
                         icon
                         color="blue"
-                        onClick={event =>
+                        onClick={() =>
                           this.setState({
                             category_name: categories.category_name,
                             showModal1: true,
