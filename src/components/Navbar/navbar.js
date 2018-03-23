@@ -63,16 +63,11 @@ class Navigation extends Component {
               <Dropdown.Menu>
                 <Dropdown.Item>Create Recipe</Dropdown.Item>
                 <Dropdown.Item>View Recipes</Dropdown.Item>
-                <Dropdown.Item>Edit Recipe</Dropdown.Item>
-                <Dropdown.Item>Delete Recipe</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Menu.Item>
 
           <Menu.Menu position="right">
-            <Menu.Item>
-              <Input icon="search" placeholder="Search..." />
-            </Menu.Item>
             <Menu inverted>
               <Dropdown item text={user} onClick={this.handleItemClick}>
                 <Dropdown.Menu>
