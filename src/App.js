@@ -4,9 +4,9 @@ import { BrowserRouter, Route } from "react-router-dom";
 
 // components
 import { Protected } from "./components/commonComponents/Protected";
-import Login from ""./components/Login/login";
+import Login from "./components/Login/login";
 import Register from "./components/Register/register";
-import Landing from ""./components/Landing/landing";
+import Landing from "./components/Landing/landing";
 import createCategory from "./components/categories/createCategory";
 import viewCategories from "./components/categories/viewCategories";
 import viewRecipies from "./components/recipes/viewRecipes";

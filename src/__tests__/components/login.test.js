@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-// import ReactDom from 'react-dom';
+import { Form, Button } from 'semantic-ui-react';
 import { notify } from 'react-notify-toast';
 import { MemoryRouter } from 'react-router-dom';
 
@@ -21,6 +21,7 @@ describe('<Login />', () => {
       }
     }
   };
+  const preventDefault = jest.fn();
   notify.show = jest.fn();
   it('should render withoiut crashing', () => {
     const { enzymeWrapper } = mount(
