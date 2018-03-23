@@ -7,7 +7,7 @@ import { Protected } from "./components/commonComponents/Protected";
 import Login from "./components/Login/login";
 import Register from "./components/Register/register";
 import Landing from "./components/Landing/landing";
-import createCategory from "./components/categories/createCategory";
+import CreateCategory from "./components/categories/createCategory";
 import viewCategories from "./components/categories/viewCategories";
 import viewRecipies from "./components/recipes/viewRecipes";
 
@@ -23,7 +23,7 @@ class App extends Component {
               component={viewRecipies}
             />
             <Protected exact path="/viewCat" component={viewCategories} />
-            <Protected exact path="/catCreate" component={createCategory} />
+            <Protected exact path="/catCreate" component={CreateCategory} />
             <Protected exact path="/landing" component={Landing} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/" component={Register} />
