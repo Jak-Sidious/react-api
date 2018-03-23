@@ -5,16 +5,15 @@ import Adapter from 'enzyme-adapter-react-16';
 import { notify } from 'react-notify-toast';
 import { MemoryRouter } from 'react-router-dom';
 
-import Register from '../../components/Register/register';
+import Login from '../../components/Login/login';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('<Register/>', () => {
+describe('<Login />', () => {
   const props = {
-    post: jest.fn(() => Promise.resolve('register')),
+    post: jest.fn(() => Promise.resolve('landing')),
     onChange: jest.fn(),
     handleChange: jest.fn(),
-    preventDefault: jest.fn(),
     history: { push: jest.fn() },
     match: {
       param: {
@@ -26,7 +25,7 @@ describe('<Register/>', () => {
   it('should render withoiut crashing', () => {
     const { enzymeWrapper } = mount(
       <MemoryRouter>
-        <Register {...props} />
+        <Login {...props} />
       </MemoryRouter>
     );
   });

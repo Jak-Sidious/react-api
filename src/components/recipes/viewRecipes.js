@@ -52,29 +52,32 @@ class viewRecipes extends Component {
       });
   }
 
-  handleEdit(e){
+  handleEdit(e) {
     e.preventDefault();
     const editedRecipe = {
       recipie_name: this.state.recipeName,
       ingredients: this.state.ingrain
-    }
+    };
     console.log(editedRecipe);
     console.log(this.state.categoryId);
     console.log(this.state.recipeId);
     axiosInstance
-      .put(`/category/${this.state.categoryId}/recipes/${this.state.recipeId}`,
-      editedRecipe,
-      { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-    })
-    .then(response => {
-      if (response.status === 200) {
-        console.log(response.data.message);
-        window.location.reload();
-      }
-    })
-    .catch(error => {
-      console.log(error.response);
-    });
+      .put(
+        `/category/${this.state.categoryId}/recipes/${this.state.recipeId}`,
+        editedRecipe,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        }
+      )
+      .then(response => {
+        if (response.status === 200) {
+          console.log(response.data.message);
+          window.location.reload();
+        }
+      })
+      .catch(error => {
+        console.log(error.response);
+      });
   }
 
   getRecipes() {
