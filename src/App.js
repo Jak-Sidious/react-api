@@ -1,15 +1,15 @@
 // necesaary
-import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import React, { Component } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 
 // components
-import { Protected } from './components/commonComponents/Protected';
-import Login from './components/Login/login';
-import Register from './components/Register/register';
-import Landing from './components/Landing/landing';
-import createCategory from './components/categories/createCategory';
-import viewCategories from './components/categories/viewCategories';
-import viewRecipies from './components/recipes/viewRecipes';
+import { Protected } from "./components/commonComponents/Protected";
+import Login from ""./components/Login/login";
+import Register from "./components/Register/register";
+import Landing from ""./components/Landing/landing";
+import createCategory from "./components/categories/createCategory";
+import viewCategories from "./components/categories/viewCategories";
+import viewRecipies from "./components/recipes/viewRecipes";
 
 class App extends Component {
   render() {
