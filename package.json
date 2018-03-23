@@ -5,7 +5,10 @@
   "dependencies": {
     "axios": "^0.17.1",
     "bootstrap": "^4.0.0",
+    "enzyme": "^3.3.0",
     "eslint": "^4.19.1",
+    "jest": "^22.4.3",
+    "jest-cli": "^22.4.3",
     "material-ui": "^0.20.0",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
