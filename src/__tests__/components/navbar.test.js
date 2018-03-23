@@ -5,30 +5,17 @@ import { Form, Button } from 'semantic-ui-react';
 import { notify } from 'react-notify-toast';
 import { MemoryRouter } from 'react-router-dom';
 
-import Login from '../../components/Login/login';
+import Navigation from '../../components/Navbar/navbar';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('<Login />', () => {
-  const props = {
-    post: jest.fn(() => Promise.resolve('landing')),
-    onChange: jest.fn(),
-    handleChange: jest.fn(),
-    history: { push: jest.fn() },
-    preventDefault: jest.fn(),
-    match: {
-      param: {
-        id: 1
-      }
-    }
-  };
-  // const preventDefault = jest.fn();
-  notify.show = jest.fn();
+describe('<Navigation />', () => {
   it('should render withoiut crashing', () => {
     const { enzymeWrapper } = mount(
       <MemoryRouter>
-        <Login {...props} />
+        <Navigation />
       </MemoryRouter>
     );
   });
+
 });
