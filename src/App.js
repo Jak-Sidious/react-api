@@ -9,7 +9,7 @@ import Register from "./components/Register/register";
 import Landing from "./components/Landing/landing";
 import CreateCategory from "./components/categories/createCategory";
 import ViewCategories from "./components/categories/ViewCategories";
-import viewRecipies from "./components/recipes/viewRecipes";
+import ViewRecipies from "./components/recipes/viewRecipes";
 
 class App extends Component {
   render() {
@@ -20,7 +20,7 @@ class App extends Component {
             <Protected
               exact
               path="/category/:category_id/recipes/list"
-              component={viewRecipies}
+              component={ViewRecipies}
             />
             <Protected exact path="/viewCat" component={ViewCategories} />
             <Protected exact path="/catCreate" component={CreateCategory} />

@@ -6,7 +6,7 @@ import axiosInstance from '../commonComponents/AxiosInstance';
 import Navigation from '../Navbar/navbar';
 import ModalEditRec from '../commonComponents/editRecipeModal';
 
-class viewRecipes extends Component {
+class ViewRecipes extends Component {
   constructor(props) {
     super(props);
 
@@ -187,4 +187,4 @@ class viewRecipes extends Component {
   }
 }
 
-export default viewRecipes;
+export default ViewRecipes;
