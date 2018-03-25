@@ -56,7 +56,8 @@ class Register extends React.Component {
         //   );
         // } else if (
         //   error.response.data.message ===
-        //   'Username is invalid it should contain alphanumeric charcaters followed by an underscore of not more than 25 characters'
+        //   'Username is invalid it should contain alphanumeric charcaters
+        // followed by an underscore of not more than 25 characters'
         // ) {
         //   notify.show('Username cannot start with a number');
         // }

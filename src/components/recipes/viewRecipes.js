@@ -128,7 +128,7 @@ class ViewRecipes extends Component {
           <h1 className="RecHeader">
             When Passed properly, the category name shall appear here
           </h1>
-          <Grid columns={3} divided>
+          <Grid container columns={3}>
             <Grid.Row>
               {this.state.recipes.map(recipes => (
                 <Grid.Column>

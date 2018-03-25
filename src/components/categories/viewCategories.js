@@ -6,7 +6,6 @@ import Navigation from '../Navbar/navbar';
 import ModalEditCat from '../commonComponents/editCategoryModal';
 import ModalCreateRecipe from '../commonComponents/createRecipeModal';
 
-
 const CATEGORY_LIST_URL = '/category/list';
 
 class ViewCategories extends Component {
@@ -65,16 +64,15 @@ class ViewCategories extends Component {
   viewRec(id) {
     // event.preventDefault();
     axiosInstance
-    .get(`/category/${id}/recipes/list`, {
-      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-    })
-    .then(response => {
-      if (response.status === 200) {
-        console.log(response.data.message);
-        this.props.history.push(`/category/${id}/recipes/list`);
-
-      }
-    })
+      .get(`/category/${id}/recipes/list`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      })
+      .then(response => {
+        if (response.status === 200) {
+          console.log(response.data.message);
+          this.props.history.push(`/category/${id}/recipes/list`);
+        }
+      });
   }
 
   handleEdit(event) {
@@ -142,10 +140,11 @@ class ViewCategories extends Component {
         />
         <br />
         <div>
-          <Grid columns={3} divided>
+          <Grid container columns={3}>
             <Grid.Row>
               {this.state.categories.map(categories => (
                 <Grid.Column>
+                  <br />
                   <Card fluid>
                     <Card.Content>
                       <Card.Header>{categories.category_name}</Card.Header>
@@ -162,7 +161,8 @@ class ViewCategories extends Component {
                             showModal: true,
                             category_id: categories.category_id,
                             category_name: categories.category_name,
-                            category_description: categories.category_description
+                            category_description:
+                              categories.category_description
                           })
                         }
                         className="Basic Modal"
@@ -198,7 +198,8 @@ class ViewCategories extends Component {
                       <Button
                         icon
                         color="grey"
-                        onClick={() => this.viewRec(categories.category_id) }>
+                        onClick={() => this.viewRec(categories.category_id)}
+                      >
                         <Icon name="find" />
                         View Recipes
                       </Button>
