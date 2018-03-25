@@ -6,7 +6,7 @@ import Navigation from '../Navbar/navbar';
 import ModalEditCat from '../commonComponents/editCategoryModal';
 import ModalCreateRecipe from '../commonComponents/createRecipeModal';
 
-const CATEGORY_LIST_URL = '/category/list';
+const CATEGORY_LIST_URL = '/category/list'; // Url for the creation of categories
 
 class ViewCategories extends Component {
   constructor(props) {
@@ -25,17 +25,20 @@ class ViewCategories extends Component {
     this.redirectRecipes = this.redirectRecipes.bind(this);
   }
 
+  // function to redirect to the create recipes page
   redirectRecipes(categoryId) {
     this.props.history.push(`/category/${categoryId}/recipes/create`);
     console.log(categoryId);
   }
 
+  // Event handler for changes made to the form
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
     console.log(this.state);
   }
 
+  // Function to check whether the categories array has content or not
   checkCategories() {
     const categories = this.state.categories;
     if (categories < 1) {
@@ -44,6 +47,7 @@ class ViewCategories extends Component {
     return '';
   }
 
+  // Function to delete category
   deleteCategory(id) {
     console.log(id);
     axiosInstance
@@ -61,6 +65,7 @@ class ViewCategories extends Component {
       });
   }
 
+  // Function to route user to the recipes page
   viewRec(id) {
     // event.preventDefault();
     axiosInstance
@@ -75,6 +80,7 @@ class ViewCategories extends Component {
       });
   }
 
+  // Function that handles the editing of category information
   handleEdit(event) {
     event.preventDefault();
     const editedCategory = {

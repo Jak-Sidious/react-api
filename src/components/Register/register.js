@@ -1,10 +1,11 @@
+// Component that deals with user registration
 import React from 'react';
 import Notifications, { notify } from 'react-notify-toast';
 import { Form, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import axiosInstance from '../commonComponents/AxiosInstance';
 
-const REGISTRATION_URL = 'users/register';
+const REGISTRATION_URL = 'users/register'; // url for the registration of new users
 class Register extends React.Component {
   constructor(props) {
     super(props);
@@ -18,11 +19,13 @@ class Register extends React.Component {
     this.handleRegister = this.handleRegister.bind(this);
   }
 
+  // function to handle changes made to the form
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   }
 
+  // Function to handle the registration of new users
   handleRegister(event) {
     event.preventDefault();
 

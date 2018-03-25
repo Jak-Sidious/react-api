@@ -4,7 +4,7 @@ import { Form, Button } from 'semantic-ui-react';
 import axiosInstance from '../commonComponents/AxiosInstance';
 import Navigation from '../Navbar/navbar';
 
-const CREATE_CAT_URL = '/category/create';
+const CREATE_CAT_URL = '/category/create'; // url for the creation of category
 class CreateCategory extends Component {
   constructor(props) {
     super(props);
@@ -17,14 +17,17 @@ class CreateCategory extends Component {
     this.handleCreate = this.handleCreate.bind(this);
   }
 
+  // Event Handler for changes made to the create form
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   }
 
+  // Event handler for the creation of the new category
   handleCreate(event) {
     event.preventDefault();
 
+    // Constant used to store dertails from the form
     const newCategory = {
       category_name: this.state.category_name,
       category_description: this.state.category_description

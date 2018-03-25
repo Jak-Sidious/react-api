@@ -1,3 +1,4 @@
+// Modal to cater for/ to the editing of recipes
 import React, { Component } from 'react';
 import { Modal, Form, Button } from 'semantic-ui-react';
 
@@ -13,6 +14,7 @@ class ModalEditRec extends Component {
     };
   }
 
+  // Function used to close modal
   closeModal() {
     this.setState({ showModal: false });
   }

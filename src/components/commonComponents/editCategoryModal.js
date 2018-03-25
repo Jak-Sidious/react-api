@@ -1,3 +1,4 @@
+// Modal to cater to the editing opf categories
 import React, { Component } from 'react';
 import { Modal, Form, Button } from 'semantic-ui-react';
 
@@ -12,6 +13,7 @@ class ModalEditCat extends Component {
     };
   }
 
+  // Function to close the open modal
   closeModal() {
     this.setState({ showModal: false });
   }

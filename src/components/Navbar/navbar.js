@@ -1,3 +1,4 @@
+// Component that contains the navabar to be used throught the application
 import React, { Component } from 'react';
 import { Menu, Dropdown } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
@@ -12,6 +13,7 @@ class Navigation extends Component {
     this.handleItemClick = this.handleItemClick.bind(this);
   }
 
+  // Handles the clicking of various items
   handleItemClick(event, { name }) {
     this.setState({ activeItem: name });
     console.log(name);

@@ -1,3 +1,4 @@
+// component that renders the landing page
 import React, { Component } from 'react';
 import Notifications from 'react-notify-toast';
 import Navigation from '../Navbar/navbar';

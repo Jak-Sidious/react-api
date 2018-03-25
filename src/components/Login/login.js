@@ -1,3 +1,4 @@
+// Component that has the login page
 import React from 'react';
 import Notifications, { notify } from 'react-notify-toast';
 import { Form, Button } from 'semantic-ui-react';
@@ -17,12 +18,14 @@ class Login extends React.Component {
     this.handleLogin = this.handleLogin.bind(this);
   }
 
+  // Handle changes to the form
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
     console.log(this.state);
   }
 
+  // Event handler for user pressing the login button on the form
   handleLogin(event) {
     event.preventDefault();
     const user = {

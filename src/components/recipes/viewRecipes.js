@@ -1,3 +1,4 @@
+// Component used to view the recipes a user has
 import React, { Component } from 'react';
 import Notifications from 'react-notify-toast';
 import { Grid, Card, Icon, Button } from 'semantic-ui-react';
@@ -22,12 +23,14 @@ class ViewRecipes extends Component {
     this.handleEdit = this.handleEdit.bind(this);
   }
 
+  // Function/event handler for changes to the forms
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
     console.log(this.state);
   }
 
+  // Check to see if the recipes array contains data
   checkRecipes() {
     const recipes = this.state.recipes;
     if (recipes < 1) {
@@ -36,6 +39,7 @@ class ViewRecipes extends Component {
     return '';
   }
 
+  // Function that caters to the deleting of recipes
   deleteRecipe(id, id2) {
     axiosInstance
       .delete(`/category/${id}/recipes/${id2}`, {
@@ -52,6 +56,7 @@ class ViewRecipes extends Component {
       });
   }
 
+  // function that caters to the handling of edits to recipes
   handleEdit(e) {
     e.preventDefault();
     const editedRecipe = {
@@ -80,6 +85,7 @@ class ViewRecipes extends Component {
       });
   }
 
+  // function to get all recipes assigned to a particular category
   getRecipes() {
     const cats = this.props.match.params.category_id;
     axiosInstance
@@ -102,6 +108,7 @@ class ViewRecipes extends Component {
       });
   }
 
+  // function that runs as soon as the component is mounted
   componentDidMount() {
     this.getRecipes();
   }

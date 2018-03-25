@@ -1,3 +1,4 @@
+// Modal that takes care of the creation of Recipes
 import React, { Component } from 'react';
 import notify from 'react-notify-toast';
 import { Modal, Form, Button } from 'semantic-ui-react';
@@ -17,11 +18,13 @@ class ModalCreateRecipe extends Component {
     this.handleCreate = this.handleCreate.bind(this);
   }
 
+  // Function /event to handle changes made to the form
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   }
 
+  // Function that caters to the creation of new recipes
   handleCreate(e) {
     e.preventDefault();
 
@@ -50,6 +53,7 @@ class ModalCreateRecipe extends Component {
       });
   }
 
+  // function to close the modal on button click
   closeModal1() {
     this.setState({ showModal1: false });
   }
