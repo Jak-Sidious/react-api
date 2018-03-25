@@ -1,14 +1,15 @@
 // necesaary
-import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import React, { Component } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 
 // components
-import Login from './components/Login/login';
-import Register from './components/Register/register';
-import Landing from './components/Landing/landing';
-import createCategory from './components/categories/createCategory';
-import viewCategories from './components/categories/viewCategories';
-import viewRecipies from './components/recipes/viewRecipes';
+import { Protected } from "./components/commonComponents/Protected";
+import Login from "./components/Login/login";
+import Register from "./components/Register/register";
+import Landing from "./components/Landing/landing";
+import CreateCategory from "./components/categories/createCategory";
+import ViewCategories from "./components/categories/viewCategories";
+import ViewRecipies from "./components/recipes/viewRecipes";
 
 class App extends Component {
   render() {
@@ -16,14 +17,14 @@ class App extends Component {
       <div className="App">
         <BrowserRouter>
           <div>
-            <Route
+            <Protected
               exact
               path="/category/:category_id/recipes/list"
-              component={viewRecipies}
+              component={ViewRecipies}
             />
-            <Route exact path="/viewCat" component={viewCategories} />
-            <Route exact path="/catCreate" component={createCategory} />
-            <Route exact path="/landing" component={Landing} />
+            <Protected exact path="/viewCat" component={ViewCategories} />
+            <Protected exact path="/catCreate" component={CreateCategory} />
+            <Protected exact path="/landing" component={Landing} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/" component={Register} />
           </div>

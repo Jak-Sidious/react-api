@@ -5,7 +5,7 @@ import axiosInstance from '../commonComponents/AxiosInstance';
 import Navigation from '../Navbar/navbar';
 
 const CREATE_CAT_URL = '/category/create';
-class createCategory extends Component {
+class CreateCategory extends Component {
   constructor(props) {
     super(props);
 
@@ -93,4 +93,4 @@ class createCategory extends Component {
   }
 }
 
-export default createCategory;
+export default CreateCategory;

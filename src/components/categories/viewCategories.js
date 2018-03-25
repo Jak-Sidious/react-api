@@ -9,7 +9,7 @@ import ModalCreateRecipe from '../commonComponents/createRecipeModal';
 
 const CATEGORY_LIST_URL = '/category/list';
 
-class viewCategories extends Component {
+class ViewCategories extends Component {
   constructor(props) {
     super(props);
 
@@ -195,4 +195,4 @@ class viewCategories extends Component {
   }
 }
 
-export default viewCategories;
+export default ViewCategories;
