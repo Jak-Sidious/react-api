@@ -55,7 +55,6 @@ class ViewCategories extends Component {
         if (response.status === 200) {
           console.log(response.data.message);
           window.location.reload();
-          // call to react to reload the state
         }
       })
       .catch(error => {
@@ -63,8 +62,23 @@ class ViewCategories extends Component {
       });
   }
 
-  handleEdit(e) {
-    e.preventDefault();
+  viewRec(id) {
+    // event.preventDefault();
+    axiosInstance
+    .get(`/category/${id}/recipes/list`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+    })
+    .then(response => {
+      if (response.status === 200) {
+        console.log(response.data.message);
+        this.props.history.push(`/category/${id}/recipes/list`);
+
+      }
+    })
+  }
+
+  handleEdit(event) {
+    event.preventDefault();
     const editedCategory = {
       category_name: this.state.category_name,
       category_description: this.state.category_description
@@ -180,6 +194,13 @@ class ViewCategories extends Component {
                       >
                         <Icon name="compose" />
                         Create Recipe
+                      </Button>
+                      <Button
+                        icon
+                        color="grey"
+                        onClick={() => this.viewRec(categories.category_id) }>
+                        <Icon name="find" />
+                        View Recipes
                       </Button>
                     </Card.Content>
                   </Card>
