@@ -19,6 +19,13 @@ class Navigation extends Component {
     console.log(name);
   }
 
+  // Handles the sign out of a user
+  signout() {
+    window.localStorage.removeItem('user');
+    window.localStorage.removeItem('token');
+    window.location.reload();
+  }
+
   render() {
     // const { activeItem } = this.state
 
@@ -75,7 +82,9 @@ class Navigation extends Component {
                 <Dropdown.Menu>
                   <Dropdown.Item>View Details</Dropdown.Item>
                   <Dropdown.Item>Change Password</Dropdown.Item>
-                  <Dropdown.Item>Logout</Dropdown.Item>
+                  <Dropdown.Item name="Logout" onClick={() => this.signout()}>
+                    Logout
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </Menu>
