@@ -108,8 +108,9 @@ class ViewCategories extends Component {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
-        const categories = response.data;
-        // console.log(categories);
+        console.log(response.data.items);
+        const categories = response.data.items;
+        console.log(categories);
         this.setState({ categories: categories });
         console.log(this.state);
       })
@@ -212,7 +213,7 @@ class ViewCategories extends Component {
                     </Card.Content>
                   </Card>
                 </Grid.Column>
-              ))}
+                ))}
             </Grid.Row>
           </Grid>
           {<h1> {this.checkCategories()} </h1>}
