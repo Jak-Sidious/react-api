@@ -10,6 +10,7 @@ import Landing from "./components/Landing/landing";
 import CreateCategory from "./components/categories/createCategory";
 import ViewCategories from "./components/categories/viewCategories";
 import ViewRecipies from "./components/recipes/viewRecipes";
+import CreateRecipeForm from "./components/commonComponents/createRecipeForm";
 
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
               path="/category/:category_id/recipes/list"
               component={ViewRecipies}
             />
+            <Protected exact path="/recCreate" component={CreateRecipeForm} />
             <Protected exact path="/viewCat" component={ViewCategories} />
             <Protected exact path="/catCreate" component={CreateCategory} />
             <Protected exact path="/landing" component={Landing} />
