@@ -67,7 +67,6 @@ class ViewCategories extends Component {
 
   // Function to route user to the recipes page
   viewRec(id) {
-    // event.preventDefault();
     axiosInstance
       .get(`/category/${id}/recipes/list`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }

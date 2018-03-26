@@ -133,7 +133,7 @@ class ViewRecipes extends Component {
         <br />
         <div>
           <h1 className="RecHeader">
-            When Passed properly, the category name shall appear here
+            The recipe header goes here
           </h1>
           <Grid container columns={3}>
             <Grid.Row>
