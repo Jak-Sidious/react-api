@@ -17,6 +17,7 @@ class ViewRecipes extends Component {
       pages: 0,
       perPage: 0,
       total: 0,
+      search: '',
       categoryId: '',
       recipeId: '',
       recipeName: '',
@@ -27,7 +28,7 @@ class ViewRecipes extends Component {
     this.handleEdit = this.handleEdit.bind(this);
     this.nextPage = this.nextPage.bind(this);
     this.previousPage = this.previousPage.bind(this);
-    // this.handleSearch = this.handleSearch.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   // Function/event handler for changes to the forms
@@ -171,6 +172,25 @@ class ViewRecipes extends Component {
     }
   }
 
+  handleSearch(event) {
+    event.preventDefault();
+    const searchParam = this.state.search;
+    axiosInstance
+    .get(`/category/${this.state.categoryId}/recipes/list?q=${searchParam}`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+    })
+    .then(response => {
+      console.log(response);
+      const recipes = response.data.items;
+      this.setState({ recipes: recipes});
+    })
+    .catch(error => {
+      if (error.response) {
+        console.log(error.response);
+      }
+    });
+  }
+
   // function that runs as soon as the component is mounted
   componentDidMount() {
     this.getRecipes();
@@ -199,6 +219,14 @@ class ViewRecipes extends Component {
             The recipe header goes here
           </h1>
           <Grid container columns={3}>
+            <form onSubmit={this.handleSearch}>
+              <input className="catSearch"
+                type="search"
+                name="search"
+                placeholder="Search.."
+                onChange={this.handleChange}
+              />
+              </form>
             <Grid.Row>
               {this.state.recipes.map(recipes => (
                 <Grid.Column>
