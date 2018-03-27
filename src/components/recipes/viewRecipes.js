@@ -134,6 +134,11 @@ class ViewRecipes extends Component {
           console.log(response.data)
           const recipes = response.data.items;
           this.setState({ recipes: recipes });
+          // this.setState({ categoryId: cats });
+          this.setState({ page: response.data.page });
+          this.setState({ pages: response.data.pages });
+          this.setState({ perPage: response.data.per_page });
+          this.setState({ total: response.data.total });
         })
         .catch(error => {
           if (error.response) {
@@ -144,23 +149,25 @@ class ViewRecipes extends Component {
   }
 
   previousPage() {
-    if (this.state.page === this.state.pages) {
+    if (this.state.page === 1) {
+      return 0;
+    } else {
+      console.log(this.state.page);
       const newPage = this.state.page - 1;
+      console.log(newPage);
       axiosInstance
         .get(`/category/${this.state.categoryId}/recipes/list?page=${newPage}`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         })
         .then(response => {
-          const categories = response.data.items;
-          this.setState({ categories: categories });
+          const recipes = response.data.items;
+          this.setState({ recipes: recipes });
         })
         .catch(error => {
           if (error.response) {
             console.log(error.response);
           }
         });
-    } else {
-      return 0;
     }
   }
 
