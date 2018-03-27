@@ -1,20 +1,20 @@
 import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { notify } from 'react-notify-toast';
 import { MemoryRouter } from 'react-router-dom';
 
-import Login from '../../components/Login/login';
+import CreateRecipeForm from '../../components/commonComponents/createRecipeForm';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('<Login />', () => {
+describe('<CreateRecipeForm />', () => {
+  const pathname = 'path';
   const props = {
     post: jest.fn(() => Promise.resolve('landing')),
     onChange: jest.fn(),
     handleChange: jest.fn(),
     history: { push: jest.fn() },
-    // preventDefault: jest.fn(),
+    location: { pathname },
     match: {
       param: {
         id: 1
@@ -22,12 +22,11 @@ describe('<Login />', () => {
     }
   };
   const preventDefault = jest.fn();
-  const component = mount(<MemoryRouter><Login /></MemoryRouter>)
-  notify.show = jest.fn();
+  const component = mount(<MemoryRouter><CreateRecipeForm {...props} /></MemoryRouter>)
   it('should render without crashing', () => {
     const { enzymeWrapper } = mount(
       <MemoryRouter>
-        <Login {...props} />
+        <CreateRecipeForm {...props} />
       </MemoryRouter>
     );
   });
@@ -35,5 +34,6 @@ describe('<Login />', () => {
     expect(component.find('Form').length).toBe(1);
     expect(component.find('Form').simulate("submit", { preventDefault }));
     expect(preventDefault).toBeCalled();
+
   })
 });

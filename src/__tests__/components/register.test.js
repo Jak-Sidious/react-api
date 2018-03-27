@@ -22,12 +22,18 @@ describe('<Register/>', () => {
       }
     }
   };
-  notify.show = jest.fn();
-  it('should render withoiut crashing', () => {
+  const preventDefault = jest.fn();
+  const component = mount(<MemoryRouter><Register /></MemoryRouter>)
+  it('should render without crashing', () => {
     const { enzymeWrapper } = mount(
       <MemoryRouter>
         <Register {...props} />
       </MemoryRouter>
     );
+  });
+  it('should render form', () => {
+    expect(component.find('Form').length).toBe(1);
+    expect(component.find('Form').simulate("submit", { preventDefault }));
+    expect(preventDefault).toBeCalled();
   });
 });

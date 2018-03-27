@@ -6,6 +6,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 import Landing from '../../components/Landing/landing';
 
+
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('<Landing />', () => {

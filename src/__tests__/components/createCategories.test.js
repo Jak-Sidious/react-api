@@ -12,12 +12,18 @@ describe('<CreateCategory />', () => {
   const props = {
     location: { pathname }
   };
-
+  const preventDefault = jest.fn();
+  const component = mount(<MemoryRouter><CreateCategory {...props}/></MemoryRouter>)
   it('should render without crashing', () => {
     const { enzymeWrapper } = mount(
       <MemoryRouter>
         <CreateCategory {...props} />
       </MemoryRouter>
     );
+  });
+  it('should render form', () => {
+    expect(component.find('Form').length).toBe(1);
+    expect(component.find('Form').simulate("submit", { preventDefault }));
+    expect(preventDefault).toBeCalled();
   });
 });
