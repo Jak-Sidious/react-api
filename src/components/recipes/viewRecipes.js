@@ -13,6 +13,10 @@ class ViewRecipes extends Component {
 
     this.state = {
       recipes: [],
+      page: 0,
+      pages: 0,
+      perPage: 0,
+      total: 0,
       categoryId: '',
       recipeId: '',
       recipeName: '',
@@ -21,6 +25,9 @@ class ViewRecipes extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
+    this.nextPage = this.nextPage.bind(this);
+    this.previousPage = this.previousPage.bind(this);
+    // this.handleSearch = this.handleSearch.bind(this);
   }
 
   // Function/event handler for changes to the forms
@@ -98,6 +105,10 @@ class ViewRecipes extends Component {
         const recipes = response.data.items;
         this.setState({ recipes: recipes });
         this.setState({ categoryId: cats });
+        this.setState({ page: response.data.page });
+        this.setState({ pages: response.data.pages });
+        this.setState({ perPage: response.data.per_page });
+        this.setState({ total: response.data.total });
         console.log(response);
         console.log(this.state);
       })
@@ -106,6 +117,51 @@ class ViewRecipes extends Component {
           console.log(error.response);
         }
       });
+  }
+
+  nextPage() {
+    // event.preventDefault();
+    if (this.state.page === this.state.pages) {
+      return 0;
+    } else {
+      const newPage = this.state.page + 1;
+      // console.log(newPage);
+      axiosInstance
+        .get(`/category/${this.state.categoryId}/recipes/list?page=${newPage}`, {
+          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        })
+        .then(response => {
+          console.log(response.data)
+          const recipes = response.data.items;
+          this.setState({ recipes: recipes });
+        })
+        .catch(error => {
+          if (error.response) {
+            console.log(error.response);
+          }
+        });
+    }
+  }
+
+  previousPage() {
+    if (this.state.page === this.state.pages) {
+      const newPage = this.state.page - 1;
+      axiosInstance
+        .get(`/category/${this.state.categoryId}/recipes/list?page=${newPage}`, {
+          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        })
+        .then(response => {
+          const categories = response.data.items;
+          this.setState({ categories: categories });
+        })
+        .catch(error => {
+          if (error.response) {
+            console.log(error.response);
+          }
+        });
+    } else {
+      return 0;
+    }
   }
 
   // function that runs as soon as the component is mounted
@@ -139,6 +195,7 @@ class ViewRecipes extends Component {
             <Grid.Row>
               {this.state.recipes.map(recipes => (
                 <Grid.Column>
+                  <br />
                   <Card fluid>
                     <Card.Content>
                       <Card.Header>
@@ -185,6 +242,26 @@ class ViewRecipes extends Component {
                 </Grid.Column>
               ))}
             </Grid.Row>
+            <Button
+              className="left floated"
+              animated
+              onClick={() => this.previousPage()}
+            >
+              <Button.Content visible>Previous</Button.Content>
+              <Button.Content hidden>
+                <Icon name="left arrow" />
+              </Button.Content>
+            </Button>
+            <Button
+              className="right floated"
+              animated
+              onClick={() => this.nextPage()}
+            >
+              <Button.Content visible>Next</Button.Content>
+              <Button.Content hidden>
+                <Icon name="right arrow" />
+              </Button.Content>
+            </Button>
           </Grid>
 
           {<h1> {this.checkRecipes()} </h1>}
