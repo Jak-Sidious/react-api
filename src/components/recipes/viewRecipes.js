@@ -95,7 +95,7 @@ class ViewRecipes extends Component {
       })
 
       .then(response => {
-        const recipes = response.data;
+        const recipes = response.data.items;
         this.setState({ recipes: recipes });
         this.setState({ categoryId: cats });
         console.log(response);
