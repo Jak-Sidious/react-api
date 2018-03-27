@@ -18,6 +18,7 @@ class ViewCategories extends Component {
       pages: 0,
       perPage: 0,
       total: 0,
+      search: '',
       categoryId: '',
       category_name: '',
       category_description: '',
@@ -29,6 +30,7 @@ class ViewCategories extends Component {
     this.redirectRecipes = this.redirectRecipes.bind(this);
     this.nextPage = this.nextPage.bind(this);
     this.previousPage = this.previousPage.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   // function to redirect to the create recipes page
@@ -109,12 +111,11 @@ class ViewCategories extends Component {
   }
 
   // Function to handle movement to the next page
-  nextPage(event) {
+  nextPage() {
     // event.preventDefault();
-    if (this.state.page === this.state.pages){
-      return 0
-    }
-    else {
+    if (this.state.page === this.state.pages) {
+      return 0;
+    } else {
       const newPage = this.state.page + 1;
       // console.log(newPage);
       axiosInstance
@@ -123,10 +124,10 @@ class ViewCategories extends Component {
         })
         .then(response => {
           const categories = response.data.items;
-          this.setState({ categories: categories})
+          this.setState({ categories: categories });
         })
         .catch(error => {
-          if (error.response){
+          if (error.response) {
             console.log(error.response);
           }
         });
@@ -134,29 +135,46 @@ class ViewCategories extends Component {
   }
 
   // Function to handle movement to the previous page
-  previousPage(event) {
-    // event.preventDefault();
-    if (this.state.page === 0){
-      return 0
-    }
-    else {
+  previousPage() {
+    if (this.state.page === 0) {
+      return 0;
+    } else {
       const newPage = this.state.page - 1;
-      // console.log(newPage);
       axiosInstance
         .get(`${CATEGORY_LIST_URL}?page=${newPage}`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         })
         .then(response => {
           const categories = response.data.items;
-          this.setState({ categories: categories})
+          this.setState({ categories: categories });
         })
         .catch(error => {
-          if (error.response){
+          if (error.response) {
             console.log(error.response);
           }
         });
     }
   }
+
+  handleSearch(event) {
+    event.preventDefault();
+    const searchParam = this.state.search;
+    axiosInstance
+    .get(`${CATEGORY_LIST_URL}?q=${searchParam}`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+    })
+    .then(response => {
+      console.log(response);
+      const categories = response.data.items;
+      this.setState({ categories: categories});
+    })
+    .catch(error => {
+      if (error.response) {
+        console.log(error.response);
+      }
+    });
+  }
+
 
   componentDidMount() {
     axiosInstance
@@ -167,11 +185,11 @@ class ViewCategories extends Component {
         console.log(response.data);
         const categories = response.data.items;
         console.log(categories);
-        this.setState({ categories: categories})
+        this.setState({ categories: categories });
         this.setState({ page: response.data.page });
-        this.setState({ pages: response.data.pages});
-        this.setState({ perPage: response.data.per_page});
-        this.setState({ total: response.data.total});
+        this.setState({ pages: response.data.pages });
+        this.setState({ perPage: response.data.per_page });
+        this.setState({ total: response.data.total });
         console.log(this.state);
       })
       .catch(error => {
@@ -180,6 +198,7 @@ class ViewCategories extends Component {
         }
       });
   }
+
 
   render() {
     const { location: { pathname } } = this.props;
@@ -208,6 +227,14 @@ class ViewCategories extends Component {
         <br />
         <div>
           <Grid container columns={3}>
+            <form onSubmit={this.handleSearch}>
+              <input className="catSearch"
+                type="search"
+                name="search"
+                placeholder="Search.."
+                onChange={this.handleChange}
+              />
+              </form>
             <Grid.Row>
               {this.state.categories.map(categories => (
                 <Grid.Column>
@@ -278,23 +305,24 @@ class ViewCategories extends Component {
             <Button
               className="left floated"
               animated
-              onClick={() => this.previousPage()}>
+              onClick={() => this.previousPage()}
+            >
               <Button.Content visible>Previous</Button.Content>
               <Button.Content hidden>
-                <Icon name='left arrow' />
+                <Icon name="left arrow" />
               </Button.Content>
             </Button>
             <Button
               className="right floated"
               animated
-              onClick={() => this.nextPage()}>
+              onClick={() => this.nextPage()}
+            >
               <Button.Content visible>Next</Button.Content>
               <Button.Content hidden>
-                <Icon name='right arrow' />
+                <Icon name="right arrow" />
               </Button.Content>
             </Button>
           </Grid>
-
 
           {<h1> {this.checkCategories()} </h1>}
         </div>
