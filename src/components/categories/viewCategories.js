@@ -14,7 +14,10 @@ class ViewCategories extends Component {
 
     this.state = {
       categories: [],
-      page: [],
+      page: 0,
+      pages: 0,
+      perPage: 0,
+      total: 0,
       categoryId: '',
       category_name: '',
       category_description: '',
@@ -24,6 +27,8 @@ class ViewCategories extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
     this.redirectRecipes = this.redirectRecipes.bind(this);
+    this.nextPage = this.nextPage.bind(this);
+    this.previousPage = this.previousPage.bind(this);
   }
 
   // function to redirect to the create recipes page
@@ -103,17 +108,70 @@ class ViewCategories extends Component {
       });
   }
 
+  // Function to handle movement to the next page
+  nextPage(event) {
+    // event.preventDefault();
+    if (this.state.page === this.state.pages){
+      return 0
+    }
+    else {
+      const newPage = this.state.page + 1;
+      // console.log(newPage);
+      axiosInstance
+        .get(`${CATEGORY_LIST_URL}?page=${newPage}`, {
+          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        })
+        .then(response => {
+          const categories = response.data.items;
+          this.setState({ categories: categories})
+        })
+        .catch(error => {
+          if (error.response){
+            console.log(error.response);
+          }
+        });
+    }
+  }
+
+  // Function to handle movement to the previous page
+  previousPage(event) {
+    // event.preventDefault();
+    if (this.state.page === 0){
+      return 0
+    }
+    else {
+      const newPage = this.state.page - 1;
+      // console.log(newPage);
+      axiosInstance
+        .get(`${CATEGORY_LIST_URL}?page=${newPage}`, {
+          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        })
+        .then(response => {
+          const categories = response.data.items;
+          this.setState({ categories: categories})
+        })
+        .catch(error => {
+          if (error.response){
+            console.log(error.response);
+          }
+        });
+    }
+  }
+
   componentDidMount() {
     axiosInstance
       .get(`${CATEGORY_LIST_URL}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
-        console.log(response.data.items);
+        console.log(response.data);
         const categories = response.data.items;
-        // console
         console.log(categories);
-        this.setState({ categories: categories });
+        this.setState({ categories: categories})
+        this.setState({ page: response.data.page });
+        this.setState({ pages: response.data.pages});
+        this.setState({ perPage: response.data.per_page});
+        this.setState({ total: response.data.total});
         console.log(this.state);
       })
       .catch(error => {
@@ -217,7 +275,27 @@ class ViewCategories extends Component {
                 </Grid.Column>
               ))}
             </Grid.Row>
+            <Button
+              className="left floated"
+              animated
+              onClick={() => this.previousPage()}>
+              <Button.Content visible>Previous</Button.Content>
+              <Button.Content hidden>
+                <Icon name='left arrow' />
+              </Button.Content>
+            </Button>
+            <Button
+              className="right floated"
+              animated
+              onClick={() => this.nextPage()}>
+              <Button.Content visible>Next</Button.Content>
+              <Button.Content hidden>
+                <Icon name='right arrow' />
+              </Button.Content>
+            </Button>
           </Grid>
+
+
           {<h1> {this.checkCategories()} </h1>}
         </div>
       </div>

@@ -80,8 +80,6 @@ class Navigation extends Component {
             <Menu inverted>
               <Dropdown item text={user} onClick={this.handleItemClick}>
                 <Dropdown.Menu>
-                  <Dropdown.Item>View Details</Dropdown.Item>
-                  <Dropdown.Item>Change Password</Dropdown.Item>
                   <Dropdown.Item name="Logout" onClick={() => this.signout()}>
                     Logout
                   </Dropdown.Item>
