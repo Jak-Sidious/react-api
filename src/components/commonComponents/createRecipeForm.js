@@ -23,10 +23,9 @@ class CreateRecipeForm extends Component {
     console.log(this.state);
   }
 
-
   componentDidMount() {
     axiosInstance
-      .get(`/category/list`, {
+      .get('/category/list', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
@@ -44,18 +43,16 @@ class CreateRecipeForm extends Component {
 
   render() {
     const { location: { pathname } } = this.props;
-    let optionsItems = this.state.categories.map((categories) =>
-        <option key={categories.category_name}>{categories.category_name}</option>
-        );
+    const optionsItems = this.state.categories.map(categories => (
+      <option key={categories.category_name}>{categories.category_name}</option>
+    ));
 
-    return(
+    return (
       <div>
         <Navigation pathname={pathname} />
         <Notifications />
         <div className="RecipeCreate">
-
           <div className="wrapper">
-
             <Form className="form-signin">
               <h2 className="form-signin-heading">Create Recipe Form</h2>
               <Form.Field
@@ -63,9 +60,10 @@ class CreateRecipeForm extends Component {
                 className="categoryName"
                 name="categoryName"
                 type="categoryName"
-                placeholder='Select Category'
-                fluid selection
-                options = {optionsItems}
+                placeholder="Select Category"
+                fluid
+                selection
+                options={optionsItems}
                 onChange={this.handleChange}
               />
               <Form.Input
@@ -85,13 +83,10 @@ class CreateRecipeForm extends Component {
                 placeholder="Enter your ingredients"
                 onChange={this.handleChange}
               />
-
             </Form>
-
           </div>
         </div>
       </div>
-
     );
   }
 }

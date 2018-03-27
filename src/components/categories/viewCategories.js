@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Notifications from 'react-notify-toast';
-import { Grid, Card, Icon, Button, Pagination } from 'semantic-ui-react';
+import { Grid, Card, Icon, Button } from 'semantic-ui-react';
 import axiosInstance from '../commonComponents/AxiosInstance';
 import Navigation from '../Navbar/navbar';
 import ModalEditCat from '../commonComponents/editCategoryModal';
@@ -14,6 +14,7 @@ class ViewCategories extends Component {
 
     this.state = {
       categories: [],
+      page: [],
       categoryId: '',
       category_name: '',
       category_description: '',
@@ -110,6 +111,7 @@ class ViewCategories extends Component {
       .then(response => {
         console.log(response.data.items);
         const categories = response.data.items;
+        // console
         console.log(categories);
         this.setState({ categories: categories });
         console.log(this.state);
@@ -123,7 +125,7 @@ class ViewCategories extends Component {
 
   render() {
     const { location: { pathname } } = this.props;
-    const max = this.state.categories.length;
+    // const max = this.state.categories.length;
     return (
       <div className="mainBackground">
         <Navigation pathname={pathname} />
@@ -213,12 +215,11 @@ class ViewCategories extends Component {
                     </Card.Content>
                   </Card>
                 </Grid.Column>
-                ))}
+              ))}
             </Grid.Row>
           </Grid>
           {<h1> {this.checkCategories()} </h1>}
         </div>
-
       </div>
     );
   }
