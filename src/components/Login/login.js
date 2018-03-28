@@ -22,7 +22,6 @@ class Login extends React.Component {
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-    console.log(this.state);
   }
 
   // Event handler for user pressing the login button on the form
@@ -32,7 +31,6 @@ class Login extends React.Component {
       username: this.state.username,
       password: this.state.password
     };
-    // console.log(this.state);
 
     axiosInstance
       .post(`${LOGIN_URL}`, user)
