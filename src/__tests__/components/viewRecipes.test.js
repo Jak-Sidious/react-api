@@ -1,8 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
-import ViewRecipes from '../../components/recipes/ViewRecipes';
-
+import ViewRecipes from '../../components/recipes/viewRecipes';
 
 describe('ViewRecipes component', () => {
   const pathname = 'path';
@@ -13,10 +12,9 @@ describe('ViewRecipes component', () => {
       params: {
         category_id: 1
       }
-    },
+    }
   };
-  const del = jest.fn();
-  const wrapper = shallow(<ViewRecipes  {...props}/>);
+  const wrapper = shallow(<ViewRecipes {...props} />);
 
   it('renders properly without crashing', () => {
     expect(shallowToJson(wrapper)).toMatchSnapshot();
@@ -25,6 +23,4 @@ describe('ViewRecipes component', () => {
   it('has clickable buttons', () => {
     expect(wrapper.find('#editRec').length).toBe(0);
   });
-
-
 });

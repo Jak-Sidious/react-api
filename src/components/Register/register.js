@@ -43,7 +43,7 @@ class Register extends React.Component {
       })
       .catch(error => {
         if (error.response) {
-          notify.show(`${error.response.data.message}`)
+          notify.show(`${error.response.data.message}`);
         }
       });
   }
@@ -82,12 +82,11 @@ class Register extends React.Component {
             />
             <Button
               className="left floated"
-              id = "regButton"
+              id="regButton"
               color="blue"
               value="submit"
               type="submit"
               size="large"
-              id="register"
             >
               Register
             </Button>

@@ -59,7 +59,7 @@ class ViewRecipes extends Component {
       })
       .catch(error => {
         if (error.response) {
-          notify.show(`${error.response.data.message}`)
+          notify.show(`${error.response.data.message}`);
         }
       });
   }
@@ -88,7 +88,7 @@ class ViewRecipes extends Component {
       })
       .catch(error => {
         if (error.response) {
-          notify.show(`${error.response.data.message}`)
+          notify.show(`${error.response.data.message}`);
         }
       });
   }
@@ -126,11 +126,16 @@ class ViewRecipes extends Component {
       const newPage = this.state.page + 1;
       // console.log(newPage);
       axiosInstance
-        .get(`/category/${this.state.categoryId}/recipes/list?page=${newPage}`, {
-          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-        })
+        .get(
+          `/category/${this.state.categoryId}/recipes/list?page=${newPage}`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+          }
+        )
         .then(response => {
-          console.log(response.data)
+          console.log(response.data);
           const recipes = response.data.items;
           this.setState({ recipes: recipes });
           // this.setState({ categoryId: cats });
@@ -155,9 +160,14 @@ class ViewRecipes extends Component {
       const newPage = this.state.page - 1;
       console.log(newPage);
       axiosInstance
-        .get(`/category/${this.state.categoryId}/recipes/list?page=${newPage}`, {
-          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-        })
+        .get(
+          `/category/${this.state.categoryId}/recipes/list?page=${newPage}`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+          }
+        )
         .then(response => {
           const recipes = response.data.items;
           this.setState({ recipes: recipes });
@@ -174,19 +184,19 @@ class ViewRecipes extends Component {
     event.preventDefault();
     const searchParam = this.state.search;
     axiosInstance
-    .get(`/category/${this.state.categoryId}/recipes/list?q=${searchParam}`, {
-      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-    })
-    .then(response => {
-      console.log(response);
-      const recipes = response.data.items;
-      this.setState({ recipes: recipes});
-    })
-    .catch(error => {
-      if (error.response) {
-        console.log(error.response);
-      }
-    });
+      .get(`/category/${this.state.categoryId}/recipes/list?q=${searchParam}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      })
+      .then(response => {
+        console.log(response);
+        const recipes = response.data.items;
+        this.setState({ recipes: recipes });
+      })
+      .catch(error => {
+        if (error.response) {
+          console.log(error.response);
+        }
+      });
   }
 
   // function that runs as soon as the component is mounted
@@ -214,17 +224,18 @@ class ViewRecipes extends Component {
         <br />
         <div>
           <h1 className="RecHeader">
-          {window.localStorage.getItem('category')} {this.props.title}
+            {window.localStorage.getItem('category')} {this.props.title}
           </h1>
           <Grid container columns={3}>
             <form onSubmit={this.handleSearch}>
-              <input className="catSearch"
+              <input
+                className="catSearch"
                 type="search"
                 name="search"
                 placeholder="Search.."
                 onChange={this.handleChange}
               />
-              </form>
+            </form>
             <Grid.Row>
               {this.state.recipes.map(recipes => (
                 <Grid.Column>

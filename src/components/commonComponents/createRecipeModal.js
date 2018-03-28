@@ -40,13 +40,13 @@ class ModalCreateRecipe extends Component {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
-        window.localStorage.setItem('category', catName)
+        window.localStorage.setItem('category', catName);
         window.location.assign(`/category/${catId}/recipes/list`);
         notify.show(`${response.status.data.message}`);
       })
       .catch(error => {
         if (error.response) {
-          notify.show(`${error.response.data.message}`)
+          notify.show(`${error.response.data.message}`);
         }
       });
   }
@@ -76,10 +76,7 @@ class ModalCreateRecipe extends Component {
               name="ingredients"
               onChange={this.handleChange}
             />
-            <Button
-              id = "createRec"
-              onClick={this.handleCreate}
-              color="blue">
+            <Button id="createRec" onClick={this.handleCreate} color="blue">
               Create
             </Button>
           </Form>

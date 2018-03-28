@@ -4,8 +4,7 @@ import { shallowToJson } from 'enzyme-to-json';
 import ModalEditRec from '../../components/commonComponents/editRecipeModal';
 
 describe('ModalEditRec component', () => {
-  const del = jest.fn();
-  const wrapper = shallow(<ModalEditRec  />);
+  const wrapper = shallow(<ModalEditRec />);
 
   it('renders properly without crashing', () => {
     expect(shallowToJson(wrapper)).toMatchSnapshot();

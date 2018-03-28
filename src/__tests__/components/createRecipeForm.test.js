@@ -1,6 +1,6 @@
 import React from 'react';
-import Enzyme, { mount, shallow } from 'enzyme';
-import { shallowToJson} from 'enzyme-to-json';
+import Enzyme, { shallow } from 'enzyme';
+import { shallowToJson } from 'enzyme-to-json';
 import Adapter from 'enzyme-adapter-react-16';
 import { MemoryRouter } from 'react-router-dom';
 
@@ -23,7 +23,7 @@ describe('<CreateRecipeForm />', () => {
     }
   };
   const preventDefault = jest.fn();
-  const component = shallow(<CreateRecipeForm {...props} />)
+  const component = shallow(<CreateRecipeForm {...props} />);
   it('should render without crashing', () => {
     const { enzymeWrapper } = shallow(
       <MemoryRouter>
@@ -32,12 +32,11 @@ describe('<CreateRecipeForm />', () => {
     );
   });
   it('should render properly', () => {
-    const wrapper = shallow(<CreateRecipeForm {...props}/>);
+    const wrapper = shallow(<CreateRecipeForm {...props} />);
     expect(shallowToJson(wrapper)).toMatchSnapshot();
   });
   it('should render form', () => {
     expect(component.find('Form').length).toBe(1);
-    expect(component.find('Form').simulate("submit", { preventDefault }));
-
-  })
+    expect(component.find('Form').simulate('submit', { preventDefault }));
+  });
 });

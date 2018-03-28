@@ -41,10 +41,7 @@ class ModalEditRec extends Component {
               value={this.props.contentz}
               onChange={this.props.handleChange}
             />
-            <Button
-              id="recEdit"
-              onClick={this.props.handleEdit}
-              color="blue">
+            <Button id="recEdit" onClick={this.props.handleEdit} color="blue">
               Save
             </Button>
           </Form>

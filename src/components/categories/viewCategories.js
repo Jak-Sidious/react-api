@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Notifications , { notify } from 'react-notify-toast';
+import Notifications, { notify } from 'react-notify-toast';
 import { Grid, Card, Icon, Button } from 'semantic-ui-react';
 import axiosInstance from '../commonComponents/AxiosInstance';
 import Navigation from '../Navbar/navbar';
@@ -60,12 +60,12 @@ class ViewCategories extends Component {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
-        notify.show(`${response.data.message}`)
+        notify.show(`${response.data.message}`);
         window.location.reload();
       })
       .catch(error => {
         if (error.response) {
-          notify.show(`${error.response.data.message}`)
+          notify.show(`${error.response.data.message}`);
         }
       });
   }
@@ -77,9 +77,9 @@ class ViewCategories extends Component {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
-        window.localStorage.setItem('category', name)
+        window.localStorage.setItem('category', name);
         this.props.history.push(`/category/${id}/recipes/list`);
-        notify.show(`${response.status.data.message}`)
+        notify.show(`${response.status.data.message}`);
       });
   }
 
@@ -100,7 +100,7 @@ class ViewCategories extends Component {
       })
       .catch(error => {
         if (error.response) {
-          notify.show(`${error.response.data.message}`)
+          notify.show(`${error.response.data.message}`);
         }
       });
   }
@@ -153,21 +153,20 @@ class ViewCategories extends Component {
     event.preventDefault();
     const searchParam = this.state.search;
     axiosInstance
-    .get(`${CATEGORY_LIST_URL}?q=${searchParam}`, {
-      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-    })
-    .then(response => {
-      notify.show(`${response.data.message}`)
-      const categories = response.data.items;
-      this.setState({ categories: categories});
-    })
-    .catch(error => {
-      if (error.response) {
-        notify.show(`${error.response.data.message}`)
-      }
-    });
+      .get(`${CATEGORY_LIST_URL}?q=${searchParam}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      })
+      .then(response => {
+        notify.show(`${response.data.message}`);
+        const categories = response.data.items;
+        this.setState({ categories: categories });
+      })
+      .catch(error => {
+        if (error.response) {
+          notify.show(`${error.response.data.message}`);
+        }
+      });
   }
-
 
   componentDidMount() {
     axiosInstance
@@ -185,11 +184,10 @@ class ViewCategories extends Component {
       })
       .catch(error => {
         if (error.response) {
-          notify.show(`${error.response.data.message}`)
+          notify.show(`${error.response.data.message}`);
         }
       });
   }
-
 
   render() {
     const { location: { pathname } } = this.props;
@@ -220,13 +218,14 @@ class ViewCategories extends Component {
         <div>
           <Grid container columns={3}>
             <form onSubmit={this.handleSearch}>
-              <input className="catSearch"
+              <input
+                className="catSearch"
                 type="search"
                 name="search"
                 placeholder="Search.."
                 onChange={this.handleChange}
               />
-              </form>
+            </form>
             <Grid.Row>
               {this.state.categories.map(categories => (
                 <Grid.Column>
@@ -240,7 +239,7 @@ class ViewCategories extends Component {
                     </Card.Content>
                     <Card.Content extra>
                       <Button
-                        id='editCat'
+                        id="editCat"
                         icon
                         color="green"
                         onClick={() =>
@@ -286,7 +285,12 @@ class ViewCategories extends Component {
                         icon
                         color="grey"
                         // title={this.categories.category_id}
-                        onClick={() => this.viewRec(categories.category_id, categories.category_name)}
+                        onClick={() =>
+                          this.viewRec(
+                            categories.category_id,
+                            categories.category_name
+                          )
+                        }
                       >
                         <Icon name="find" />
                         View Recipes

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Notifications, { notify } from 'react-notify-toast';
-import { Form, Button, Select } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Form, Select } from 'semantic-ui-react';
 import Navigation from '../Navbar/navbar';
 import axiosInstance from '../commonComponents/AxiosInstance';
 
@@ -34,7 +33,7 @@ class CreateRecipeForm extends Component {
       })
       .catch(error => {
         if (error.response) {
-          notify.show(`${error.response.data.message}`)
+          notify.show(`${error.response.data.message}`);
         }
       });
   }
