@@ -1,6 +1,6 @@
 // Component used to view the recipes a user has
 import React, { Component } from 'react';
-import Notifications from 'react-notify-toast';
+import Notifications, { notify } from 'react-notify-toast';
 import { Grid, Card, Icon, Button } from 'semantic-ui-react';
 import axiosInstance from '../commonComponents/AxiosInstance';
 
@@ -240,6 +240,7 @@ class ViewRecipes extends Component {
                     </Card.Content>
                     <Card.Content extra>
                       <Button
+                        id="editRec"
                         icon
                         color="green"
                         onClick={() =>
@@ -257,6 +258,7 @@ class ViewRecipes extends Component {
                         Edit
                       </Button>
                       <Button
+                        id="deleteRec"
                         icon
                         color="red"
                         floated="right"

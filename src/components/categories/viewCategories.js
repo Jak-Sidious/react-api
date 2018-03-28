@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Notifications from 'react-notify-toast';
+import Notifications , { notify } from 'react-notify-toast';
 import { Grid, Card, Icon, Button } from 'semantic-ui-react';
 import axiosInstance from '../commonComponents/AxiosInstance';
 import Navigation from '../Navbar/navbar';
@@ -36,14 +36,12 @@ class ViewCategories extends Component {
   // function to redirect to the create recipes page
   redirectRecipes(categoryId) {
     this.props.history.push(`/category/${categoryId}/recipes/create`);
-    console.log(categoryId);
   }
 
   // Event handler for changes made to the form
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-    console.log(this.state);
   }
 
   // Function to check whether the categories array has content or not
@@ -57,13 +55,12 @@ class ViewCategories extends Component {
 
   // Function to delete category
   deleteCategory(id) {
-    console.log(id);
     axiosInstance
       .delete(`/category/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
-        console.log(response.data.message);
+        notify.show(`${response.data.message}`)
         window.location.reload();
       })
       .catch(error => {
@@ -80,7 +77,6 @@ class ViewCategories extends Component {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
-        console.log(response.data.message);
         window.localStorage.setItem('category', name)
         this.props.history.push(`/category/${id}/recipes/list`);
         notify.show(`${response.status.data.message}`)
@@ -94,13 +90,11 @@ class ViewCategories extends Component {
       category_name: this.state.category_name,
       category_description: this.state.category_description
     };
-    console.log(editedCategory);
     axiosInstance
       .put(`/category/${this.state.category_id}`, editedCategory, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
-        console.log(response.data.message);
         window.location.reload();
         notify.show(`${response.status.data.message}`);
       })
@@ -118,7 +112,6 @@ class ViewCategories extends Component {
       return 0;
     } else {
       const newPage = this.state.page + 1;
-      // console.log(newPage);
       axiosInstance
         .get(`${CATEGORY_LIST_URL}?page=${newPage}`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
@@ -129,7 +122,6 @@ class ViewCategories extends Component {
         })
         .catch(error => {
           if (error.response) {
-            console.log(error.response);
           }
         });
     }
@@ -165,7 +157,7 @@ class ViewCategories extends Component {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     })
     .then(response => {
-      console.log(response);
+      notify.show(`${response.data.message}`)
       const categories = response.data.items;
       this.setState({ categories: categories});
     })
@@ -183,7 +175,6 @@ class ViewCategories extends Component {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
-        console.log(response.data);
         const categories = response.data.items;
         console.log(categories);
         this.setState({ categories: categories });
@@ -191,11 +182,10 @@ class ViewCategories extends Component {
         this.setState({ pages: response.data.pages });
         this.setState({ perPage: response.data.per_page });
         this.setState({ total: response.data.total });
-        console.log(this.state);
       })
       .catch(error => {
         if (error.response) {
-          console.log(error.response);
+          notify.show(`${error.response.data.message}`)
         }
       });
   }

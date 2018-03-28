@@ -2,7 +2,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-export const Protected = ({ component: Component, ...rest }) => (
+const Protected = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
@@ -14,3 +14,5 @@ export const Protected = ({ component: Component, ...rest }) => (
     }
   />
 );
+
+export default Protected;

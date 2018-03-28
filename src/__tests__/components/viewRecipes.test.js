@@ -22,5 +22,9 @@ describe('ViewRecipes component', () => {
     expect(shallowToJson(wrapper)).toMatchSnapshot();
   });
 
+  it('has clickable buttons', () => {
+    expect(wrapper.find('#editRec').length).toBe(0);
+  });
+
 
 });

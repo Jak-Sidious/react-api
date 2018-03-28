@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 
 // components
-import { Protected } from "./components/commonComponents/Protected";
+import Protected from "./components/commonComponents/Protected";
 import Login from "./components/Login/login";
 import Register from "./components/Register/register";
 import Landing from "./components/Landing/landing";
