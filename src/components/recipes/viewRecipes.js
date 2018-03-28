@@ -216,7 +216,7 @@ class ViewRecipes extends Component {
         <br />
         <div>
           <h1 className="RecHeader">
-            Header goes here {this.props.title}
+          {window.localStorage.getItem('category')} {this.props.title}
           </h1>
           <Grid container columns={3}>
             <form onSubmit={this.handleSearch}>

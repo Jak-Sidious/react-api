@@ -29,6 +29,7 @@ class ModalCreateRecipe extends Component {
     e.preventDefault();
 
     const catId = this.props.category_id;
+    const catName = this.props.category_name;
 
     const newRecipe = {
       recipie_name: this.state.recipie_name,
@@ -42,8 +43,10 @@ class ModalCreateRecipe extends Component {
       })
       .then(response => {
         if (response.status === 201) {
+          window.localStorage.setItem('category', catName)
           window.location.assign(`/category/${catId}/recipes/list`);
           notify.show('Recipe successfully created');
+
         }
       })
       .catch(error => {

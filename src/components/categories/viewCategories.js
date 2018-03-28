@@ -74,7 +74,7 @@ class ViewCategories extends Component {
   }
 
   // Function to route user to the recipes page
-  viewRec(id) {
+  viewRec(id, name) {
     axiosInstance
       .get(`/category/${id}/recipes/list`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
@@ -82,6 +82,7 @@ class ViewCategories extends Component {
       .then(response => {
         if (response.status === 200) {
           console.log(response.data.message);
+          window.localStorage.setItem('category', name)
           this.props.history.push(`/category/${id}/recipes/list`);
         }
       });
@@ -223,6 +224,7 @@ class ViewCategories extends Component {
           handleChange={() => this.handleChange}
           handleCreate={() => this.handleCreate}
           category_id={this.state.category_id}
+          category_name={this.state.category_name}
         />
         <br />
         <div>
@@ -293,7 +295,7 @@ class ViewCategories extends Component {
                         icon
                         color="grey"
                         // title={this.categories.category_id}
-                        onClick={() => this.viewRec(categories.category_id)}
+                        onClick={() => this.viewRec(categories.category_id, categories.category_name)}
                       >
                         <Icon name="find" />
                         View Recipes
