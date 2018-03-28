@@ -38,14 +38,11 @@ class CreateCategory extends Component {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
-        if (response.status === 201) {
           this.props.history.push('/viewCat');
-          notify.show('Category successfully created');
-        }
+          notify.show(`${response.status.data.message}`);
       })
       .catch(error => {
-        console.log(error);
-        if (error.response.status === 422) {
+        if (error.response) {
           notify.show(`${error.response.data.message}`);
         }
       });

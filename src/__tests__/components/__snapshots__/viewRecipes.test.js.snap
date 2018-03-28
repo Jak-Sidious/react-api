@@ -19,6 +19,7 @@ exports[`<ViewRecipes /> should render properly 1`] = `
     showModal={false}
   />
   <ModalCreateRecipe
+    category_name=""
     closeModal1={[Function]}
     handleChange={[Function]}
     handleCreate={[Function]}

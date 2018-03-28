@@ -38,19 +38,13 @@ class Register extends React.Component {
     axiosInstance
       .post(`${REGISTRATION_URL}`, newUser)
       .then(response => {
-        if (response.status === 201) {
-          notify.show('User succesfully Registered');
-          this.props.history.push('/login');
-        }
+        notify.show(`${response.status.data.message}`);
+        this.props.history.push('/login');
       })
       .catch(error => {
-        console.log(error.response);
-        if (error.response.status === 409) {
-          notify.show(`Username ${this.state.username} already exists please ,
-            use another name`)
-        } else if (error.response.status === 422) {
-            notify.show(`${error.response.data.message}`)
-          }
+        if (error.response) {
+          notify.show(`${error.response.data.message}`)
+        } 
       });
   }
 

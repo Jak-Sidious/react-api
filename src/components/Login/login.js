@@ -35,20 +35,13 @@ class Login extends React.Component {
     axiosInstance
       .post(`${LOGIN_URL}`, user)
       .then(response => {
-        if (response.status === 200) {
-          window.localStorage.setItem('token', response.data.token);
-          window.localStorage.setItem('user', response.data.user);
-          this.props.history.push('/landing');
-          notify.show('User succesfully logged in');
-        }
+        window.localStorage.setItem('token', response.data.token);
+        window.localStorage.setItem('user', response.data.user);
+        this.props.history.push('/landing');
+        notify.show(`${response.status.data.message}`);
       })
       .catch(error => {
-        console.log(error.response);
-        if (error.response.status === 401) {
-          notify.show(`${error.response.data.message}`)
-        } else if (error.response.status === 404) {
-          notify.show(`${error.response.data.message}`)
-        } else if (error.response.status === 422) {
+        if (error.response) {
           notify.show(`${error.response.data.message}`)
         }
       });

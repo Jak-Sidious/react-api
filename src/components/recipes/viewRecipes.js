@@ -54,13 +54,14 @@ class ViewRecipes extends Component {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
-        if (response.status === 200) {
-          console.log(response.data.message);
-          window.location.reload();
-        }
+        console.log(response.data.message);
+        window.location.reload();
+        notify.show(`${response.status.data.message}`);
       })
       .catch(error => {
-        console.log(error.response);
+        if (error.response) {
+          notify.show(`${error.response.data.message}`)
+        }
       });
   }
 
@@ -83,13 +84,13 @@ class ViewRecipes extends Component {
         }
       )
       .then(response => {
-        if (response.status === 200) {
-          console.log(response.data.message);
-          window.location.reload();
-        }
+        window.location.reload();
+        notify.show(`${response.status.data.message}`);
       })
       .catch(error => {
-        console.log(error.response);
+        if (error.response) {
+          notify.show(`${error.response.data.message}`)
+        }
       });
   }
 
@@ -110,8 +111,6 @@ class ViewRecipes extends Component {
         this.setState({ pages: response.data.pages });
         this.setState({ perPage: response.data.per_page });
         this.setState({ total: response.data.total });
-        console.log(response);
-        console.log(this.state);
       })
       .catch(error => {
         if (error.response) {

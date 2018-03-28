@@ -20,7 +20,6 @@ class CreateRecipeForm extends Component {
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-    console.log(this.state);
   }
 
   componentDidMount() {
@@ -29,15 +28,13 @@ class CreateRecipeForm extends Component {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
-        console.log(response);
         const categories = response.data;
-        console.log(categories);
         this.setState({ categories: categories });
-        console.log(this.state);
+        notify.show(`${response.status.data.message}`);
       })
       .catch(error => {
         if (error.response) {
-          console.log(error.response);
+          notify.show(`${error.response.data.message}`)
         }
       });
   }

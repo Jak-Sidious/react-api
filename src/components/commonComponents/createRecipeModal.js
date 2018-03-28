@@ -42,16 +42,13 @@ class ModalCreateRecipe extends Component {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
-        if (response.status === 201) {
-          window.localStorage.setItem('category', catName)
-          window.location.assign(`/category/${catId}/recipes/list`);
-          notify.show('Recipe successfully created');
-
-        }
+        window.localStorage.setItem('category', catName)
+        window.location.assign(`/category/${catId}/recipes/list`);
+        notify.show(`${response.status.data.message}`);
       })
       .catch(error => {
         if (error.response) {
-          console.log(error.response.data);
+          notify.show(`${error.response.data.message}`)
         }
       });
   }

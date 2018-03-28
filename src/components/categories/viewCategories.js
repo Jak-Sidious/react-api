@@ -63,13 +63,13 @@ class ViewCategories extends Component {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
-        if (response.status === 200) {
-          console.log(response.data.message);
-          window.location.reload();
-        }
+        console.log(response.data.message);
+        window.location.reload();
       })
       .catch(error => {
-        console.log(error.response);
+        if (error.response) {
+          notify.show(`${error.response.data.message}`)
+        }
       });
   }
 
@@ -80,11 +80,10 @@ class ViewCategories extends Component {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
-        if (response.status === 200) {
-          console.log(response.data.message);
-          window.localStorage.setItem('category', name)
-          this.props.history.push(`/category/${id}/recipes/list`);
-        }
+        console.log(response.data.message);
+        window.localStorage.setItem('category', name)
+        this.props.history.push(`/category/${id}/recipes/list`);
+        notify.show(`${response.status.data.message}`)
       });
   }
 
@@ -101,13 +100,14 @@ class ViewCategories extends Component {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
-        if (response.status === 200) {
-          console.log(response.data.message);
-          window.location.reload();
-        }
+        console.log(response.data.message);
+        window.location.reload();
+        notify.show(`${response.status.data.message}`);
       })
       .catch(error => {
-        console.log(error.response);
+        if (error.response) {
+          notify.show(`${error.response.data.message}`)
+        }
       });
   }
 
@@ -171,7 +171,7 @@ class ViewCategories extends Component {
     })
     .catch(error => {
       if (error.response) {
-        console.log(error.response);
+        notify.show(`${error.response.data.message}`)
       }
     });
   }
