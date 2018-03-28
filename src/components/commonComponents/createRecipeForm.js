@@ -29,6 +29,7 @@ class CreateRecipeForm extends Component {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
+        console.log(response);
         const categories = response.data;
         console.log(categories);
         this.setState({ categories: categories });

@@ -44,16 +44,15 @@ class CreateCategory extends Component {
         }
       })
       .catch(error => {
-        if (error.response.data.message === 'Category already exists') {
-          notify.show('Category already exists', 'error');
+        console.log(error);
+        if (error.response.status === 422) {
+          notify.show(`${error.response.data.message}`);
         }
-        console.log(error.response.data.message);
       });
   }
 
   render() {
     const { location: { pathname } } = this.props;
-    console.log(pathname);
     return (
       <div>
         <Navigation />
