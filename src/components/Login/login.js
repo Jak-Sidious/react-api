@@ -46,6 +46,13 @@ class Login extends React.Component {
       })
       .catch(error => {
         console.log(error.response);
+        if (error.response.status === 401) {
+          notify.show(`${error.response.data.message}`)
+        } else if (error.response.status === 404) {
+          notify.show(`${error.response.data.message}`)
+        } else if (error.response.status === 422) {
+          notify.show(`${error.response.data.message}`)
+        }
       });
   }
 

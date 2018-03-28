@@ -51,25 +51,6 @@ class Register extends React.Component {
         } else if (error.response.status === 422) {
             notify.show(`${error.response.data.message}`)
           }
-        // if (
-        //   error.response.data.message ===
-        //   `Username ${this.state.username} already exists`
-        // ) {
-        //   notify.show(`Username ${this.state.username} already exists`);
-        // } else if (
-        //   error.response.data.message ===
-        //   'Password must be between 6 and 25 alphanumeric characters.'
-        // ) {
-        //   notify.show(
-        //     'Password must be between 6 and 25 alphanumeric characters.'
-        //   );
-        // } else if (
-        //   error.response.data.message ===
-        //   'Username is invalid it should contain alphanumeric charcaters
-        // followed by an underscore of not more than 25 characters'
-        // ) {
-        //   notify.show('Username cannot start with a number');
-        // }
       });
   }
 
