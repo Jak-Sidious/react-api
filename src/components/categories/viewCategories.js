@@ -250,6 +250,7 @@ class ViewCategories extends Component {
                     </Card.Content>
                     <Card.Content extra>
                       <Button
+                        id='editCat'
                         icon
                         color="green"
                         onClick={() =>

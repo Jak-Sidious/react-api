@@ -35,7 +35,6 @@ class ViewRecipes extends Component {
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-    console.log(this.state);
   }
 
   // Check to see if the recipes array contains data

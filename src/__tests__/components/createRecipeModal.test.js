@@ -5,9 +5,9 @@ import { Card } from 'semantic-ui-react';
 import Adapter from 'enzyme-adapter-react-16';
 import { MemoryRouter } from 'react-router-dom';
 
-import Viewcategories from '../../components/categories/viewCategories';
+import ModalCreateRecipe from '../../components/commonComponents/createRecipeModal';
 
-describe('Viewcategories component', () => {
+describe('ModalCreateRecipe component', () => {
   const del = jest.fn();
   const pathname = 'path';
   const props = {
@@ -22,10 +22,13 @@ describe('Viewcategories component', () => {
       }
     }
   };
-  const wrapper = shallow(<Viewcategories  {...props}/>);
+  const wrapper = shallow(<ModalCreateRecipe  {...props}/>);
 
   it('renders properly without crashing', () => {
     expect(shallowToJson(wrapper)).toMatchSnapshot();
   });
 
+  it('creates recipe on click', () => {
+    expect(wrapper.find('#createRec').length).toBe(1);
+  })
 });

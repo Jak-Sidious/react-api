@@ -1,50 +1,39 @@
 import React from 'react';
 import Enzyme, { mount, shallow } from 'enzyme';
-import { shallowToJson} from 'enzyme-to-json';
+import toJson, { shallowToJson} from 'enzyme-to-json';
 import Adapter from 'enzyme-adapter-react-16';
 import { notify } from 'react-notify-toast';
 import { MemoryRouter } from 'react-router-dom';
 
 import Login from '../../components/Login/login';
 
-Enzyme.configure({ adapter: new Adapter() });
-
-describe('<Login />', () => {
-  const props = {
-    post: jest.fn(() => Promise.resolve('landing')),
-    onChange: jest.fn(),
-    handleChange: jest.fn(),
-    history: { push: jest.fn() },
-    // preventDefault: jest.fn(),
-    match: {
-      param: {
-        id: 1
-      }
-    }
-  };
+describe('Login component', () => {
+  const login = jest.fn();
+  const wrapper = shallow(<Login login={login} location={{}} />);
   const preventDefault = jest.fn();
-  const component = mount(<MemoryRouter><Login {...props}/></MemoryRouter>)
-  notify.show = jest.fn();
-  it('should render without crashing', () => {
-    const { enzymeWrapper } = mount(
-      <MemoryRouter>
-        <Login {...props} />
-      </MemoryRouter>
 
-    );
-  });
-  it('should render properly', () => {
-    const wrapper = shallow(<Login {...props}/>);
+  it('renders properly without crashing', () => {
     expect(shallowToJson(wrapper)).toMatchSnapshot();
   });
-  it('should render form', () => {
-    expect(component.find('Form').length).toBe(1);
-    expect(component.find('Form').simulate("submit", { preventDefault }));
-    expect(preventDefault).toBeCalled();
-  })
-  it('should handle login', () => {
-    const wrapper = shallow(<Login/>)
-    expect(wrapper.find('#btn').simulate('click'));
-    expect(wrapper.instance().handleLogin({preventDefault}));
+
+  it('it renders state initially', () => {
+    expect(wrapper.state().username).toEqual('');
+    expect(wrapper.state().password).toEqual('');
   });
-});
+
+  it('should login a user', () => {
+    wrapper.setState({
+      username: 'user',
+      password: 'user1234',
+    });
+    wrapper.find('#btn1').simulate('submit', { preventDefault });
+    expect(wrapper.instance().handleLogin({ preventDefault }));
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+
+  it('has clickable button which logs in a user', () => {
+    expect(wrapper.find('#btn1').length).toBe(1);
+    expect(wrapper.find('#btn1').simulate('click'));
+  });
+
+})

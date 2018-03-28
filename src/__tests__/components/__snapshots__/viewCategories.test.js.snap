@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Viewcategories /> should render properly 1`] = `
+exports[`Viewcategories component renders properly without crashing 1`] = `
 <div
   className="mainBackground"
 >

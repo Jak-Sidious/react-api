@@ -1,28 +1,26 @@
 import React from 'react';
-import Enzyme, { mount, shallow } from 'enzyme';
-import { shallowToJson} from 'enzyme-to-json';
-import Adapter from 'enzyme-adapter-react-16';
-import { MemoryRouter } from 'react-router-dom';
+import { shallow } from 'enzyme';
+import { shallowToJson } from 'enzyme-to-json';
+import ViewRecipes from '../../components/recipes/ViewRecipes';
 
-import ViewRecipes from '../../components/categories/viewCategories';
 
-Enzyme.configure({ adapter: new Adapter() });
-
-describe('<ViewRecipes />', () => {
+describe('ViewRecipes component', () => {
   const pathname = 'path';
   const props = {
-    location: { pathname }
-  };
+    location: { pathname },
 
-  it('should render without crashing', () => {
-    const { enzymeWrapper } = mount(
-      <MemoryRouter>
-        <ViewRecipes {...props} />
-      </MemoryRouter>
-    );
-  });
-  it('should render properly', () => {
-    const wrapper = shallow(<ViewRecipes {...props}/>);
+    match: {
+      params: {
+        category_id: 1
+      }
+    },
+  };
+  const del = jest.fn();
+  const wrapper = shallow(<ViewRecipes  {...props}/>);
+
+  it('renders properly without crashing', () => {
     expect(shallowToJson(wrapper)).toMatchSnapshot();
   });
+
+
 });

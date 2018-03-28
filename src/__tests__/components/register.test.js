@@ -49,5 +49,5 @@ describe('<Register/>', () => {
     expect(wrapper.instance().handleRegister({preventDefault}));
   });
 
-  
+
 });

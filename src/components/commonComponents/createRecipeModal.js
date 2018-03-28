@@ -35,8 +35,6 @@ class ModalCreateRecipe extends Component {
       recipie_name: this.state.recipie_name,
       ingredients: this.state.ingredients
     };
-    console.log(newRecipe);
-    console.log(catId);
     axiosInstance
       .post(`/category/${catId}/recipes/create`, newRecipe, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
@@ -78,7 +76,10 @@ class ModalCreateRecipe extends Component {
               name="ingredients"
               onChange={this.handleChange}
             />
-            <Button onClick={this.handleCreate} color="blue">
+            <Button
+              id = "createRec"
+              onClick={this.handleCreate}
+              color="blue">
               Create
             </Button>
           </Form>

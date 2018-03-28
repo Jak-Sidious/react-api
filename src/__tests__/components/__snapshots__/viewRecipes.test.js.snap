@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ViewRecipes /> should render properly 1`] = `
+exports[`ViewRecipes component renders properly without crashing 1`] = `
 <div
   className="mainBackground"
 >
@@ -10,24 +10,22 @@ exports[`<ViewRecipes /> should render properly 1`] = `
   <_class
     options={Object {}}
   />
-  <ModalEditCat
+  <ModalEditRec
     closeModal={[Function]}
-    desc=""
+    contentz=""
     handleChange={[Function]}
     handleEdit={[Function]}
     name=""
+    recId=""
     showModal={false}
-  />
-  <ModalCreateRecipe
-    category_name=""
-    closeModal1={[Function]}
-    handleChange={[Function]}
-    handleCreate={[Function]}
-    redirectRecipes={[Function]}
-    showModal1={false}
   />
   <br />
   <div>
+    <h1
+      className="RecHeader"
+    >
+       
+    </h1>
     <Grid
       columns={3}
       container={true}
@@ -87,7 +85,7 @@ exports[`<ViewRecipes /> should render properly 1`] = `
     </Grid>
     <h1>
        
-      You currently do not have any categories please create a few
+      You currently do not have any Recipes please create a few
        
     </h1>
   </div>

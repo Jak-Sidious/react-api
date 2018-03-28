@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModalEditCat component renders properly without crashing 1`] = `
+<Modal
+  closeIcon={true}
+  closeOnDimmerClick={true}
+  closeOnDocumentClick={false}
+  dimmer={true}
+  eventPool="Modal"
+>
+  <ModalHeader>
+    Edit Category
+  </ModalHeader>
+  <ModalContent>
+    <Form
+      as="form"
+    >
+      <FormInput
+        as={[Function]}
+        control={[Function]}
+        label="Category name"
+        name="category_name"
+        onChange={[MockFunction]}
+      />
+      <FormTextArea
+        as={[Function]}
+        control={[Function]}
+        label="Category description"
+        name="category_description"
+        onChange={[MockFunction]}
+      />
+      <Button
+        as="button"
+        color="blue"
+      >
+        Save
+      </Button>
+    </Form>
+  </ModalContent>
+</Modal>
+`;
