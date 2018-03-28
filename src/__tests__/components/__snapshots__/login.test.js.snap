@@ -44,6 +44,7 @@ exports[`<Login /> should render properly 1`] = `
         as="button"
         className="left floated"
         color="blue"
+        id="btn1"
         size="large"
         type="submit"
         value="submit"
@@ -55,6 +56,7 @@ exports[`<Login /> should render properly 1`] = `
         as={[Function]}
         className="right floated"
         color="green"
+        id="btn"
         size="large"
         to="/"
       >

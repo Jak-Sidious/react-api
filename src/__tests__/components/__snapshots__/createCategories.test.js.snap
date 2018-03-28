@@ -43,6 +43,7 @@ exports[`<CreateCategory /> should render properly 1`] = `
           className="left floated"
           color="blue"
           fluid={true}
+          id="submitButton"
           size="large"
           type="submit"
           value="submit"

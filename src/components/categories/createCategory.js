@@ -79,6 +79,7 @@ class CreateCategory extends Component {
               <Button
                 className="left floated"
                 fluid
+                id="submitButton"
                 color="blue"
                 value="submit"
                 type="submit"

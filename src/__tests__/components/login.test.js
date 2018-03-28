@@ -42,4 +42,9 @@ describe('<Login />', () => {
     expect(component.find('Form').simulate("submit", { preventDefault }));
     expect(preventDefault).toBeCalled();
   })
+  it('should handle login', () => {
+    const wrapper = shallow(<Login/>)
+    expect(wrapper.find('#btn').simulate('click'));
+    expect(wrapper.instance().handleLogin({preventDefault}));
+  });
 });

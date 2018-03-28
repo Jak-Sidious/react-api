@@ -80,6 +80,7 @@ class Login extends React.Component {
             />
             <Button
               className="left floated"
+              id="btn1"
               color="blue"
               value="submit"
               type="submit"
@@ -89,6 +90,7 @@ class Login extends React.Component {
             </Button>
             <Button
               className="right floated"
+              id="btn"
               action="/login"
               color="green"
               size="large"

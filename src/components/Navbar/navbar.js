@@ -16,7 +16,6 @@ class Navigation extends Component {
   // Handles the clicking of various items
   handleItemClick(event, { name }) {
     this.setState({ activeItem: name });
-    console.log(name);
   }
 
   // Handles the sign out of a user
@@ -27,7 +26,6 @@ class Navigation extends Component {
   }
 
   render() {
-    // const { activeItem } = this.state
 
     const { pathname } = this.props;
     const user = window.localStorage.getItem('user');
@@ -43,7 +41,6 @@ class Navigation extends Component {
           />
 
           <Menu.Item name="Categories">
-            {/* // active={ pathname === '/viewCat' || '/catCreate' }> */}
             <Dropdown item text="Categories">
               <Dropdown.Menu>
                 <Dropdown.Item

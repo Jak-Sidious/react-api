@@ -92,6 +92,7 @@ class Register extends React.Component {
               value="submit"
               type="submit"
               size="large"
+              id="register"
             >
               Register
             </Button>

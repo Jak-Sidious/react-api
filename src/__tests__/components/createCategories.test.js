@@ -31,4 +31,11 @@ describe('<CreateCategory />', () => {
     expect(component.find('Form').simulate("submit", { preventDefault }));
     expect(preventDefault).toBeCalled();
   });
+
+  it('should create category', () => {
+    const wrapper = shallow(<CreateCategory {...props}/>)
+    expect(wrapper.find('#submitButton').length).toBe(1);
+    expect(wrapper.find('#submitButton').simulate("submit", { preventDefault }));
+    expect(wrapper.instance().handleCreate({preventDefault}));
+  });
 });
