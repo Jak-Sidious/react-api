@@ -1,5 +1,6 @@
 import React from 'react';
-import Enzyme, { mount } from 'enzyme';
+import Enzyme, { mount, shallow } from 'enzyme';
+import { shallowToJson} from 'enzyme-to-json';
 import { Card } from 'semantic-ui-react';
 import Adapter from 'enzyme-adapter-react-16';
 import { MemoryRouter } from 'react-router-dom';
@@ -22,5 +23,9 @@ describe('<Viewcategories />', () => {
         <Viewcategories {...props} />
       </MemoryRouter>
     );
+  });
+  it('should render properly', () => {
+    const wrapper = shallow(<Viewcategories {...props}/>);
+    expect(shallowToJson(wrapper)).toMatchSnapshot();
   });
 });

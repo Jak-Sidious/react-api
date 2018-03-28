@@ -1,5 +1,6 @@
 import React from 'react';
-import Enzyme, { mount } from 'enzyme';
+import Enzyme, { mount, shallow } from 'enzyme';
+import { shallowToJson} from 'enzyme-to-json';
 import Adapter from 'enzyme-adapter-react-16';
 import { notify } from 'react-notify-toast';
 import { MemoryRouter } from 'react-router-dom';
@@ -22,14 +23,19 @@ describe('<Login />', () => {
     }
   };
   const preventDefault = jest.fn();
-  const component = mount(<MemoryRouter><Login /></MemoryRouter>)
+  const component = mount(<MemoryRouter><Login {...props}/></MemoryRouter>)
   notify.show = jest.fn();
   it('should render without crashing', () => {
     const { enzymeWrapper } = mount(
       <MemoryRouter>
         <Login {...props} />
       </MemoryRouter>
+
     );
+  });
+  it('should render properly', () => {
+    const wrapper = shallow(<Login {...props}/>);
+    expect(shallowToJson(wrapper)).toMatchSnapshot();
   });
   it('should render form', () => {
     expect(component.find('Form').length).toBe(1);

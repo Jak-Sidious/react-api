@@ -1,5 +1,6 @@
 import React from 'react';
-import Enzyme, { mount } from 'enzyme';
+import Enzyme, { mount, shallow } from 'enzyme';
+import { shallowToJson} from 'enzyme-to-json';
 import Adapter from 'enzyme-adapter-react-16';
 import { MemoryRouter } from 'react-router-dom';
 
@@ -18,6 +19,10 @@ describe('<Navigation />', () => {
   });
   it('should render a <Menu> tag', () => {
     expect(component.find('Menu').length).toBe(2);
+  });
+  it('should render properly', () => {
+    const wrapper = shallow(<Navigation/>);
+    expect(shallowToJson(wrapper)).toMatchSnapshot();
   });
 
   it('should contain 3 Menu.Item', () => {

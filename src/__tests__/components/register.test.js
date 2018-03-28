@@ -1,5 +1,6 @@
 import React from 'react';
-import Enzyme, { mount } from 'enzyme';
+import Enzyme, { mount, shallow } from 'enzyme';
+import { shallowToJson} from 'enzyme-to-json';
 import Adapter from 'enzyme-adapter-react-16';
 // import ReactDom from 'react-dom';
 import { notify } from 'react-notify-toast';
@@ -30,6 +31,10 @@ describe('<Register/>', () => {
         <Register {...props} />
       </MemoryRouter>
     );
+  });
+  it('should render properly', () => {
+    const wrapper = shallow(<Register {...props}/>);
+    expect(shallowToJson(wrapper)).toMatchSnapshot();
   });
   it('should render form', () => {
     expect(component.find('Form').length).toBe(1);

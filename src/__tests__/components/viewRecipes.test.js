@@ -1,5 +1,6 @@
 import React from 'react';
-import Enzyme, { mount } from 'enzyme';
+import Enzyme, { mount, shallow } from 'enzyme';
+import { shallowToJson} from 'enzyme-to-json';
 import Adapter from 'enzyme-adapter-react-16';
 import { MemoryRouter } from 'react-router-dom';
 
@@ -19,5 +20,9 @@ describe('<ViewRecipes />', () => {
         <ViewRecipes {...props} />
       </MemoryRouter>
     );
+  });
+  it('should render properly', () => {
+    const wrapper = shallow(<ViewRecipes {...props}/>);
+    expect(shallowToJson(wrapper)).toMatchSnapshot();
   });
 });

@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CreateRecipeForm /> should render properly 1`] = `
+<div>
+  <Navigation
+    pathname="path"
+  />
+  <_class
+    options={Object {}}
+  />
+  <div
+    className="RecipeCreate"
+  >
+    <div
+      className="wrapper"
+    >
+      <Form
+        as="form"
+        className="form-signin"
+      >
+        <h2
+          className="form-signin-heading"
+        >
+          Create Recipe Form
+        </h2>
+        <FormField
+          className="categoryName"
+          control={[Function]}
+          fluid={true}
+          name="categoryName"
+          onChange={[Function]}
+          options={Array []}
+          placeholder="Select Category"
+          selection={true}
+          type="categoryName"
+        />
+        <FormInput
+          as={[Function]}
+          autoFocus={true}
+          className="recName"
+          control={[Function]}
+          fluid={true}
+          name="RecipeName"
+          onChange={[Function]}
+          placeholder="Enter the Recipe Name"
+          type="RecipeName"
+        />
+        <FormTextArea
+          as={[Function]}
+          autoFocus={true}
+          className="ingrid"
+          control={[Function]}
+          name="ingredients"
+          onChange={[Function]}
+          placeholder="Enter your ingredients"
+          type="ingredients"
+        />
+      </Form>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Viewcategories /> should render properly 1`] = `
+<div
+  className="mainBackground"
+>
+  <Navigation
+    pathname="path"
+  />
+  <_class
+    options={Object {}}
+  />
+  <ModalEditCat
+    closeModal={[Function]}
+    desc=""
+    handleChange={[Function]}
+    handleEdit={[Function]}
+    name=""
+    showModal={false}
+  />
+  <ModalCreateRecipe
+    closeModal1={[Function]}
+    handleChange={[Function]}
+    handleCreate={[Function]}
+    redirectRecipes={[Function]}
+    showModal1={false}
+  />
+  <br />
+  <div>
+    <Grid
+      columns={3}
+      container={true}
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <input
+          className="catSearch"
+          name="search"
+          onChange={[Function]}
+          placeholder="Search.."
+          type="search"
+        />
+      </form>
+      <GridRow />
+      <Button
+        animated={true}
+        as="button"
+        className="left floated"
+        onClick={[Function]}
+      >
+        <ButtonContent
+          visible={true}
+        >
+          Previous
+        </ButtonContent>
+        <ButtonContent
+          hidden={true}
+        >
+          <Icon
+            as="i"
+            name="left arrow"
+          />
+        </ButtonContent>
+      </Button>
+      <Button
+        animated={true}
+        as="button"
+        className="right floated"
+        onClick={[Function]}
+      >
+        <ButtonContent
+          visible={true}
+        >
+          Next
+        </ButtonContent>
+        <ButtonContent
+          hidden={true}
+        >
+          <Icon
+            as="i"
+            name="right arrow"
+          />
+        </ButtonContent>
+      </Button>
+    </Grid>
+    <h1>
+       
+      You currently do not have any categories please create a few
+       
+    </h1>
+  </div>
+</div>
+`;

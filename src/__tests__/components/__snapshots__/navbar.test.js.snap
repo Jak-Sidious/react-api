@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Navigation /> should render properly 1`] = `
+<div>
+  <Menu
+    inverted={true}
+    size="large"
+  >
+    <MenuItem
+      active={false}
+      as={[Function]}
+      name="home"
+      onClick={[Function]}
+      to="/landing"
+    />
+    <MenuItem
+      name="Categories"
+    >
+      <Dropdown
+        additionLabel="Add "
+        additionPosition="top"
+        closeOnBlur={true}
+        deburr={false}
+        icon="dropdown"
+        item={true}
+        minCharacters={1}
+        noResultsMessage="No results found."
+        openOnFocus={true}
+        renderLabel={[Function]}
+        searchInput="text"
+        selectOnBlur={true}
+        selectOnNavigation={true}
+        text="Categories"
+        wrapSelection={true}
+      >
+        <DropdownMenu>
+          <DropdownItem
+            active={false}
+            as={[Function]}
+            name="Categories"
+            onClick={[Function]}
+            to="/catCreate"
+          >
+            CreateCategory
+          </DropdownItem>
+          <DropdownItem
+            active={false}
+            as={[Function]}
+            name="Categories"
+            to="/viewCat"
+          >
+            View Categories
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+    </MenuItem>
+    <MenuItem>
+      <Dropdown
+        additionLabel="Add "
+        additionPosition="top"
+        closeOnBlur={true}
+        deburr={false}
+        icon="dropdown"
+        item={true}
+        minCharacters={1}
+        noResultsMessage="No results found."
+        onClick={[Function]}
+        openOnFocus={true}
+        renderLabel={[Function]}
+        searchInput="text"
+        selectOnBlur={true}
+        selectOnNavigation={true}
+        text="Recipes"
+        wrapSelection={true}
+      >
+        <DropdownMenu>
+          <DropdownItem>
+            Create Recipe
+          </DropdownItem>
+          <DropdownItem>
+            View Recipes
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+    </MenuItem>
+    <MenuMenu
+      position="right"
+    >
+      <Menu
+        inverted={true}
+      >
+        <Dropdown
+          additionLabel="Add "
+          additionPosition="top"
+          closeOnBlur={true}
+          deburr={false}
+          icon="dropdown"
+          item={true}
+          minCharacters={1}
+          noResultsMessage="No results found."
+          onClick={[Function]}
+          openOnFocus={true}
+          renderLabel={[Function]}
+          searchInput="text"
+          selectOnBlur={true}
+          selectOnNavigation={true}
+          wrapSelection={true}
+        >
+          <DropdownMenu>
+            <DropdownItem
+              name="Logout"
+              onClick={[Function]}
+            >
+              Logout
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      </Menu>
+    </MenuMenu>
+  </Menu>
+</div>
+`;
