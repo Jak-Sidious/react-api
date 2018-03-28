@@ -292,6 +292,7 @@ class ViewCategories extends Component {
                       <Button
                         icon
                         color="grey"
+                        title={this.categories.category_id}
                         onClick={() => this.viewRec(categories.category_id)}
                       >
                         <Icon name="find" />
