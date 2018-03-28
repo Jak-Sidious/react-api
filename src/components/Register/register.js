@@ -45,6 +45,12 @@ class Register extends React.Component {
       })
       .catch(error => {
         console.log(error.response);
+        if (error.response.status === 409) {
+          notify.show(`Username ${this.state.username} already exists please ,
+            use another name`)
+        } else if (error.response.status === 422) {
+            notify.show(`${error.response.data.message}`)
+          }
         // if (
         //   error.response.data.message ===
         //   `Username ${this.state.username} already exists`
