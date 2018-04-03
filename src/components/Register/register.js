@@ -38,8 +38,8 @@ class Register extends React.Component {
     axiosInstance
       .post(`${REGISTRATION_URL}`, newUser)
       .then(response => {
-        notify.show(`${response.status.data.message}`);
         this.props.history.push('/login');
+        notify.show(`${response.status.data.message}`);
       })
       .catch(error => {
         if (error.response) {
