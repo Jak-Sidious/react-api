@@ -43,7 +43,7 @@ class CreateCategory extends Component {
       })
       .catch(error => {
         if (error.response) {
-          notify.show(`${error.response.data.message}`);
+          notify.show(`Category with the name ${this.state.category_name} already exists`);
         }
       });
   }
@@ -65,9 +65,8 @@ class CreateCategory extends Component {
                 placeholder="Enter your category Name"
                 onChange={this.handleChange}
               />
-              <Form.Input
+              <Form.TextArea
                 className="catDescField"
-                autoFocus
                 name="category_description"
                 type="category_description"
                 placeholder="Enter the Description"
