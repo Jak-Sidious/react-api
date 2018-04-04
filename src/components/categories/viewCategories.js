@@ -23,7 +23,8 @@ class ViewCategories extends Component {
       category_name: '',
       category_description: '',
       showModal: false,
-      showModal1: false
+      showModal1: false,
+      isShown: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
@@ -45,7 +46,7 @@ class ViewCategories extends Component {
   }
 
   // Function to check whether the categories array has content or not
-  checkCategories() {
+  tegories() {
     const categories = this.state.categories;
     if (categories < 1) {
       return 'You currently do not have any categories please create a few';
@@ -80,6 +81,11 @@ class ViewCategories extends Component {
         window.localStorage.setItem('category', name);
         this.props.history.push(`/category/${id}/recipes/list`);
         notify.show(`${response.status.data.message}`);
+      })
+      .catch(error => {
+        if (error.response) {
+          notify.show(`${error.response.data.message}`);
+        }
       });
   }
 
@@ -191,11 +197,13 @@ class ViewCategories extends Component {
 
   render() {
     const { location: { pathname } } = this.props;
-    // const max = this.state.categories.length;
+    const max = this.state.categories.length;
+    console.log(max);
     return (
       <div className="mainBackground">
         <Navigation pathname={pathname} />
         <Notifications />
+
         <ModalEditCat
           showModal={this.state.showModal}
           closeModal={() => this.setState({ showModal: false })}
@@ -215,6 +223,7 @@ class ViewCategories extends Component {
           category_name={this.state.category_name}
         />
         <br />
+        { max ? (
         <div>
           <Grid container columns={3}>
             <form onSubmit={this.handleSearch}>
@@ -322,8 +331,10 @@ class ViewCategories extends Component {
             </Button>
           </Grid>
 
-          {<h1> {this.checkCategories()} </h1>}
         </div>
+      ) : (
+        <h1>No Categories exist, please create some</h1>
+      )}
       </div>
     );
   }
