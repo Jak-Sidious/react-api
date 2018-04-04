@@ -37,15 +37,6 @@ class ViewRecipes extends Component {
     this.setState({ [name]: value });
   }
 
-  // Check to see if the recipes array contains data
-  checkRecipes() {
-    const recipes = this.state.recipes;
-    if (recipes < 1) {
-      return 'You currently do not have any Recipes please create a few';
-    }
-    return '';
-  }
-
   // Function that caters to the deleting of recipes
   deleteRecipe(id, id2) {
     axiosInstance
@@ -206,7 +197,7 @@ class ViewRecipes extends Component {
 
   render() {
     const { location: { pathname } } = this.props;
-
+    const recs = this.state.recipes.length;
     return (
       <div className="mainBackground">
         <Navigation pathname={pathname} />
@@ -222,6 +213,7 @@ class ViewRecipes extends Component {
           contentz={this.state.ingrain}
         />
         <br />
+        { recs ? (
         <div>
           <h1 className="RecHeader">
             {window.localStorage.getItem('category')} {this.props.title}
@@ -309,9 +301,10 @@ class ViewRecipes extends Component {
               </Button.Content>
             </Button>
           </Grid>
-
-          {<h1> {this.checkRecipes()} </h1>}
         </div>
+      ) : (
+        <h1> This User has no Recipes, do create some</h1>
+      )}
       </div>
     );
   }

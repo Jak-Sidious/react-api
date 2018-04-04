@@ -45,15 +45,6 @@ class ViewCategories extends Component {
     this.setState({ [name]: value });
   }
 
-  // Function to check whether the categories array has content or not
-  tegories() {
-    const categories = this.state.categories;
-    if (categories < 1) {
-      return 'You currently do not have any categories please create a few';
-    }
-    return '';
-  }
-
   // Function to delete category
   deleteCategory(id) {
     axiosInstance
@@ -197,8 +188,7 @@ class ViewCategories extends Component {
 
   render() {
     const { location: { pathname } } = this.props;
-    const max = this.state.categories.length;
-    console.log(max);
+    const cats = this.state.categories.length;
     return (
       <div className="mainBackground">
         <Navigation pathname={pathname} />
@@ -223,7 +213,7 @@ class ViewCategories extends Component {
           category_name={this.state.category_name}
         />
         <br />
-        { max ? (
+        { cats ? (
         <div>
           <Grid container columns={3}>
             <form onSubmit={this.handleSearch}>

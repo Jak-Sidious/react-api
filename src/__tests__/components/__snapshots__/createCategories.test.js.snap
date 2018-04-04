@@ -28,9 +28,8 @@ exports[`<CreateCategory /> should render properly 1`] = `
           placeholder="Enter your category Name"
           type="category_name"
         />
-        <FormInput
+        <FormTextArea
           as={[Function]}
-          autoFocus={true}
           className="catDescField"
           control={[Function]}
           name="category_description"

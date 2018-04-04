@@ -20,74 +20,8 @@ exports[`ViewRecipes component renders properly without crashing 1`] = `
     showModal={false}
   />
   <br />
-  <div>
-    <h1
-      className="RecHeader"
-    >
-       
-    </h1>
-    <Grid
-      columns={3}
-      container={true}
-    >
-      <form
-        onSubmit={[Function]}
-      >
-        <input
-          className="catSearch"
-          name="search"
-          onChange={[Function]}
-          placeholder="Search.."
-          type="search"
-        />
-      </form>
-      <GridRow />
-      <Button
-        animated={true}
-        as="button"
-        className="left floated"
-        onClick={[Function]}
-      >
-        <ButtonContent
-          visible={true}
-        >
-          Previous
-        </ButtonContent>
-        <ButtonContent
-          hidden={true}
-        >
-          <Icon
-            as="i"
-            name="left arrow"
-          />
-        </ButtonContent>
-      </Button>
-      <Button
-        animated={true}
-        as="button"
-        className="right floated"
-        onClick={[Function]}
-      >
-        <ButtonContent
-          visible={true}
-        >
-          Next
-        </ButtonContent>
-        <ButtonContent
-          hidden={true}
-        >
-          <Icon
-            as="i"
-            name="right arrow"
-          />
-        </ButtonContent>
-      </Button>
-    </Grid>
-    <h1>
-       
-      You currently do not have any Recipes please create a few
-       
-    </h1>
-  </div>
+  <h1>
+     This User has no Recipes, do create some
+  </h1>
 </div>
 `;
