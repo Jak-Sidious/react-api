@@ -182,8 +182,8 @@ class ViewCategories extends Component {
       .catch(error => {
         if (error.response) {
           notify.show(`${error.response.data.message}`);
-          if (error.response.status === 400) {
-            this.setState({ categories: [] });
+          if (error.response.status === 404) {
+            this.setState({ categories: [], });
           }
 
         }
