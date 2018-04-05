@@ -29,6 +29,7 @@ class ViewRecipes extends Component {
     this.nextPage = this.nextPage.bind(this);
     this.previousPage = this.previousPage.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.getRecipes = this.getRecipes.bind(this);
   }
 
   // Function/event handler for changes to the forms
@@ -44,12 +45,12 @@ class ViewRecipes extends Component {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
-        console.log(response.data.message);
-        window.location.reload();
         notify.show(`${response.status.data.message}`);
+        this.getRecipes();
       })
       .catch(error => {
         if (error.response) {
+          this.getRecipes();
           notify.show(`${error.response.data.message}`);
         }
       });
@@ -62,9 +63,6 @@ class ViewRecipes extends Component {
       recipie_name: this.state.recipeName,
       ingredients: this.state.ingrain
     };
-    console.log(editedRecipe);
-    console.log(this.state.categoryId);
-    console.log(this.state.recipeId);
     axiosInstance
       .put(
         `/category/${this.state.categoryId}/recipes/${this.state.recipeId}`,
@@ -74,8 +72,8 @@ class ViewRecipes extends Component {
         }
       )
       .then(response => {
-        window.location.reload();
         notify.show(`${response.status.data.message}`);
+        this.getRecipes();
       })
       .catch(error => {
         if (error.response) {
@@ -88,7 +86,6 @@ class ViewRecipes extends Component {
   getRecipes() {
     const cats = this.props.match.params.category_id;
     axiosInstance
-
       .get(`/category/${cats}/recipes/list`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
@@ -104,7 +101,7 @@ class ViewRecipes extends Component {
       })
       .catch(error => {
         if (error.response) {
-          console.log(error.response);
+          notify.show(`${error.response.data.message}`);
         }
       });
   }

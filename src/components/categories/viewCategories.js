@@ -32,6 +32,7 @@ class ViewCategories extends Component {
     this.nextPage = this.nextPage.bind(this);
     this.previousPage = this.previousPage.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.getCategories = this.getCategories.bind(this);
   }
 
   // function to redirect to the create recipes page
@@ -53,10 +54,11 @@ class ViewCategories extends Component {
       })
       .then(response => {
         notify.show(`${response.data.message}`);
-        window.location.reload();
+        this.getCategories();
       })
       .catch(error => {
         if (error.response) {
+          this.getCategories();
           notify.show(`${error.response.data.message}`);
         }
       });
@@ -92,7 +94,6 @@ class ViewCategories extends Component {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
-        window.location.reload();
         notify.show(`${response.status.data.message}`);
       })
       .catch(error => {
@@ -165,14 +166,13 @@ class ViewCategories extends Component {
       });
   }
 
-  componentDidMount() {
+  getCategories() {
     axiosInstance
       .get(`${CATEGORY_LIST_URL}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
         const categories = response.data.items;
-        console.log(categories);
         this.setState({ categories: categories });
         this.setState({ page: response.data.page });
         this.setState({ pages: response.data.pages });
@@ -182,8 +182,16 @@ class ViewCategories extends Component {
       .catch(error => {
         if (error.response) {
           notify.show(`${error.response.data.message}`);
+          if (error.response.status === 400) {
+            this.setState({ categories: [] });
+          }
+
         }
       });
+  }
+
+  componentDidMount() {
+    this.getCategories();
   }
 
   render() {
