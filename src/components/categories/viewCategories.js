@@ -58,8 +58,8 @@ class ViewCategories extends Component {
       })
       .catch(error => {
         if (error.response) {
-          this.getCategories();
           notify.show(`${error.response.data.message}`);
+          this.getCategories();
         }
       });
   }

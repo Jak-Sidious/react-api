@@ -21,7 +21,7 @@ class ViewRecipes extends Component {
       categoryId: '',
       recipeId: '',
       recipeName: '',
-      ingrain: '',
+      recipeDesc: '',
       showModal: false
     };
     this.handleChange = this.handleChange.bind(this);
@@ -50,18 +50,18 @@ class ViewRecipes extends Component {
       })
       .catch(error => {
         if (error.response) {
-          this.getRecipes();
           notify.show(`${error.response.data.message}`);
+          this.getRecipes();
         }
       });
   }
 
   // function that caters to the handling of edits to recipes
-  handleEdit(e) {
-    e.preventDefault();
+  handleEdit(event) {
+    event.preventDefault();
     const editedRecipe = {
       recipie_name: this.state.recipeName,
-      ingredients: this.state.ingrain
+      ingredients: this.state.recipeDesc
     };
     axiosInstance
       .put(
@@ -73,7 +73,6 @@ class ViewRecipes extends Component {
       )
       .then(response => {
         notify.show(`${response.status.data.message}`);
-        this.getRecipes();
       })
       .catch(error => {
         if (error.response) {
@@ -92,6 +91,7 @@ class ViewRecipes extends Component {
 
       .then(response => {
         const recipes = response.data.items;
+        console.log(recipes);
         this.setState({ recipes: recipes });
         this.setState({ categoryId: cats });
         this.setState({ page: response.data.page });
@@ -102,6 +102,10 @@ class ViewRecipes extends Component {
       .catch(error => {
         if (error.response) {
           notify.show(`${error.response.data.message}`);
+          if (error.response.status === 404) {
+            this.setState({ recipes: [], });
+          }
+
         }
       });
   }
@@ -207,7 +211,7 @@ class ViewRecipes extends Component {
           Id={this.state.categoryID}
           recId={this.state.recipeId}
           name={this.state.recipeName}
-          contentz={this.state.ingrain}
+          contain={this.state.recipeDesc}
         />
         <br />
         { recs ? (
@@ -264,7 +268,7 @@ class ViewRecipes extends Component {
                         floated="right"
                         onClick={() =>
                           this.deleteRecipe(
-                            this.state.categoryId,
+                            recipes.category_id,
                             recipes.recipie_id
                           )
                         }
@@ -301,6 +305,7 @@ class ViewRecipes extends Component {
         </div>
       ) : (
         <h1> This User has no Recipes, do create some</h1>
+        
       )}
       </div>
     );

@@ -37,8 +37,8 @@ class ModalEditRec extends Component {
             />
             <Form.TextArea
               label="Recipe Description"
-              name="ingrain"
-              value={this.props.contentz}
+              name="recipeDesc"
+              value={this.props.contain}
               onChange={this.props.handleChange}
             />
             <Button id="recEdit" onClick={this.props.handleEdit} color="blue">
