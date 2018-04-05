@@ -45,7 +45,8 @@ class ViewRecipes extends Component {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
-        notify.show(`${response.status.data.message}`);
+        console.log(response.data);
+        notify.show(`${response.data.message}`);
         this.getRecipes();
       })
       .catch(error => {
@@ -83,7 +84,7 @@ class ViewRecipes extends Component {
 
   // function to get all recipes assigned to a particular category
   getRecipes() {
-    const cats = this.props.match.params.category_id;
+    var cats = this.props.match.params.category_id;
     axiosInstance
       .get(`/category/${cats}/recipes/list`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
@@ -219,6 +220,7 @@ class ViewRecipes extends Component {
           <h1 className="RecHeader">
             {window.localStorage.getItem('category')} {this.props.title}
           </h1>
+          <br />
           <Grid container columns={3}>
             <form onSubmit={this.handleSearch}>
               <input
@@ -305,7 +307,7 @@ class ViewRecipes extends Component {
         </div>
       ) : (
         <h1> This User has no Recipes, do create some</h1>
-        
+
       )}
       </div>
     );

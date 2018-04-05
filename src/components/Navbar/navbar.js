@@ -64,15 +64,6 @@ class Navigation extends Component {
             </Dropdown>
           </Menu.Item>
 
-          <Menu.Item>
-            <Dropdown item text="Recipes" onClick={this.handleItemClick}>
-              <Dropdown.Menu>
-                <Dropdown.Item>Create Recipe</Dropdown.Item>
-                <Dropdown.Item>View Recipes</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </Menu.Item>
-
           <Menu.Menu position="right">
             <Menu inverted>
               <Dropdown item text={user} onClick={this.handleItemClick}>
