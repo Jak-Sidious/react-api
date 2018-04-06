@@ -210,6 +210,7 @@ class ViewCategories extends Component {
           category_id={this.state.category_id}
           name={this.state.category_name}
           desc={this.state.category_description}
+          closeIcon
         />
         <ModalCreateRecipe
           redirectRecipes={this.redirectRecipes}
@@ -219,6 +220,7 @@ class ViewCategories extends Component {
           handleCreate={() => this.handleCreate}
           category_id={this.state.category_id}
           category_name={this.state.category_name}
+          closeIcon
         />
         <br />
         { cats ? (
