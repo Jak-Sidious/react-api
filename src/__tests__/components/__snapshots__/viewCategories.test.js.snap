@@ -29,8 +29,15 @@ exports[`Viewcategories component renders properly without crashing 1`] = `
     showModal1={false}
   />
   <br />
-  <h1>
-    No Categories exist, please create some
-  </h1>
+  <div>
+    <h1>
+      No Categories exist, please create some
+    </h1>
+    <Button
+      as="button"
+    >
+      CreateCategory
+    </Button>
+  </div>
 </div>
 `;

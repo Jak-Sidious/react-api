@@ -5,6 +5,7 @@ import axiosInstance from '../commonComponents/AxiosInstance';
 import Navigation from '../Navbar/navbar';
 import ModalEditCat from '../commonComponents/editCategoryModal';
 import ModalCreateRecipe from '../commonComponents/createRecipeModal';
+import { Link } from 'react-router-dom';
 
 const CATEGORY_LIST_URL = '/category/list'; // Url for the creation of categories
 
@@ -333,7 +334,26 @@ class ViewCategories extends Component {
 
         </div>
       ) : (
-        <h1>No Categories exist, please create some</h1>
+        <div>
+          <h1>No Categories exist, please create some</h1>
+          <Grid columns='equal'>
+            <Grid.Column width={7}>
+
+            </Grid.Column>
+            <Grid.Column width={8}>
+              <Button
+                id="creator"
+                as={Link}
+                to="/catCreate"
+                >
+                  CreateCategory
+                </Button>
+            </Grid.Column>
+            <Grid.Column>
+
+            </Grid.Column>
+        </Grid>
+        </div>
       )}
       </div>
     );

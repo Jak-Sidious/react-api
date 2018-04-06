@@ -94,6 +94,10 @@ h1 {
 		}
 }
 
+.creator {
+	position: center;
+}
+
 
 .navbar navbar-nav{
     -webkit-flex-direction: row;
