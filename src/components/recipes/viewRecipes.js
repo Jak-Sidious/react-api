@@ -6,6 +6,7 @@ import axiosInstance from '../commonComponents/AxiosInstance';
 
 import Navigation from '../Navbar/navbar';
 import ModalEditRec from '../commonComponents/editRecipeModal';
+import ModalCreateRecipe from '../commonComponents/createRecipeModal';
 
 class ViewRecipes extends Component {
   constructor(props) {
@@ -22,7 +23,8 @@ class ViewRecipes extends Component {
       recipeId: '',
       recipeName: '',
       recipeDesc: '',
-      showModal: false
+      showModal: false,
+      showModal1: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
@@ -199,6 +201,7 @@ class ViewRecipes extends Component {
   render() {
     const { location: { pathname } } = this.props;
     const recs = this.state.recipes.length;
+    const number = this.props.match.params.category_id;
     return (
       <div className="mainBackground">
         <Navigation pathname={pathname} />
@@ -212,6 +215,16 @@ class ViewRecipes extends Component {
           recId={this.state.recipeId}
           name={this.state.recipeName}
           contain={this.state.recipeDesc}
+        />
+        <ModalCreateRecipe
+          redirectRecipes={this.redirectRecipes}
+          showModal1={this.state.showModal1}
+          closeModal1={() => this.setState({ showModal1: false })}
+          handleChange={() => this.handleChange}
+          handleCreate={() => this.handleCreate}
+          category_id={this.state.category_id}
+          category_name={this.state.category_name}
+          closeIcon
         />
         <br />
         { recs ? (
@@ -305,8 +318,27 @@ class ViewRecipes extends Component {
           </Grid>
         </div>
       ) : (
-        <h1> This User has no Recipes, do create some</h1>
-
+        <div>
+          <h1> This User has no Recipes, do create some</h1>
+          <Grid columns='equal'>
+            <Grid.Column width={7}></Grid.Column>
+            <Grid.Column width={8}>
+              <Button
+                id="creator"
+                color="green"
+                onClick={() =>
+                  this.setState({
+                    category_id: number,
+                    showModal1:true
+                  })
+                  }
+                >
+                  Create a Recipe
+                </Button>
+            </Grid.Column>
+            <Grid.Column></Grid.Column>
+          </Grid>
+        </div>
       )}
       </div>
     );

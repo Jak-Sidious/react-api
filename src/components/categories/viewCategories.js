@@ -294,7 +294,6 @@ class ViewCategories extends Component {
                       <Button
                         icon
                         color="grey"
-                        // title={this.categories.category_id}
                         onClick={() =>
                           this.viewRec(
                             categories.category_id,
@@ -337,22 +336,18 @@ class ViewCategories extends Component {
         <div>
           <h1>No Categories exist, please create some</h1>
           <Grid columns='equal'>
-            <Grid.Column width={7}>
-
-            </Grid.Column>
+            <Grid.Column width={7}></Grid.Column>
             <Grid.Column width={8}>
               <Button
                 id="creator"
                 as={Link}
                 to="/catCreate"
                 >
-                  CreateCategory
+                  Create a Category
                 </Button>
             </Grid.Column>
-            <Grid.Column>
-
-            </Grid.Column>
-        </Grid>
+            <Grid.Column></Grid.Column>
+          </Grid>
         </div>
       )}
       </div>
