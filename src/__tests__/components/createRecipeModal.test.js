@@ -18,6 +18,7 @@ describe('ModalCreateRecipe component', () => {
       }
     }
   };
+  const preventDefault = jest.fn();
   const wrapper = shallow(<ModalCreateRecipe {...props} />);
 
   it('renders properly without crashing', () => {
@@ -27,4 +28,12 @@ describe('ModalCreateRecipe component', () => {
   it('creates recipe on click', () => {
     expect(wrapper.find('#createRec').length).toBe(1);
   });
+
+  // it('tests navigation happened', () => {
+  //   window.location.assign = jest.fn();
+  //   someAppCodeThatShouldRedirectToSomeUrl();
+  //
+  // expect(window.location.assign).toBeCalledWith(
+  //   'http://localhost:3000/category/1/recipes/list');
+  // });
 });

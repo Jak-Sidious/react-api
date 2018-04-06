@@ -43,10 +43,4 @@ describe('<Register/>', () => {
     expect(component.find('Form').simulate('submit', { preventDefault }));
     expect(preventDefault).toBeCalled();
   });
-
-  it('should handle registration', () => {
-    const wrapper = shallow(<Register />);
-    expect(wrapper.find('#register').simulate('click'));
-    expect(wrapper.instance().handleRegister({ preventDefault }));
-  });
 });

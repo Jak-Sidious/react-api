@@ -54,35 +54,6 @@ exports[`<Navigation /> should render properly 1`] = `
         </DropdownMenu>
       </Dropdown>
     </MenuItem>
-    <MenuItem>
-      <Dropdown
-        additionLabel="Add "
-        additionPosition="top"
-        closeOnBlur={true}
-        deburr={false}
-        icon="dropdown"
-        item={true}
-        minCharacters={1}
-        noResultsMessage="No results found."
-        onClick={[Function]}
-        openOnFocus={true}
-        renderLabel={[Function]}
-        searchInput="text"
-        selectOnBlur={true}
-        selectOnNavigation={true}
-        text="Recipes"
-        wrapSelection={true}
-      >
-        <DropdownMenu>
-          <DropdownItem>
-            Create Recipe
-          </DropdownItem>
-          <DropdownItem>
-            View Recipes
-          </DropdownItem>
-        </DropdownMenu>
-      </Dropdown>
-    </MenuItem>
     <MenuMenu
       position="right"
     >

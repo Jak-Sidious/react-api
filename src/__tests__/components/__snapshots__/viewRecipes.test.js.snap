@@ -12,7 +12,7 @@ exports[`ViewRecipes component renders properly without crashing 1`] = `
   />
   <ModalEditRec
     closeModal={[Function]}
-    contentz=""
+    contain=""
     handleChange={[Function]}
     handleEdit={[Function]}
     name=""

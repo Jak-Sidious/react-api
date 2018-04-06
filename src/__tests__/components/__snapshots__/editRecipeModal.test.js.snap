@@ -25,7 +25,7 @@ exports[`ModalEditRec component renders properly without crashing 1`] = `
         as={[Function]}
         control={[Function]}
         label="Recipe Description"
-        name="ingrain"
+        name="recipeDesc"
       />
       <Button
         as="button"
