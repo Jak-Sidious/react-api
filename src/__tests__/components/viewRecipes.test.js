@@ -14,6 +14,7 @@ describe('ViewRecipes component', () => {
       }
     }
   };
+  const preventDefault = jest.fn();
   const wrapper = shallow(<ViewRecipes {...props} />);
 
   it('renders properly without crashing', () => {
@@ -23,4 +24,14 @@ describe('ViewRecipes component', () => {
   it('has clickable buttons', () => {
     expect(wrapper.find('#editRec').length).toBe(0);
   });
+
+  it('handles component Methods', () => {
+    const wrapper = shallow(<ViewRecipes {...props} />);
+    wrapper.instance().previousPage();
+    wrapper.instance().nextPage();
+    wrapper.instance().handleEdit({ preventDefault });
+    wrapper.instance().handleSearch({ preventDefault });
+    wrapper.instance().deleteRecipe();
+    wrapper.instance().getRecipes();
+  })
 });
