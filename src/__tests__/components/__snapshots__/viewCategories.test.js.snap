@@ -11,6 +11,7 @@ exports[`Viewcategories component renders properly without crashing 1`] = `
     options={Object {}}
   />
   <ModalEditCat
+    closeIcon={true}
     closeModal={[Function]}
     desc=""
     handleChange={[Function]}
@@ -20,6 +21,7 @@ exports[`Viewcategories component renders properly without crashing 1`] = `
   />
   <ModalCreateRecipe
     category_name=""
+    closeIcon={true}
     closeModal1={[Function]}
     handleChange={[Function]}
     handleCreate={[Function]}
