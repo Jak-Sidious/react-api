@@ -131,7 +131,6 @@ class ViewRecipes extends Component {
           console.log(response.data);
           const recipes = response.data.items;
           this.setState({ recipes: recipes });
-          // this.setState({ categoryId: cats });
           this.setState({ page: response.data.page });
           this.setState({ pages: response.data.pages });
           this.setState({ perPage: response.data.per_page });
@@ -255,7 +254,7 @@ class ViewRecipes extends Component {
                             categoryId: this.state.categoryId,
                             recipeId: recipes.recipie_id,
                             recipeName: recipes.recipie_name,
-                            ingrid: recipes.ingredients
+                            recipeDesc: recipes.ingredients
                           })
                         }
                         className="Basic Modal"
