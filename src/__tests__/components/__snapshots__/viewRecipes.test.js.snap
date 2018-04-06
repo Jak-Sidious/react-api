@@ -19,9 +19,38 @@ exports[`ViewRecipes component renders properly without crashing 1`] = `
     recId=""
     showModal={false}
   />
+  <ModalCreateRecipe
+    closeIcon={true}
+    closeModal1={[Function]}
+    handleChange={[Function]}
+    handleCreate={[Function]}
+    showModal1={false}
+  />
   <br />
-  <h1>
-     This User has no Recipes, do create some
-  </h1>
+  <div>
+    <h1>
+       This User has no Recipes, do create some
+    </h1>
+    <Grid
+      columns="equal"
+    >
+      <GridColumn
+        width={7}
+      />
+      <GridColumn
+        width={8}
+      >
+        <Button
+          as="button"
+          color="green"
+          id="creator"
+          onClick={[Function]}
+        >
+          Create a Recipe
+        </Button>
+      </GridColumn>
+      <GridColumn />
+    </Grid>
+  </div>
 </div>
 `;

@@ -33,11 +33,25 @@ exports[`Viewcategories component renders properly without crashing 1`] = `
     <h1>
       No Categories exist, please create some
     </h1>
-    <Button
-      as="button"
+    <Grid
+      columns="equal"
     >
-      CreateCategory
-    </Button>
+      <GridColumn
+        width={7}
+      />
+      <GridColumn
+        width={8}
+      >
+        <Button
+          as={[Function]}
+          id="creator"
+          to="/catCreate"
+        >
+          Create a Category
+        </Button>
+      </GridColumn>
+      <GridColumn />
+    </Grid>
   </div>
 </div>
 `;
