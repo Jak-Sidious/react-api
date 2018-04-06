@@ -24,6 +24,7 @@ describe('<CreateRecipeForm />', () => {
   };
   const preventDefault = jest.fn();
   const component = shallow(<CreateRecipeForm {...props} />);
+
   it('should render without crashing', () => {
     const { enzymeWrapper } = shallow(
       <MemoryRouter>
@@ -31,12 +32,19 @@ describe('<CreateRecipeForm />', () => {
       </MemoryRouter>
     );
   });
+
   it('should render properly', () => {
     const wrapper = shallow(<CreateRecipeForm {...props} />);
     expect(shallowToJson(wrapper)).toMatchSnapshot();
   });
+
   it('should render form', () => {
     expect(component.find('Form').length).toBe(1);
     expect(component.find('Form').simulate('submit', { preventDefault }));
   });
+
+  it('should handle component methods', () => {
+    const component = shallow(<CreateRecipeForm {...props} />);
+    component.instance().componentDidMount();
+  })
 });

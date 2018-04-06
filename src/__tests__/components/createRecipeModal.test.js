@@ -29,11 +29,9 @@ describe('ModalCreateRecipe component', () => {
     expect(wrapper.find('#createRec').length).toBe(1);
   });
 
-  // it('tests navigation happened', () => {
-  //   window.location.assign = jest.fn();
-  //   someAppCodeThatShouldRedirectToSomeUrl();
-  //
-  // expect(window.location.assign).toBeCalledWith(
-  //   'http://localhost:3000/category/1/recipes/list');
-  // });
+  it('handles all methods', () => {
+    const wrapper = shallow(<ModalCreateRecipe {...props} />);
+    wrapper.instance().closeModal1();
+    wrapper.instance().handleCreate({ preventDefault });
+  })
 });
