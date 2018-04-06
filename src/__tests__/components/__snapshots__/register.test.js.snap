@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Register/> should render properly 1`] = `
+<div
+  className="regBackground"
+>
+  <_class
+    options={Object {}}
+  />
+  <div
+    className="wrapper"
+  >
+    <Form
+      as="form"
+      className="form-signin"
+      onSubmit={[Function]}
+    >
+      <h2
+        className="form-signin-heading"
+      >
+        Registration form
+      </h2>
+      <FormInput
+        as={[Function]}
+        autoFocus={true}
+        className="nameField"
+        control={[Function]}
+        name="username"
+        onChange={[Function]}
+        placeholder="Enter your username"
+        type="username"
+      />
+      <FormInput
+        as={[Function]}
+        autoFocus={true}
+        className="emailField"
+        control={[Function]}
+        name="email"
+        onChange={[Function]}
+        placeholder="Enter email"
+        type="email"
+      />
+      <FormInput
+        as={[Function]}
+        autoFocus={true}
+        className="passwordField"
+        control={[Function]}
+        name="password"
+        onChange={[Function]}
+        placeholder="Enter password"
+        type="password"
+      />
+      <Button
+        as="button"
+        className="left floated"
+        color="blue"
+        id="regButton"
+        size="large"
+        type="submit"
+        value="submit"
+      >
+        Register
+      </Button>
+      <Button
+        action="/login"
+        as={[Function]}
+        className="right floated"
+        color="green"
+        size="large"
+        to="/login"
+      >
+        Proceed to Login
+      </Button>
+      <br />
+    </Form>
+  </div>
+</div>
+`;

@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ViewRecipes component renders properly without crashing 1`] = `
+<div
+  className="mainBackground"
+>
+  <Navigation
+    pathname="path"
+  />
+  <_class
+    options={Object {}}
+  />
+  <ModalEditRec
+    closeModal={[Function]}
+    contain=""
+    handleChange={[Function]}
+    handleEdit={[Function]}
+    name=""
+    recId=""
+    showModal={false}
+  />
+  <br />
+  <h1>
+     This User has no Recipes, do create some
+  </h1>
+</div>
+`;

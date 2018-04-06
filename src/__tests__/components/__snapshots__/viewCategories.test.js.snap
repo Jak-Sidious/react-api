@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Viewcategories component renders properly without crashing 1`] = `
+<div
+  className="mainBackground"
+>
+  <Navigation
+    pathname="path"
+  />
+  <_class
+    options={Object {}}
+  />
+  <ModalEditCat
+    closeModal={[Function]}
+    desc=""
+    handleChange={[Function]}
+    handleEdit={[Function]}
+    name=""
+    showModal={false}
+  />
+  <ModalCreateRecipe
+    category_name=""
+    closeModal1={[Function]}
+    handleChange={[Function]}
+    handleCreate={[Function]}
+    redirectRecipes={[Function]}
+    showModal1={false}
+  />
+  <br />
+  <h1>
+    No Categories exist, please create some
+  </h1>
+</div>
+`;

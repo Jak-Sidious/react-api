@@ -1,0 +1,121 @@
+/* backgrounds */
+.logBackground {
+	background-color: white;
+  background-size: 100% 100%;
+	z-index: 0;
+  background-repeat: no-repeat;
+  padding-top: 2em;
+  padding-bottom: 28em;
+}
+
+.regBackground {
+	background-color: white;
+  background-size: 100% 100%;
+	z-index: 0;
+  background-repeat: no-repeat;
+  padding-top: 2em;
+  padding-bottom: 28em;
+}
+
+.RecipeCreate {
+	background-color: white;
+  background-size: 100% 100%;
+	z-index: 0;
+  background-repeat: no-repeat;
+  padding-top: 2em;
+  padding-bottom: 28em;
+}
+
+.createCat {
+	background-color: white;
+  background-size: 100% 100%;
+	z-index: 0;
+  background-repeat: no-repeat;
+  padding-top: 2em;
+  padding-bottom: 28em;
+}
+
+h1 {
+	text-align: center;
+}
+
+.catSearch{
+	margin-left: 20em;
+	width: 100%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+.mainBackground {
+  width: 100%;
+  height: 100vh;
+	background-color: white;
+  display: block;
+	position: relative;
+}
+
+/* forms */
+.wrapper {
+	margin: 100px 200px 200px 500px;
+	width: 400px;
+}
+
+.form-signin {
+  max-width: 300px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 10px 10px grey;
+}
+
+.form-signin-heading{
+  text-align: center;
+}
+
+.nameField, .passwordField, .emailField  {
+  position: relative;
+  width:95;
+	font-size: 16px;
+	height: auto;
+  padding: 10px;
+  @include box-sizing(border-box);
+
+	&:focus {
+		  z-index: 2;
+		}
+}
+
+
+.navbar navbar-nav{
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+
+
+input[type="username"] {
+	  margin-bottom: -1px;
+	  border-bottom-left-radius: 0;
+	  border-bottom-right-radius: 0;
+}
+
+input[type="password"] {
+	  margin-bottom: -1px;
+	  border-top-left-radius: 0;
+	  border-top-right-radius: 0;
+}
+
+input[type="email"] {
+	  margin-bottom: -1px;
+	  border-top-left-radius: 0;
+	  border-top-right-radius: 0;
+}

@@ -1,18 +1,36 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+// necesaary
+import React, { Component } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
+
+// components
+import Protected from "./components/commonComponents/Protected";
+import Login from "./components/Login/login";
+import Register from "./components/Register/register";
+import Landing from "./components/Landing/landing";
+import CreateCategory from "./components/categories/createCategory";
+import ViewCategories from "./components/categories/viewCategories";
+import ViewRecipies from "./components/recipes/viewRecipes";
+import CreateRecipeForm from "./components/commonComponents/createRecipeForm";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <BrowserRouter>
+          <div>
+            <Protected
+              exact
+              path="/category/:category_id/recipes/list"
+              component={ViewRecipies}
+            />
+            <Protected exact path="/recCreate" component={CreateRecipeForm} />
+            <Protected exact path="/viewCat" component={ViewCategories} />
+            <Protected exact path="/catCreate" component={CreateCategory} />
+            <Protected exact path="/landing" component={Landing} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/" component={Register} />
+          </div>
+        </BrowserRouter>
       </div>
     );
   }

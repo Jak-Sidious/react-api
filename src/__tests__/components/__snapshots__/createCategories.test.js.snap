@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CreateCategory /> should render properly 1`] = `
+<div>
+  <Navigation />
+  <_class
+    options={Object {}}
+    pathname="path"
+  />
+  <div
+    className="createCat"
+  >
+    <div
+      className="wrapper"
+    >
+      <Form
+        as="form"
+        className="form-signin"
+        onSubmit={[Function]}
+      >
+        <FormInput
+          as={[Function]}
+          autoFocus={true}
+          className="catNameField"
+          control={[Function]}
+          name="category_name"
+          onChange={[Function]}
+          placeholder="Enter your category Name"
+          type="category_name"
+        />
+        <FormTextArea
+          as={[Function]}
+          className="catDescField"
+          control={[Function]}
+          name="category_description"
+          onChange={[Function]}
+          placeholder="Enter the Description"
+          type="category_description"
+        />
+        <Button
+          as="button"
+          className="left floated"
+          color="blue"
+          fluid={true}
+          id="submitButton"
+          size="large"
+          type="submit"
+          value="submit"
+        >
+          Create Category
+        </Button>
+        <br />
+      </Form>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModalCreateRecipe component renders properly without crashing 1`] = `
+<Modal
+  closeIcon={true}
+  closeOnDimmerClick={true}
+  closeOnDocumentClick={false}
+  dimmer={true}
+  eventPool="Modal"
+>
+  <ModalHeader>
+    Create Recipe
+  </ModalHeader>
+  <ModalContent>
+    <Form
+      as="form"
+    >
+      <FormInput
+        as={[Function]}
+        control={[Function]}
+        label="Recipe Name"
+        name="recipie_name"
+        onChange={[Function]}
+      />
+      <FormTextArea
+        as={[Function]}
+        control={[Function]}
+        label="Recipe ingredients"
+        name="ingredients"
+        onChange={[Function]}
+      />
+      <Button
+        as="button"
+        color="blue"
+        id="createRec"
+        onClick={[Function]}
+      >
+        Create
+      </Button>
+    </Form>
+  </ModalContent>
+</Modal>
+`;

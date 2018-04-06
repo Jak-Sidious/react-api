@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModalEditRec component renders properly without crashing 1`] = `
+<Modal
+  closeIcon={true}
+  closeOnDimmerClick={true}
+  closeOnDocumentClick={false}
+  dimmer={true}
+  eventPool="Modal"
+>
+  <ModalHeader>
+    Edit Recipe
+  </ModalHeader>
+  <ModalContent>
+    <Form
+      as="form"
+    >
+      <FormInput
+        as={[Function]}
+        control={[Function]}
+        label="Recipe name"
+        name="recipeName"
+      />
+      <FormTextArea
+        as={[Function]}
+        control={[Function]}
+        label="Recipe Description"
+        name="recipeDesc"
+      />
+      <Button
+        as="button"
+        color="blue"
+        id="recEdit"
+      >
+        Save
+      </Button>
+    </Form>
+  </ModalContent>
+</Modal>
+`;
