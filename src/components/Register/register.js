@@ -27,12 +27,11 @@ class Register extends React.Component {
     console.log(this.state);
   }
 
-
   // Function to handle the registration of new users
   handleRegister(event) {
     event.preventDefault();
 
-    if(this.state.password !== this.state.confirmPassword){
+    if (this.state.password !== this.state.confirmPassword) {
       notify.show('The passowrds do not match');
     } else {
       const newUser = {
@@ -53,8 +52,6 @@ class Register extends React.Component {
           }
         });
     }
-
-
   }
 
   render() {

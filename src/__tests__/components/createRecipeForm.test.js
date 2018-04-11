@@ -44,7 +44,6 @@ describe('<CreateRecipeForm />', () => {
   });
 
   it('should handle component methods', () => {
-    const component = shallow(<CreateRecipeForm {...props} />);
     component.instance().componentDidMount();
-  })
+  });
 });

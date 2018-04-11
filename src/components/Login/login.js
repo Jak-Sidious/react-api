@@ -42,7 +42,7 @@ class Login extends React.Component {
       })
       .catch(error => {
         if (error.response) {
-          notify.show(`${error.response.data.message}`)
+          notify.show(`${error.response.data.message}`);
         }
       });
   }

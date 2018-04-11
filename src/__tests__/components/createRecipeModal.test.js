@@ -30,8 +30,7 @@ describe('ModalCreateRecipe component', () => {
   });
 
   it('handles all methods', () => {
-    const wrapper = shallow(<ModalCreateRecipe {...props} />);
     wrapper.instance().closeModal1();
     wrapper.instance().handleCreate({ preventDefault });
-  })
+  });
 });

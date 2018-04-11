@@ -38,12 +38,14 @@ class CreateCategory extends Component {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
-          this.props.history.push('/viewCat');
-          notify.show(`${response.status.data.message}`);
+        this.props.history.push('/viewCat');
+        notify.show(`${response.status.data.message}`);
       })
       .catch(error => {
         if (error.response) {
-          notify.show(`Category with the name ${this.state.category_name} already exists`);
+          notify.show(
+            `Category with the name ${this.state.category_name} already exists`
+          );
         }
       });
   }

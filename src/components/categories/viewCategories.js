@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Notifications, { notify } from 'react-notify-toast';
 import { Grid, Card, Icon, Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import axiosInstance from '../commonComponents/AxiosInstance';
 import Navigation from '../Navbar/navbar';
 import ModalEditCat from '../commonComponents/editCategoryModal';
 import ModalCreateRecipe from '../commonComponents/createRecipeModal';
-import { Link } from 'react-router-dom';
 
 const CATEGORY_LIST_URL = '/category/list'; // Url for the creation of categories
 
@@ -98,7 +98,6 @@ class ViewCategories extends Component {
         console.log(response.data.message);
         window.location.assign(`/viewCat`);
         notify.show(`${response.data.message}`);
-
       })
       .catch(error => {
         if (error.response) {
@@ -125,6 +124,7 @@ class ViewCategories extends Component {
         })
         .catch(error => {
           if (error.response) {
+            console.log(error.response);
           }
         });
     }
@@ -188,9 +188,8 @@ class ViewCategories extends Component {
         if (error.response) {
           notify.show(`${error.response.data.message}`);
           if (error.response.status === 404) {
-            this.setState({ categories: [], });
+            this.setState({ categories: [] });
           }
-
         }
       });
   }
@@ -229,132 +228,127 @@ class ViewCategories extends Component {
           closeIcon
         />
         <br />
-        { cats ? (
-        <div>
-          <Grid container columns={3}>
-            <form onSubmit={this.handleSearch}>
-              <input
-                className="catSearch"
-                type="search"
-                name="search"
-                placeholder="Search.."
-                onChange={this.handleChange}
-              />
-            </form>
-            <Grid.Row>
-              {this.state.categories.map(categories => (
-                <Grid.Column>
-                  <br />
-                  <Card fluid>
-                    <Card.Content>
-                      <Card.Header>{categories.category_name}</Card.Header>
-                      <Card.Description>
-                        {categories.category_description}
-                      </Card.Description>
-                    </Card.Content>
-                    <Card.Content extra>
-                      <Button
-                        id="editCat"
-                        icon
-                        color="green"
-                        onClick={() =>
-                          this.setState({
-                            showModal: true,
-                            category_id: categories.category_id,
-                            category_name: categories.category_name,
-                            category_description:
-                              categories.category_description
-                          })
-                        }
-                        className="Basic Modal"
-                      >
-                        <Icon name="edit" />
-                        Edit
-                      </Button>
-                      <Button
-                        icon
-                        color="red"
-                        onClick={() =>
-                          this.deleteCategory(categories.category_id)
-                        }
-                      >
-                        <Icon name="delete" />
-                        Delete
-                      </Button>
-                      <Button
-                        icon
-                        color="blue"
-                        onClick={() =>
-                          this.setState({
-                            category_name: categories.category_name,
-                            showModal1: true,
-                            category_id: categories.category_id
-                          })
-                        }
-                        className="Create Modal"
-                      >
-                        <Icon name="compose" />
-                        Create Recipe
-                      </Button>
-                      <Button
-                        icon
-                        color="grey"
-                        onClick={() =>
-                          this.viewRec(
-                            categories.category_id,
-                            categories.category_name
-                          )
-                        }
-                      >
-                        <Icon name="find" />
-                        View Recipes
-                      </Button>
-                    </Card.Content>
-                  </Card>
-                </Grid.Column>
-              ))}
-            </Grid.Row>
-            <Button
-              className="left floated"
-              animated
-              onClick={() => this.previousPage()}
-            >
-              <Button.Content visible>Previous</Button.Content>
-              <Button.Content hidden>
-                <Icon name="left arrow" />
-              </Button.Content>
-            </Button>
-            <Button
-              className="right floated"
-              animated
-              onClick={() => this.nextPage()}
-            >
-              <Button.Content visible>Next</Button.Content>
-              <Button.Content hidden>
-                <Icon name="right arrow" />
-              </Button.Content>
-            </Button>
-          </Grid>
-
-        </div>
-      ) : (
-        <div>
-          <h1>No Categories exist, please create some</h1>
-          <Grid columns='equal'>
-            <Grid.Column width={7}></Grid.Column>
-            <Grid.Column width={8}>
+        {cats ? (
+          <div>
+            <Grid container columns={3}>
+              <form onSubmit={this.handleSearch}>
+                <input
+                  className="catSearch"
+                  type="search"
+                  name="search"
+                  placeholder="Search.."
+                  onChange={this.handleChange}
+                />
+              </form>
+              <Grid.Row>
+                {this.state.categories.map(categories => (
+                  <Grid.Column>
+                    <br />
+                    <Card fluid>
+                      <Card.Content>
+                        <Card.Header>{categories.category_name}</Card.Header>
+                        <Card.Description>
+                          {categories.category_description}
+                        </Card.Description>
+                      </Card.Content>
+                      <Card.Content extra>
+                        <Button
+                          id="editCat"
+                          icon
+                          color="green"
+                          onClick={() =>
+                            this.setState({
+                              showModal: true,
+                              category_id: categories.category_id,
+                              category_name: categories.category_name,
+                              category_description:
+                                categories.category_description
+                            })
+                          }
+                          className="Basic Modal"
+                        >
+                          <Icon name="edit" />
+                          Edit
+                        </Button>
+                        <Button
+                          icon
+                          color="red"
+                          onClick={() =>
+                            this.deleteCategory(categories.category_id)
+                          }
+                        >
+                          <Icon name="delete" />
+                          Delete
+                        </Button>
+                        <Button
+                          icon
+                          color="blue"
+                          onClick={() =>
+                            this.setState({
+                              category_name: categories.category_name,
+                              showModal1: true,
+                              category_id: categories.category_id
+                            })
+                          }
+                          className="Create Modal"
+                        >
+                          <Icon name="compose" />
+                          Create Recipe
+                        </Button>
+                        <Button
+                          icon
+                          color="grey"
+                          onClick={() =>
+                            this.viewRec(
+                              categories.category_id,
+                              categories.category_name
+                            )
+                          }
+                        >
+                          <Icon name="find" />
+                          View Recipes
+                        </Button>
+                      </Card.Content>
+                    </Card>
+                  </Grid.Column>
+                ))}
+              </Grid.Row>
               <Button
-                id="creator"
-                as={Link}
-                to="/catCreate"
-                >
+                className="left floated"
+                animated
+                onClick={() => this.previousPage()}
+              >
+                <Button.Content visible>Previous</Button.Content>
+                <Button.Content hidden>
+                  <Icon name="left arrow" />
+                </Button.Content>
+              </Button>
+              <Button
+                className="right floated"
+                animated
+                onClick={() => this.nextPage()}
+              >
+                <Button.Content visible>Next</Button.Content>
+                <Button.Content hidden>
+                  <Icon name="right arrow" />
+                </Button.Content>
+              </Button>
+            </Grid>
+          </div>
+        ) : (
+          <div>
+            <h1>No Categories exist, please create some</h1>
+            <Grid columns="equal">
+              <Grid.Column width={7} />
+              <Grid.Column width={8}>
+                <Button id="creator" as={Link} to="/catCreate">
                   Create a Category
                 </Button>
-            </Grid.Column>
-            <Grid.Column></Grid.Column>
-          </Grid>
-        </div>
-      )}
+              </Grid.Column>
+              <Grid.Column />
+            </Grid>
+          </div>
+        )}
       </div>
     );
   }

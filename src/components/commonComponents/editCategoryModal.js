@@ -40,9 +40,7 @@ class ModalEditCat extends Component {
               value={this.props.desc}
               onChange={this.props.handleChange}
             />
-            <Button
-              onClick={this.props.handleEdit}
-              color="blue">
+            <Button onClick={this.props.handleEdit} color="blue">
               Save
             </Button>
           </Form>

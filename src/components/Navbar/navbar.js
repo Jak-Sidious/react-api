@@ -26,7 +26,6 @@ class Navigation extends Component {
   }
 
   render() {
-
     const { pathname } = this.props;
     const user = window.localStorage.getItem('user');
     return (

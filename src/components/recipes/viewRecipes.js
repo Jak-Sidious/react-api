@@ -24,7 +24,7 @@ class ViewRecipes extends Component {
       recipeName: '',
       recipeDesc: '',
       showModal: false,
-      showModal1: false,
+      showModal1: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
@@ -75,13 +75,17 @@ class ViewRecipes extends Component {
         }
       )
       .then(response => {
-        window.location.assign(`/category/${this.state.categoryId}/recipes/list`);
+        window.location.assign(
+          `/category/${this.state.categoryId}/recipes/list`
+        );
         notify.show(`${response.status.data.message}`);
       })
       .catch(error => {
         if (error.response) {
           notify.show(`${error.response.data.message}`);
-          window.location.assign(`/category/${this.state.categoryId}/recipes/$list`);
+          window.location.assign(
+            `/category/${this.state.categoryId}/recipes/$list`
+          );
         }
       });
   }
@@ -108,9 +112,8 @@ class ViewRecipes extends Component {
         if (error.response) {
           notify.show(`${error.response.data.message}`);
           if (error.response.status === 404) {
-            this.setState({ recipes: [], });
+            this.setState({ recipes: [] });
           }
-
         }
       });
   }
@@ -229,137 +232,137 @@ class ViewRecipes extends Component {
           closeIcon
         />
         <br />
-        { recs ? (
-        <div>
-          <h1 className="RecHeader">
-            {window.localStorage.getItem('category')} {this.props.title}
-          </h1>
-          <br />
-          <Grid columns='equal'>
-            <Grid.Column width={7}></Grid.Column>
-            <Grid.Column width={8}>
-              <Button
-                id="creator"
-                color="green"
-                onClick={() =>
-                  this.setState({
-                    category_id: number,
-                    showModal1:true
-                  })
+        {recs ? (
+          <div>
+            <h1 className="RecHeader">
+              {window.localStorage.getItem('category')} {this.props.title}
+            </h1>
+            <br />
+            <Grid columns="equal">
+              <Grid.Column width={7} />
+              <Grid.Column width={8}>
+                <Button
+                  id="creator"
+                  color="green"
+                  onClick={() =>
+                    this.setState({
+                      category_id: number,
+                      showModal1: true
+                    })
                   }
                 >
                   Create a Recipe
                 </Button>
-            </Grid.Column>
-            <Grid.Column></Grid.Column>
-          </Grid>
-          <Grid container columns={3}>
-            <form onSubmit={this.handleSearch}>
-              <input
-                className="catSearch"
-                type="search"
-                name="search"
-                placeholder="Search.."
-                onChange={this.handleChange}
-              />
-            </form>
-            <Grid.Row>
-              {this.state.recipes.map(recipes => (
-                <Grid.Column>
-                  <br />
-                  <Card fluid>
-                    <Card.Content>
-                      <Card.Header>
-                        <b>Recipe Name:</b> {recipes.recipie_name}
-                      </Card.Header>
-                      <Card.Description>
-                        <b> Recipe Ingeredients: </b> {recipes.ingredients}
-                      </Card.Description>
-                    </Card.Content>
-                    <Card.Content extra>
-                      <Button
-                        id="editRec"
-                        icon
-                        color="green"
-                        onClick={() =>
-                          this.setState({
-                            showModal: true,
-                            categoryId: this.state.categoryId,
-                            recipeId: recipes.recipie_id,
-                            recipeName: recipes.recipie_name,
-                            recipeDesc: recipes.ingredients
-                          })
-                        }
-                        className="Basic Modal"
-                      >
-                        <Icon name="edit" />
-                        Edit
-                      </Button>
-                      <Button
-                        id="deleteRec"
-                        icon
-                        color="red"
-                        floated="right"
-                        onClick={() =>
-                          this.deleteRecipe(
-                            recipes.category_id,
-                            recipes.recipie_id
-                          )
-                        }
-                      >
-                        <Icon name="delete" />
-                        Delete
-                      </Button>
-                    </Card.Content>
-                  </Card>
-                </Grid.Column>
-              ))}
-            </Grid.Row>
-            <Button
-              className="left floated"
-              animated
-              onClick={() => this.previousPage()}
-            >
-              <Button.Content visible>Previous</Button.Content>
-              <Button.Content hidden>
-                <Icon name="left arrow" />
-              </Button.Content>
-            </Button>
-            <Button
-              className="right floated"
-              animated
-              onClick={() => this.nextPage()}
-            >
-              <Button.Content visible>Next</Button.Content>
-              <Button.Content hidden>
-                <Icon name="right arrow" />
-              </Button.Content>
-            </Button>
-          </Grid>
-        </div>
-      ) : (
-        <div>
-          <h1> This User has no Recipes, do create some</h1>
-          <Grid columns='equal'>
-            <Grid.Column width={7}></Grid.Column>
-            <Grid.Column width={8}>
+              </Grid.Column>
+              <Grid.Column />
+            </Grid>
+            <Grid container columns={3}>
+              <form onSubmit={this.handleSearch}>
+                <input
+                  className="catSearch"
+                  type="search"
+                  name="search"
+                  placeholder="Search.."
+                  onChange={this.handleChange}
+                />
+              </form>
+              <Grid.Row>
+                {this.state.recipes.map(recipes => (
+                  <Grid.Column>
+                    <br />
+                    <Card fluid>
+                      <Card.Content>
+                        <Card.Header>
+                          <b>Recipe Name:</b> {recipes.recipie_name}
+                        </Card.Header>
+                        <Card.Description>
+                          <b> Recipe Ingeredients: </b> {recipes.ingredients}
+                        </Card.Description>
+                      </Card.Content>
+                      <Card.Content extra>
+                        <Button
+                          id="editRec"
+                          icon
+                          color="green"
+                          onClick={() =>
+                            this.setState({
+                              showModal: true,
+                              categoryId: this.state.categoryId,
+                              recipeId: recipes.recipie_id,
+                              recipeName: recipes.recipie_name,
+                              recipeDesc: recipes.ingredients
+                            })
+                          }
+                          className="Basic Modal"
+                        >
+                          <Icon name="edit" />
+                          Edit
+                        </Button>
+                        <Button
+                          id="deleteRec"
+                          icon
+                          color="red"
+                          floated="right"
+                          onClick={() =>
+                            this.deleteRecipe(
+                              recipes.category_id,
+                              recipes.recipie_id
+                            )
+                          }
+                        >
+                          <Icon name="delete" />
+                          Delete
+                        </Button>
+                      </Card.Content>
+                    </Card>
+                  </Grid.Column>
+                ))}
+              </Grid.Row>
               <Button
-                id="creator"
-                color="green"
-                onClick={() =>
-                  this.setState({
-                    category_id: number,
-                    showModal1:true
-                  })
+                className="left floated"
+                animated
+                onClick={() => this.previousPage()}
+              >
+                <Button.Content visible>Previous</Button.Content>
+                <Button.Content hidden>
+                  <Icon name="left arrow" />
+                </Button.Content>
+              </Button>
+              <Button
+                className="right floated"
+                animated
+                onClick={() => this.nextPage()}
+              >
+                <Button.Content visible>Next</Button.Content>
+                <Button.Content hidden>
+                  <Icon name="right arrow" />
+                </Button.Content>
+              </Button>
+            </Grid>
+          </div>
+        ) : (
+          <div>
+            <h1> This User has no Recipes, do create some</h1>
+            <Grid columns="equal">
+              <Grid.Column width={7} />
+              <Grid.Column width={8}>
+                <Button
+                  id="creator"
+                  color="green"
+                  onClick={() =>
+                    this.setState({
+                      category_id: number,
+                      showModal1: true
+                    })
                   }
                 >
                   Create a Recipe
                 </Button>
-            </Grid.Column>
-            <Grid.Column></Grid.Column>
-          </Grid>
-        </div>
-      )}
+              </Grid.Column>
+              <Grid.Column />
+            </Grid>
+          </div>
+        )}
       </div>
     );
   }
