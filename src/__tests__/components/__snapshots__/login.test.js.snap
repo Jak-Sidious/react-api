@@ -32,7 +32,6 @@ exports[`Login component renders properly without crashing 1`] = `
       />
       <FormInput
         as={[Function]}
-        autoFocus={true}
         className="passwordField"
         control={[Function]}
         name="password"
@@ -100,7 +99,6 @@ exports[`Login component should login a user 1`] = `
       />
       <FormInput
         as={[Function]}
-        autoFocus={true}
         className="passwordField"
         control={[Function]}
         name="password"

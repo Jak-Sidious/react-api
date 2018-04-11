@@ -32,7 +32,6 @@ exports[`<Register/> should render properly 1`] = `
       />
       <FormInput
         as={[Function]}
-        autoFocus={true}
         className="emailField"
         control={[Function]}
         name="email"
@@ -42,12 +41,20 @@ exports[`<Register/> should render properly 1`] = `
       />
       <FormInput
         as={[Function]}
-        autoFocus={true}
         className="passwordField"
         control={[Function]}
         name="password"
         onChange={[Function]}
         placeholder="Enter password"
+        type="password"
+      />
+      <FormInput
+        as={[Function]}
+        className="confirmPasswordField"
+        control={[Function]}
+        name="confirmPassword"
+        onChange={[Function]}
+        placeholder="Please confirm Password"
         type="password"
       />
       <Button

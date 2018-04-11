@@ -23,13 +23,22 @@ exports[`<Landing /> should render properly 1`] = `
     </h2>
     <ul>
       <li>
-        Coffee
+        Create Food Categories
       </li>
       <li>
-        Tea
+        Edit Food Categories
       </li>
       <li>
-        Milk
+        Delete Food Categories
+      </li>
+      <li>
+        Create Food Recipes
+      </li>
+      <li>
+        Edit Food Recipes
+      </li>
+      <li>
+        Delete Food Recipes
       </li>
     </ul>
   </div>

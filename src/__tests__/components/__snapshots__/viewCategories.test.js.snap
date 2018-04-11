@@ -14,6 +14,7 @@ exports[`Viewcategories component renders properly without crashing 1`] = `
     closeIcon={true}
     closeModal={[Function]}
     desc=""
+    getCategories={[Function]}
     handleChange={[Function]}
     handleEdit={[Function]}
     name=""

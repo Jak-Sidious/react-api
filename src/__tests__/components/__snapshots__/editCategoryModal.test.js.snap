@@ -18,7 +18,7 @@ exports[`ModalEditCat component renders properly without crashing 1`] = `
       <FormInput
         as={[Function]}
         control={[Function]}
-        label="Category name"
+        label="Category names"
         name="category_name"
         onChange={[MockFunction]}
       />
