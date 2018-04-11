@@ -95,11 +95,15 @@ class ViewCategories extends Component {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
-        notify.show(`${response.status.data.message}`);
+        console.log(response.data.message);
+        window.location.assign(`/viewCat`);
+        notify.show(`${response.data.message}`);
+
       })
       .catch(error => {
         if (error.response) {
           notify.show(`${error.response.data.message}`);
+          this.getCategories();
         }
       });
   }
@@ -204,6 +208,7 @@ class ViewCategories extends Component {
         <Notifications />
 
         <ModalEditCat
+          getCategories={this.getCategories}
           showModal={this.state.showModal}
           closeModal={() => this.setState({ showModal: false })}
           handleChange={this.handleChange}

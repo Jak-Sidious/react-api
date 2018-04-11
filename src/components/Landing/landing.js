@@ -16,9 +16,12 @@ class Landing extends Component {
         <div className="introText">
           <h2> Inside yummy recipes you are able to do the following </h2>
           <ul>
-            <li>Coffee</li>
-            <li>Tea</li>
-            <li>Milk</li>
+            <li>Create Food Categories</li>
+            <li>Edit Food Categories</li>
+            <li>Delete Food Categories</li>
+            <li>Create Food Recipes</li>
+            <li>Edit Food Recipes</li>
+            <li>Delete Food Recipes</li>
           </ul>
         </div>
       </div>

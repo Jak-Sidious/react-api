@@ -29,7 +29,7 @@ class ModalEditCat extends Component {
         <Modal.Content>
           <Form>
             <Form.Input
-              label="Category name"
+              label="Category names"
               name="category_name"
               value={this.props.name}
               onChange={this.props.handleChange}
@@ -40,7 +40,9 @@ class ModalEditCat extends Component {
               value={this.props.desc}
               onChange={this.props.handleChange}
             />
-            <Button onClick={this.props.handleEdit} color="blue">
+            <Button
+              onClick={this.props.handleEdit}
+              color="blue">
               Save
             </Button>
           </Form>

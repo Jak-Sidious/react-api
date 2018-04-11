@@ -75,11 +75,13 @@ class ViewRecipes extends Component {
         }
       )
       .then(response => {
+        window.location.assign(`/category/${this.state.categoryId}/recipes/list`);
         notify.show(`${response.status.data.message}`);
       })
       .catch(error => {
         if (error.response) {
           notify.show(`${error.response.data.message}`);
+          window.location.assign(`/category/${this.state.categoryId}/recipes/$list`);
         }
       });
   }
@@ -233,6 +235,24 @@ class ViewRecipes extends Component {
             {window.localStorage.getItem('category')} {this.props.title}
           </h1>
           <br />
+          <Grid columns='equal'>
+            <Grid.Column width={7}></Grid.Column>
+            <Grid.Column width={8}>
+              <Button
+                id="creator"
+                color="green"
+                onClick={() =>
+                  this.setState({
+                    category_id: number,
+                    showModal1:true
+                  })
+                  }
+                >
+                  Create a Recipe
+                </Button>
+            </Grid.Column>
+            <Grid.Column></Grid.Column>
+          </Grid>
           <Grid container columns={3}>
             <form onSubmit={this.handleSearch}>
               <input
