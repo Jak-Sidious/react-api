@@ -65,7 +65,6 @@ class Login extends React.Component {
             />
             <Form.Input
               className="passwordField"
-              autoFocus
               name="password"
               type="password"
               placeholder="Enter password"

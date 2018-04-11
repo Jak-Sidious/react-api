@@ -13,7 +13,8 @@ class Register extends React.Component {
     this.state = {
       username: '',
       email: '',
-      password: ''
+      password: '',
+      confirmPassword: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
@@ -23,29 +24,37 @@ class Register extends React.Component {
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
+    console.log(this.state);
   }
+
 
   // Function to handle the registration of new users
   handleRegister(event) {
     event.preventDefault();
 
-    const newUser = {
-      username: this.state.username,
-      email: this.state.email,
-      password: this.state.password
-    };
-    console.log(newUser);
-    axiosInstance
-      .post(`${REGISTRATION_URL}`, newUser)
-      .then(response => {
-        this.props.history.push('/login');
-        notify.show(`${response.status.data.message}`);
-      })
-      .catch(error => {
-        if (error.response) {
-          notify.show(`${error.response.data.message}`);
-        }
-      });
+    if(this.state.password !== this.state.confirmPassword){
+      notify.show('The passowrds do not match');
+    } else {
+      const newUser = {
+        username: this.state.username,
+        email: this.state.email,
+        password: this.state.password
+      };
+      console.log(newUser);
+      axiosInstance
+        .post(`${REGISTRATION_URL}`, newUser)
+        .then(response => {
+          this.props.history.push('/login');
+          notify.show(`${response.status.data.message}`);
+        })
+        .catch(error => {
+          if (error.response) {
+            notify.show(`${error.response.data.message}`);
+          }
+        });
+    }
+
+
   }
 
   render() {
@@ -66,7 +75,6 @@ class Register extends React.Component {
             />
             <Form.Input
               className="emailField"
-              autoFocus
               name="email"
               type="email"
               placeholder="Enter email"
@@ -74,10 +82,16 @@ class Register extends React.Component {
             />
             <Form.Input
               className="passwordField"
-              autoFocus
               name="password"
               type="password"
               placeholder="Enter password"
+              onChange={this.handleChange}
+            />
+            <Form.Input
+              className="confirmPasswordField"
+              name="confirmPassword"
+              type="password"
+              placeholder="Please confirm Password"
               onChange={this.handleChange}
             />
             <Button
