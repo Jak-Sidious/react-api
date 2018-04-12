@@ -267,8 +267,8 @@ class ViewRecipes extends Component {
                 />
               </form>
               <Grid.Row>
-                {this.state.recipes.map(recipes => (
-                  <Grid.Column>
+                {this.state.recipes.map((recipes, index) => (
+                  <Grid.Column key={index}>
                     <br />
                     <Card fluid>
                       <Card.Content>

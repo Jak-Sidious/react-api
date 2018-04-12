@@ -241,8 +241,8 @@ class ViewCategories extends Component {
                 />
               </form>
               <Grid.Row>
-                {this.state.categories.map(categories => (
-                  <Grid.Column>
+                {this.state.categories.map((categories, index) => (
+                  <Grid.Column key={index}>
                     <br />
                     <Card fluid>
                       <Card.Content>

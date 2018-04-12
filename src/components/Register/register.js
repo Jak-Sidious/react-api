@@ -32,7 +32,7 @@ class Register extends React.Component {
     event.preventDefault();
 
     if (this.state.password !== this.state.confirmPassword) {
-      notify.show('The passowrds do not match');
+      notify.show('The passwords do not match');
     } else {
       const newUser = {
         username: this.state.username,
