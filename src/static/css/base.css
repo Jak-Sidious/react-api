@@ -36,9 +36,18 @@
 }
 
 h1 {
+	top: 20%;
 	text-align: center;
 	position: relative;
 }
+
+.introText {
+	top: 20%;
+	text-align: center;
+	position: relative;
+}
+
+
 
 .catSearch{
 	margin-left: 20em;

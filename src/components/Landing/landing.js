@@ -1,5 +1,6 @@
 // component that renders the landing page
 import React, { Component } from 'react';
+import { Grid } from 'semantic-ui-react'
 import Notifications from 'react-notify-toast';
 import Navigation from '../Navbar/navbar';
 
@@ -14,15 +15,19 @@ class Landing extends Component {
 
         <h1 className="Welcome">Welcome to yummy recipes</h1>
         <div className="introText">
-          <h2> Inside yummy recipes you are able to do the following </h2>
-          <ul>
-            <li>Create Food Categories</li>
-            <li>Edit Food Categories</li>
-            <li>Delete Food Categories</li>
-            <li>Create Food Recipes</li>
-            <li>Edit Food Recipes</li>
-            <li>Delete Food Recipes</li>
-          </ul>
+          <Grid>
+            <Grid.Row>
+              <Grid.Column width={4} />
+              <Grid.Column width={8}>
+                <b>Food Categories and recipes for all Occasions:</b><br/><br/>
+                Create, View, Edit and Delete Categories<br/>
+                <br/>
+                <b>After Which you can:</b> <br/> Create, View, Edit and Delete Recipes
+                For your categories<br/>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+
         </div>
       </div>
     );
