@@ -230,6 +230,18 @@ class ViewCategories extends Component {
         <br />
         {cats ? (
           <div>
+            <Grid columns="equal">
+              <Grid.Column width={7} />
+              <Grid.Column width={8}>
+                <Button
+                  id="creator"
+                  as={Link}
+                  to="/catCreate">
+                  Create a Category
+                </Button>
+              </Grid.Column>
+              <Grid.Column />
+            </Grid>
             <Grid container columns={3}>
               <form onSubmit={this.handleSearch}>
                 <input

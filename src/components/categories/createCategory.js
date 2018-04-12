@@ -32,7 +32,6 @@ class CreateCategory extends Component {
       category_name: this.state.category_name,
       category_description: this.state.category_description
     };
-    console.log(newCategory);
     axiosInstance
       .post(`${CREATE_CAT_URL}`, newCategory, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }

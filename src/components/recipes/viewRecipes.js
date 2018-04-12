@@ -47,7 +47,6 @@ class ViewRecipes extends Component {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
-        console.log(response.data);
         notify.show(`${response.data.message}`);
         this.getRecipes();
       })
@@ -187,7 +186,6 @@ class ViewRecipes extends Component {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       .then(response => {
-        console.log(response);
         const recipes = response.data.items;
         this.setState({ recipes: recipes });
       })
@@ -228,7 +226,7 @@ class ViewRecipes extends Component {
           handleChange={() => this.handleChange}
           handleCreate={() => this.handleCreate}
           category_id={this.state.category_id}
-          category_name={this.state.category_name}
+          category_name={window.localStorage.getItem('category')}
           closeIcon
         />
         <br />
